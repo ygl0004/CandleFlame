@@ -436,7 +436,7 @@ main {
 }
 
 /* Animación para las velas en productos */
-.product-flame {
+/* .product-flame {
   position: absolute;
   top: -15px;
   left: 50%;
@@ -449,7 +449,7 @@ main {
   animation: flicker 2s infinite alternate;
   opacity: 0.8;
   z-index: 1;
-}
+} */
 
 @keyframes flicker {
   0%,
