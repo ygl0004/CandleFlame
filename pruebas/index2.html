@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Yeray Garrido Linares">
+  <meta name="description" content="Candle Flame - Personaliza tu vela artesanal">
+  <link rel="preload" href="assets/fonts/TAN_Meringue/TAN MERINGUE.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="assets/fonts/Stinger_Fit/StingerFitTrial-Regular.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="scripts.js"></script>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <title>Candle Flame - Personalizar Vela</title>
+  <style>
+    /* Estilos generales */
+    :root {
+      --color-primary: #dd5215;
+      --color-secondary: #333;
+      --color-accent: #dd5215;
+      --color-accent-light: #ff7e47;
+      --color-text-light: #555;
+      --color-text-dark: #222;
+      --color-bg-light: #f9f9f9;
+      --transition: all 0.3s ease;
+      --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Estilos para la sección hero con video */
+    .video-hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+    }
+    
+    .video-hero video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+    }
+    
+    .video-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 2;
+    }
+    
+    .video-content {
+      position: relative;
+      z-index: 3;
+      max-width: 800px;
+      padding: 0 20px;
+    }
+    
+    .video-content h1 {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    }
+    
+    .video-content p {
+      font-size: 1.3rem;
+      margin-bottom: 30px;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    }
+    
+    .scroll-down {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      color: white;
+      font-size: 2rem;
+      animation: bounce 2s infinite;
+      cursor: pointer;
+    }
+    
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {transform: translateY(0) translateX(-50%);}
+      40% {transform: translateY(-20px) translateX(-50%);}
+      60% {transform: translateY(-10px) translateX(-50%);}
+    }
+    
+    /* Sección de personalización */
+    .customization-section {
+      padding: 80px 20px;
+      background-color: var(--color-bg-light);
+    }
+    
+    /* Estilos específicos para la personalización */
+    :root {
+      /* Colores de cera */
+      --wax-color-light: #f8f0e5;
+      --wax-color-dark: #d4c0a1;
+      /* Llama */
+      --flame-primary: #ff9a3c;
+      --flame-secondary: #ffeb99;
+      --flame-glow: rgba(255, 154, 60, 0.4);
+      /* Tamaño */
+      --candle-scale: 1;
+      /* Fondo */
+      --bg-image: url('https://images.unsplash.com/photo-1518826778374-897c319f0c2f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+    }
+
+    /* Sección introductoria */
+    .intro-section {
+      text-align: center;
+      padding: 80px 20px 40px;
+      max-width: 800px;
+      margin: 0 auto;
+      color: var(--color-text-light);
+    }
+
+    .intro-section h2 {
+      font-size: 2.5rem;
+      color: var(--color-accent-light);
+      margin-bottom: 20px;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    }
+
+    .intro-section p {
+      font-size: 1.2rem;
+      margin-bottom: 40px;
+      line-height: 1.6;
+      opacity: 0.9;
+    }
+
+    .customizer-container {
+      max-width: 1400px;
+      margin: 0 auto 80px;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    /* Candle Preview 3D */
+    .candle-preview {
+      perspective: 1200px;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 500px;
+    }
+
+    .candle-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: var(--bg-image);
+      background-size: cover;
+      background-position: center;
+      border-radius: 20px;
+      opacity: 0.3;
+      transition: var(--transition);
+      z-index: 1;
+    }
+
+    .candle-model {
+      position: relative;
+      width: calc(220px * var(--candle-scale));
+      height: calc(340px * var(--candle-scale));
+      transform-style: preserve-3d;
+      transform: rotateX(0deg) rotateY(0deg);
+      transition: all 0.6s cubic-bezier(0.33, 1, 0.68, 1);
+      filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));
+      z-index: 2;
+    }
+
+    .candle-body {
+      position: absolute;
+      width: 90%;
+      height: 85%;
+      bottom: 0;
+      left: 5%;
+      border-radius: 60px 60px 15px 15px;
+      background: linear-gradient(to top, 
+        var(--wax-color-dark), 
+        var(--wax-color-light));
+      box-shadow:
+        inset 0 -10px 30px rgba(0,0,0,0.1),
+        inset 0 10px 20px rgba(255,255,255,0.3),
+        0 15px 40px rgba(0,0,0,0.15);
+      transform-origin: bottom;
+      overflow: hidden;
+      transition: all 0.8s cubic-bezier(0.33, 1, 0.68, 1);
+      transform: translateZ(30px);
+    }
+
+    .candle-body::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--wax-color-dark);
+      border-radius: 60px 60px 15px 15px;
+      z-index: -1;
+      transform: translateZ(-20px) scale(0.98);
+      filter: brightness(0.7);
+      transition: all 0.8s cubic-bezier(0.33, 1, 0.68, 1);
+    }
+
+    .wax-depth {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--wax-color-dark);
+      border-radius: 60px 60px 15px 15px;
+      z-index: -2;
+      transform: translateZ(-40px) scale(0.96);
+      filter: brightness(0.5);
+      transition: all 0.8s cubic-bezier(0.33, 1, 0.68, 1);
+    }
+
+    .wax-drips {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      transform: translateZ(5px);
+    }
+
+    .drip {
+      position: absolute;
+      top: -10px;
+      width: 8px;
+      height: 40px;
+      background: var(--wax-color-dark);
+      border-radius: 0 0 8px 8px;
+      animation: melt 8s infinite ease-in-out;
+      filter: brightness(0.9);
+      transform: translateZ(5px);
+      transition: all 0.8s ease;
+    }
+
+    .drip::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, 
+        transparent, 
+        var(--wax-color-dark));
+      border-radius: 0 0 8px 8px;
+      transform: translateZ(-2px);
+    }
+
+    @keyframes melt {
+      0%, 100% { height: 40px; opacity: 0.8; }
+      50% { height: 70px; opacity: 1; }
+    }
+
+    .wax-inner-layer {
+      position: absolute;
+      bottom: 0;
+      width: 80%;
+      height: 90%;
+      background: linear-gradient(to top, 
+        rgba(0,0,0,0.05), 
+        rgba(255,255,255,0.15));
+      border-radius: 50px 50px 10px 10px;
+      margin: 0 10%;
+      transform: translateZ(15px);
+      box-shadow: inset 0 0 30px rgba(0,0,0,0.05);
+      transition: all 0.8s ease;
+    }
+
+    .wick-container {
+      position: absolute;
+      top: -5px;
+      left: 50%;
+      transform: translateX(-50%) translateZ(25px);
+      z-index: 5;
+      transition: transform 0.6s ease;
+    }
+
+    .wick-base {
+      width: 10px;
+      height: 5px;
+      background: #3a2c20;
+      border-radius: 50%;
+      transform: translateZ(5px);
+      box-shadow: 0 0 5px rgba(0,0,0,0.3);
+      transition: all 0.6s ease;
+    }
+
+    .wick {
+      width: 3px;
+      height: 20px;
+      background: linear-gradient(to top, #1a120b, #3a2c20);
+      margin: 0 auto;
+      position: relative;
+      transform: translateZ(5px);
+      transition: all 0.6s ease;
+    }
+
+    .wick::after {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -1px;
+      width: 5px;
+      height: 5px;
+      background: #3a2c20;
+      border-radius: 50%;
+      filter: blur(1px);
+    }
+
+    .candle-flame-container {
+      position: absolute;
+      top: calc(-70px * var(--candle-scale));
+      left: 50%;
+      transform: translateX(-50%) translateZ(30px);
+      width: calc(50px * var(--candle-scale));
+      height: calc(120px * var(--candle-scale));
+      z-index: 10;
+      filter: drop-shadow(0 0 15px var(--flame-glow));
+      transition: all 0.8s cubic-bezier(0.33, 1, 0.68, 1);
+    }
+
+    .flame-halo {
+      position: absolute;
+      bottom: calc(-20px * var(--candle-scale));
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(80px * var(--candle-scale));
+      height: calc(80px * var(--candle-scale));
+      background: radial-gradient(circle, 
+        var(--flame-glow), 
+        transparent 70%);
+      filter: blur(15px);
+      z-index: 1;
+      transition: all 0.8s cubic-bezier(0.33, 1, 0.68, 1);
+    }
+
+    .flame-layer {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 50% 50% 20% 20%;
+      transition: all 0.6s cubic-bezier(0.33, 1, 0.68, 1);
+    }
+
+    .flame-back {
+      width: calc(50px * var(--candle-scale)); 
+      height: calc(120px * var(--candle-scale));
+      background: radial-gradient(circle at 30% 30%, 
+        var(--flame-glow), 
+        transparent 70%);
+      filter: blur(10px);
+      animation: flicker-back 1400ms infinite alternate ease-in-out;
+    }
+
+    .flame-main {
+      width: calc(35px * var(--candle-scale)); 
+      height: calc(90px * var(--candle-scale));
+      background: linear-gradient(to top, 
+        var(--flame-primary), 
+        var(--flame-secondary));
+      filter: blur(5px);
+      animation: flicker-main 1200ms infinite alternate ease-in-out;
+      z-index: 3;
+    }
+
+    .flame-inner {
+      width: calc(25px * var(--candle-scale)); 
+      height: calc(60px * var(--candle-scale));
+      background: radial-gradient(circle at 50% 50%, 
+        #fff, 
+        rgba(255,255,255,0.3));
+      filter: blur(3px);
+      animation: flicker-inner 900ms infinite alternate ease-in-out;
+      z-index: 4;
+    }
+
+    /* Nueva animación de transición para la llama */
+    @keyframes flame-transition {
+      0% { opacity: 1; transform: translateX(-50%) scaleY(1.2) scaleX(0.9); }
+      20% { opacity: 0.7; transform: translateX(-50%) scaleY(0.8) scaleX(1.1); }
+      40% { opacity: 0.4; transform: translateX(-50%) scaleY(1.3) scaleX(0.7); }
+      60% { opacity: 0.7; transform: translateX(-50%) scaleY(0.9) scaleX(1); }
+      80% { opacity: 0.5; transform: translateX(-50%) scaleY(1.1) scaleX(0.8); }
+      100% { opacity: 1; transform: translateX(-50%) scaleY(1) scaleX(1); }
+    }
+
+    .flame-transition-effect {
+      animation: flame-transition 0.8s ease-out;
+    }
+
+    .flame-sparks {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 5;
+    }
+
+    .candle-reflection {
+      position: absolute;
+      top: 15%;
+      left: 15%;
+      width: 40%;
+      height: 30%;
+      background: radial-gradient(circle at 30% 30%, 
+        rgba(255,255,255,0.4), 
+        transparent 70%);
+      filter: blur(5px);
+      border-radius: 50%;
+      pointer-events: none;
+      animation: reflection-shift 8s infinite alternate ease-in-out;
+      transform: translateZ(20px);
+      z-index: 4;
+      transition: all 0.8s ease;
+    }
+
+    .candle-base {
+      position: absolute;
+      bottom: -5px;
+      left: 5%;
+      width: 90%;
+      height: 15px;
+      background: var(--wax-color-dark);
+      border-radius: 0 0 15px 15px;
+      transform: translateZ(-10px);
+      filter: brightness(0.8);
+      z-index: -1;
+      box-shadow: 
+        0 5px 15px rgba(0,0,0,0.2),
+        inset 0 -3px 5px rgba(0,0,0,0.1);
+      transition: all 0.8s cubic-bezier(0.33, 1, 0.68, 1);
+    }
+
+    .candle-base::before {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 5%;
+      width: 90%;
+      height: 10px;
+      background: var(--wax-color-dark);
+      border-radius: 0 0 10px 10px;
+      transform: translateZ(-15px);
+      filter: brightness(0.7);
+      transition: all 0.8s cubic-bezier(0.33, 1, 0.68, 1);
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+      100% { transform: scale(1); }
+    }
+
+    .size-changing {
+      animation: pulse 0.6s ease;
+    }
+
+    @keyframes flicker-back {
+      from { transform: translateX(-50%) scaleY(1) scaleX(1); opacity: 0.2; }
+      to   { transform: translateX(-50%) scaleY(1.3) scaleX(0.8); opacity: 0.5; }
+    }
+
+    @keyframes flicker-main {
+      from { transform: translateX(-50%) scaleY(1) scaleX(1); }
+      to   { transform: translateX(-50%) scaleY(1.4) scaleX(0.7); }
+    }
+
+    @keyframes flicker-inner {
+      from { transform: translateX(-50%) scale(0.8); opacity: 0.5; }
+      to   { transform: translateX(-50%) scale(1.3); opacity: 0.9; }
+    }
+
+    @keyframes reflection-shift {
+      0%, 100% { transform: translate(0, 0) translateZ(20px); }
+      50% { transform: translate(10px, 10px) translateZ(20px); }
+    }
+
+    /* Customization Panel */
+    .customization-options {
+      background: white;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      position: relative;
+      z-index: 3;
+    }
+
+    .option-group {
+      margin-bottom: 25px;
+    }
+
+    .option-group h3 {
+      color: var(--color-secondary);
+      margin-bottom: 12px;
+      font-size: 1.3rem;
+      position: relative;
+    }
+
+    .option-group h3::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 40%;
+      height: 2px;
+      background: var(--color-accent-light);
+    }
+
+    .color-options {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .color-option {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid white;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .color-option.selected {
+      transform: scale(1.15);
+      box-shadow: 0 0 0 3px var(--color-accent);
+    }
+
+    .color-option::after {
+      content: attr(title);
+      position: absolute;
+      bottom: -22px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.65rem;
+      white-space: nowrap;
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .color-option:hover::after {
+      opacity: 1;
+    }
+
+    .flame-color-options {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .flame-color-option {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid white;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: var(--transition);
+      position: relative;
+      background: conic-gradient(from 180deg, var(--flame-color1) 0%, var(--flame-color2) 100%);
+    }
+
+    .flame-color-option.selected {
+      transform: scale(1.15);
+      box-shadow: 0 0 0 3px var(--color-accent);
+    }
+
+    .flame-color-option::after {
+      content: attr(title);
+      position: absolute;
+      bottom: -22px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.65rem;
+      white-space: nowrap;
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .flame-color-option:hover::after {
+      opacity: 1;
+    }
+
+    .scent-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 12px;
+    }
+
+    .scent-option {
+      padding: 12px;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      text-align: center;
+      cursor: pointer;
+      transition: var(--transition);
+      background: white;
+    }
+
+    .scent-option.selected {
+      border-color: var(--color-accent);
+      background: rgba(221, 82, 21, 0.05);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .scent-icon {
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+      transition: var(--transition);
+    }
+
+    /* Size Options */
+    .size-options {
+      display: flex;
+      gap: 12px;
+    }
+
+    .size-option {
+      padding: 12px;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      text-align: center;
+      cursor: pointer;
+      transition: var(--transition);
+      flex: 1;
+      background: white;
+    }
+
+    .size-option.selected {
+      border-color: var(--color-accent);
+      background: rgba(221, 82, 21, 0.05);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Price */
+    .price-display {
+      font-size: 1.6rem;
+      font-family: 'Tan_Meringue';
+      color: var(--color-accent);
+      text-align: center;
+      margin: 15px 0;
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .customizer-container {
+        grid-template-columns: 1fr;
+        gap: 25px;
+      }
+      
+      .candle-preview {
+        height: 400px;
+        margin-bottom: 30px;
+      }
+      
+      .intro-section {
+        padding: 60px 20px 30px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .customizer-container {
+        margin-top: 0;
+        padding: 15px;
+      }
+      
+      .candle-preview {
+        height: 350px;
+      }
+      
+      :root {
+        --candle-scale: 0.8;
+      }
+      
+      .intro-section h2 {
+        font-size: 2rem;
+      }
+      
+      .intro-section p {
+        font-size: 1rem;
+      }
+      
+      .video-content h1 {
+        font-size: 2.5rem;
+      }
+      
+      .video-content p {
+        font-size: 1.1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .size-options {
+        flex-direction: column;
+      }
+      
+      .scent-options {
+        grid-template-columns: 1fr 1fr;
+      }
+      
+      .video-content h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Hero Section with Video -->
+  <section class="video-hero">
+    <video muted loop playsinline id="background-video-desktop" autoplay>
+      <source src="assets/media/video/portada/personalizar.mp4" type="video/mp4">
+    </video>
+    <div class="video-overlay"></div>
+    
+    <div class="video-content">
+      <h1>Crea tu vela perfecta</h1>
+      <p>Personaliza cada detalle para crear una pieza única que refleje tu estilo y esencia.</p>
+    </div>
+    
+    <div class="scroll-down" id="scroll-down">
+      <i class="fas fa-chevron-down"></i>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Sección de personalización -->
+    <section class="customization-section">
+      <!-- Sección introductoria -->
+      <section class="intro-section">
+        <h2>Personaliza tu vela artesanal</h2>
+        <p>En Candle Flame, cada vela es una obra de arte única. Selecciona cada detalle para crear una pieza que refleje tu personalidad y se adapte a tus momentos especiales.</p>
+      </section>
+
+      <div class="customizer-container">
+        <!-- Candle Preview -->
+        <div class="candle-preview">
+          <div class="candle-background"></div>
+          <div class="candle-model">
+            <div class="candle-body">
+              <div class="wax-drips">
+                <div class="drip" style="left: 15%; animation-delay: 0.5s;"></div>
+                <div class="drip" style="left: 45%; animation-delay: 1.2s;"></div>
+                <div class="drip" style="left: 75%; animation-delay: 0.8s;"></div>
+              </div>
+              <div class="wax-inner-layer"></div>
+              <div class="wick-container">
+                <div class="wick-base"></div>
+                <div class="wick"></div>
+              </div>
+              <div class="candle-reflection"></div>
+              <div class="wax-depth"></div>
+            </div>
+            <div class="candle-base"></div>
+            
+            <div class="candle-flame-container">
+              <div class="flame-halo"></div>
+              <div class="flame-layer flame-back"></div>
+              <div class="flame-layer flame-main"></div>
+              <div class="flame-layer flame-inner"></div>
+              <div class="flame-sparks"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Customization Options -->
+        <div class="customization-options">
+          <h2>Personaliza tu vela</h2>
+          
+          <div class="option-group">
+            <h3>Color de la cera</h3>
+            <div class="color-options">
+              <div class="color-option selected" title="Beige" style="background: #f8f0e5;" data-color-light="#f8f0e5" data-color-dark="#d4c0a1"></div>
+              <div class="color-option" title="Crema" style="background: #fff5e6;" data-color-light="#fff5e6" data-color-dark="#e6d5b8"></div>
+              <div class="color-option" title="Arena" style="background: #e6d5b8;" data-color-light="#e6d5b8" data-color-dark="#c9a87c"></div>
+              <div class="color-option" title="Caramelo" style="background: #d4c0a1;" data-color-light="#d4c0a1" data-color-dark="#b08e6b"></div>
+              <div class="color-option" title="Rosa" style="background: #f5d0d9;" data-color-light="#f5d0d9" data-color-dark="#e6b8c5"></div>
+              <div class="color-option" title="Menta" style="background: #d1e9d2;" data-color-light="#d1e9d2" data-color-dark="#b8d9b9"></div>
+            </div>
+          </div>
+          
+          <div class="option-group">
+            <h3>Color de la llama</h3>
+            <div class="flame-color-options">
+              <div class="flame-color-option selected" title="Clásica" 
+                   style="--flame-color1: #ff9a3c; --flame-color2: #ffeb99;"
+                   data-flame-primary="#ff9a3c" 
+                   data-flame-secondary="#ffeb99" 
+                   data-flame-glow="rgba(255, 154, 60, 0.4)"></div>
+              <div class="flame-color-option" title="Ámbar" 
+                   style="--flame-color1: #ff6b00; --flame-color2: #ffcc33;"
+                   data-flame-primary="#ff6b00" 
+                   data-flame-secondary="#ffcc33" 
+                   data-flame-glow="rgba(255, 107, 0, 0.4)"></div>
+              <div class="flame-color-option" title="Blanca" 
+                   style="--flame-color1: #ffdd99; --flame-color2: #ffffff;"
+                   data-flame-primary="#ffdd99" 
+                   data-flame-secondary="#ffffff" 
+                   data-flame-glow="rgba(255, 221, 153, 0.4)"></div>
+              <div class="flame-color-option" title="Azulada" 
+                   style="--flame-color1: #00a8ff; --flame-color2: #99e6ff;"
+                   data-flame-primary="#00a8ff" 
+                   data-flame-secondary="#99e6ff" 
+                   data-flame-glow="rgba(0, 168, 255, 0.4)"></div>
+            </div>
+          </div>
+          
+          <div class="option-group">
+            <h3>Tamaño</h3>
+            <div class="size-options">
+              <div class="size-option" data-scale="0.8">
+                <div>Pequeño</div>
+                <small>8cm</small>
+              </div>
+              <div class="size-option selected" data-scale="1">
+                <div>Mediano</div>
+                <small>12cm</small>
+              </div>
+              <div class="size-option" data-scale="1.2">
+                <div>Grande</div>
+                <small>16cm</small>
+              </div>
+            </div>
+          </div>
+          
+          <div class="option-group">
+            <h3>Aroma</h3>
+            <div class="scent-options">
+              <div class="scent-option" data-scent="vainilla" data-bg-image="https://images.unsplash.com/photo-1518826778374-897c319f0c2f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80">
+                <div class="scent-icon"><i class="fas fa-leaf"></i></div>
+                <div>Vainilla</div>
+              </div>
+              <div class="scent-option selected" data-scent="lavanda" data-bg-image="https://images.unsplash.com/photo-1518893884430-8c773c934b5b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80">
+                <div class="scent-icon"><i class="fas fa-spa"></i></div>
+                <div>Lavanda</div>
+              </div>
+              <div class="scent-option" data-scent="sándalo" data-bg-image="https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80">
+                <div class="scent-icon"><i class="fas fa-tree"></i></div>
+                <div>Sándalo</div>
+              </div>
+              <div class="scent-option" data-scent="cítrico" data-bg-image="https://images.unsplash.com/photo-1517420704952-d9f39e95b43e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80">
+                <div class="scent-icon"><i class="fas fa-lemon"></i></div>
+                <div>Cítrico</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="price-display">
+            $24.99
+          </div>
+          
+          <button class="cta-button">
+            Añadir al carrito
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-wave"></div>
+    <div class="footer-content">
+      <div class="footer-main">
+        <div class="footer-links">
+          <div class="links-group">
+            <h4>Productos</h4>
+            <ul>
+              <li><a href="esencia.html">Velas aromáticas</a></li>
+              <li><a href="plumiferos.html">Difusores</a></li>
+              <li><a href="#">Colección limitada</a></li>
+              <li><a href="#">Kits de regalo</a></li>
+            </ul>
+          </div>
+
+          <div class="links-group">
+            <h4>Compañía</h4>
+            <ul>
+              <li><a href="historias.html">Nuestra historia</a></li>
+              <li><a href="#">Artesanía</a></li>
+              <li><a href="#">Sostenibilidad</a></li>
+              <li><a href="#">Trabaja con nosotros</a></li>
+            </ul>
+          </div>
+
+          <div class="links-group">
+            <h4>Soporte</h4>
+            <ul>
+              <li><a href="contacto.html">Contacto</a></li>
+              <li><a href="envios.html">Envíos y devoluciones</a></li>
+              <li><a href="preguntas.html">FAQ</a></li>
+              <li><a href="#">Guía de aromas</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-newsletter">
+          <h4>Únete a nuestro mundo</h4>
+          <p>Recibe novedades y ofertas exclusivas</p>
+          <form class="newsletter-form">
+            <input type="email" placeholder="Tu email" required />
+            <button type="submit">
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </form>
+        </div>
+
+        <div class="footer-social-container">
+          <h4 class="footer-social-title">Síguenos en redes</h4>
+          <div class="footer-social">
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-legal">
+        <p>&copy; 2025 Candle Flame. Todos los derechos reservados.</p>
+        <div class="legal-links">
+          <a href="politica-privacidad.html">Privacidad</a>
+          <a href="terminos.html">Términos</a>
+          <a href="cookies.html">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Scroll suave al hacer clic en el botón de scroll down
+      document.getElementById('scroll-down').addEventListener('click', function() {
+        const customizationSection = document.querySelector('.customization-section');
+        customizationSection.scrollIntoView({ behavior: 'smooth' });
+      });
+      
+      // Sistema de partículas para la llama
+      function createFlameParticles() {
+        const container = document.querySelector('.flame-sparks');
+        
+        setInterval(() => {
+          if (Math.random() > 0.5) {
+            const particle = document.createElement('div');
+            particle.className = 'flame-particle';
+            
+            const xPos = 50 + (Math.random() * 20 - 10);
+            
+            particle.style.cssText = `
+              position: absolute;
+              bottom: 0;
+              left: ${xPos}%;
+              width: ${Math.random() * 4 + 2}px;
+              height: ${Math.random() * 4 + 2}px;
+              background: ${Math.random() > 0.7 ? 'var(--flame-secondary)' : 'var(--flame-primary)'};
+              border-radius: 50%;
+              filter: blur(1px);
+              opacity: ${Math.random() * 0.8 + 0.2};
+              transform-origin: bottom;
+            `;
+            
+            container.appendChild(particle);
+            
+            anime({
+              targets: particle,
+              translateY: [0, -Math.random() * 100 - 50],
+              translateX: [0, (Math.random() * 20 - 10)],
+              scale: [1, Math.random() * 0.5 + 0.5],
+              opacity: [1, 0],
+              duration: Math.random() * 1000 + 500,
+              easing: 'easeOutQuad',
+              complete: () => particle.remove()
+            });
+          }
+        }, 100);
+      }
+      
+      // Interacción con el color de cera
+      document.querySelectorAll('.color-option').forEach(option => {
+        option.addEventListener('click', function() {
+          document.querySelectorAll('.color-option').forEach(opt => {
+            opt.classList.remove('selected');
+          });
+          this.classList.add('selected');
+          
+          // Cambiar color de la cera directamente con transición CSS
+          document.documentElement.style.setProperty('--wax-color-light', this.dataset.colorLight);
+          document.documentElement.style.setProperty('--wax-color-dark', this.dataset.colorDark);
+          
+          updatePrice();
+        });
+      });
+      
+      // Interacción con el color de llama - Versión mejorada
+      document.querySelectorAll('.flame-color-option').forEach(option => {
+        option.addEventListener('click', function() {
+          document.querySelectorAll('.flame-color-option').forEach(opt => {
+            opt.classList.remove('selected');
+          });
+          this.classList.add('selected');
+
+          // Aplicar clase de transición a todas las capas de la llama
+          const flameLayers = document.querySelectorAll('.flame-layer');
+          flameLayers.forEach(layer => {
+            layer.classList.add('flame-transition-effect');
+            
+            // Eliminar la clase después de que termine la animación
+            setTimeout(() => {
+              layer.classList.remove('flame-transition-effect');
+            }, 800);
+          });
+
+          // Cambiar los colores después de un breve retraso para sincronizar con la animación
+          setTimeout(() => {
+            document.documentElement.style.setProperty('--flame-primary', this.dataset.flamePrimary);
+            document.documentElement.style.setProperty('--flame-secondary', this.dataset.flameSecondary);
+            document.documentElement.style.setProperty('--flame-glow', this.dataset.flameGlow);
+            
+            // Efecto de chispa
+            const spark = document.createElement('div');
+            spark.style.cssText = `
+              position: absolute;
+              bottom: 0;
+              left: 50%;
+              width: 15px;
+              height: 15px;
+              background: ${this.dataset.flameSecondary};
+              border-radius: 50%;
+              filter: blur(3px);
+              transform: translateX(-50%);
+              z-index: 10;
+              opacity: 0;
+            `;
+            document.querySelector('.flame-sparks').appendChild(spark);
+            
+            anime({
+              targets: spark,
+              translateY: [-20, -40],
+              scale: [0.5, 2],
+              opacity: [0.8, 0],
+              duration: 600,
+              easing: 'easeOutQuad',
+              complete: () => spark.remove()
+            });
+          }, 200);
+
+          updatePrice();
+        });
+      });
+      
+      // Interacción con el tamaño
+      document.querySelectorAll('.size-option').forEach(option => {
+        option.addEventListener('click', function() {
+          document.querySelectorAll('.size-option').forEach(opt => {
+            opt.classList.remove('selected');
+          });
+          this.classList.add('selected');
+          
+          // Efecto de transición para el cambio de tamaño
+          const candleModel = document.querySelector('.candle-model');
+          candleModel.classList.add('size-changing');
+          
+          // Cambiar tamaño después del efecto
+          setTimeout(() => {
+            document.documentElement.style.setProperty('--candle-scale', this.dataset.scale);
+            candleModel.classList.remove('size-changing');
+          }, 600);
+          
+          updatePrice();
+        });
+      });
+      
+      // Interacción con el aroma (incluyendo cambio de fondo)
+      document.querySelectorAll('.scent-option').forEach(option => {
+        option.addEventListener('click', function() {
+          const parent = this.parentElement;
+          parent.querySelectorAll('.selected').forEach(el => el.classList.remove('selected'));
+          this.classList.add('selected');
+          
+          // Cambiar imagen de fondo con transición
+          const candleBg = document.querySelector('.candle-background');
+          candleBg.style.opacity = '0';
+          
+          setTimeout(() => {
+            const bgImage = this.dataset.bgImage;
+            document.documentElement.style.setProperty('--bg-image', `url('${bgImage}')`);
+            candleBg.style.opacity = '0.3';
+          }, 400);
+          
+          updatePrice();
+        });
+      });
+      
+      // Interacción con el mouse para efecto 3D mejorado
+      const candle = document.querySelector('.candle-model');
+      const candlePreview = document.querySelector('.candle-preview');
+      
+      candlePreview.addEventListener('mousemove', (e) => {
+        const rect = candlePreview.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width;
+        const y = (e.clientY - rect.top) / rect.height;
+        
+        const rotateX = (0.5 - y) * 25;
+        const rotateY = (0.5 - x) * 25;
+        
+        candle.style.transform = `
+          rotateX(${rotateX}deg) 
+          rotateY(${rotateY}deg)
+        `;
+        
+        // Efecto de iluminación dinámica mejorado
+        candle.style.filter = `
+          drop-shadow(${(0.5 - x) * 15}px ${(0.5 - y) * 15}px 25px rgba(0,0,0,0.3))
+        `;
+        
+        // Mover reflejo según la posición del mouse
+        const reflection = document.querySelector('.candle-reflection');
+        reflection.style.left = `${15 + (0.5 - x) * 10}%`;
+        reflection.style.top = `${15 + (0.5 - y) * 10}%`;
+      });
+      
+      candlePreview.addEventListener('mouseleave', () => {
+        candle.style.transform = 'rotateX(0deg) rotateY(0deg)';
+        candle.style.filter = 'drop-shadow(0 10px 20px rgba(0,0,0,0.15))';
+        const reflection = document.querySelector('.candle-reflection');
+        reflection.style.left = '15%';
+        reflection.style.top = '15%';
+      });
+      
+      // Actualizar precio
+      function updatePrice() {
+        const sizeOption = document.querySelector('.size-option.selected');
+        const basePrice = 24.99;
+        let price = basePrice;
+        
+        // Ajustar por tamaño
+        if (sizeOption) {
+          const scale = parseFloat(sizeOption.dataset.scale);
+          price = basePrice * scale;
+        }
+        
+        // Mostrar precio formateado
+        document.querySelector('.price-display').textContent = `$${price.toFixed(2)}`;
+      }
+      
+      // Inicializar efectos
+      createFlameParticles();
+    });
+  </script>
+</body>
+</html>

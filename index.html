@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Yeray Garrido Linares" />
+    <meta name="description" content="Candle Flame - Velas artesanales con esencias únicas" />
+    <link rel="preload" href="assets/fonts/TAN_Meringue/TAN MERINGUE.ttf" as="font" type="font/ttf" crossorigin />
+    <link rel="preload" href="assets/fonts/Stinger_Fit/StingerFitTrial-Regular.ttf" as="font" type="font/ttf" crossorigin />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="scripts.js"></script>
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <title>Candle Flame - Inicio</title>
+  </head>
+
+  <body>
+    <!-- Animación de bienvenida -->
+    <!-- <div id="transition-animation" style="display: none">
+      <div id="transition"></div>
+      <div id="experience">
+        <div class="fire-border" id="fire-border"></div>
+        <div class="light-wave" id="light-wave"></div>
+        <div class="message">
+          <h1>El momento es ahora</h1>
+          <p>Todo lo que has vivido te ha preparado para este instante de transformación</p>
+          <div id="candle-interactive">
+            <div id="candle-container">
+              <div class="wax"></div>
+              <div class="wick"></div>
+              <div class="wick-glow"></div>
+              <div class="flame"></div>
+            </div>
+            <div class="hint">Pulsa para encender</div>
+          </div>
+        </div>
+      </div>
+      <button id="skip-animation">Saltar</button>
+    </div> -->
+
+    <!-- Video de fondo -->
+    <div class="video-container">
+      <video muted loop playsinline id="background-video-desktop" autoplay>
+        <source src="assets/media/video/portada/CandleFlame_Ordenador.mp4" type="video/mp4" />
+      </video>
+      <video muted loop playsinline id="background-video-mobile" autoplay>
+        <source src="assets/media/video/portada/CandleFlame_Movil.mp4" type="video/mp4" />
+      </video>
+      <div class="video-overlay"></div>
+    </div>
+
+    <!-- Header -->
+    <header>
+      <div class="header_container">
+        <div class="header_logo">
+          <a href="index.html"><h1>Candle Flame</h1></a>
+        </div>
+        <button class="mobile-menu-button" aria-label="Menú móvil">
+          <i class="fas fa-bars"></i>
+        </button>
+        <nav class="header_nav">
+          <a class="header_link active" href="index.html">Inicio</a>
+          <a class="header_link" href="esencia.html">Esencia</a>
+          <a class="header_link" href="plumiferos.html">Plumíferos</a>
+          <a class="header_link" href="personalizar.html">Personalizar</a>
+          <a class="header_link" href="historias.html">Historias</a>
+        </nav>
+        <div class="header_container_icons">
+          <a class="header_link icon-cart" href="carrito.html" aria-label="Carrito"></a>
+          <a class="header_link icon-search" href="busqueda.html" aria-label="Buscar"></a>
+          <a class="header_link icon-account" href="cuenta.html" aria-label="Cuenta"></a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Contenido principal -->
+    <main>
+      <!-- Hero Section -->
+      <section class="hero">
+        <div class="hero-content">
+          <h2>Ilumina tus momentos</h2>
+          <p class="subtitle">Velas artesanales con esencias únicas inspiradas en la naturaleza</p>
+          <a href="#coleccion" class="cta-button">Descubre la colección</a>
+        </div>
+      </section>
+
+      <!-- Sección de colección -->
+      <section id="coleccion" class="collection-section section-light section-animate">
+        <div class="section-header">
+          <h3>Nuestras esencias</h3>
+          <p>Descubre la magia en cada aroma</p>
+        </div>
+        <div class="collection-grid">
+          <div class="collection-item">
+            <div class="item-image" style="background-image: url('assets/images/vela-1.jpg')">
+              <div class="product-flame"></div>
+            </div>
+            <h4>Bosque nocturno</h4>
+            <p>Notas de pino y tierra húmeda</p>
+            <span class="price">€24.90</span>
+            <a href="#" class="product-button">Añadir al carrito</a>
+          </div>
+          <div class="collection-item">
+            <div class="item-image" style="background-image: url('assets/images/vela-2.jpg')">
+              <div class="product-flame"></div>
+            </div>
+            <h4>Amancer tropical</h4>
+            <p>Mezcla de frutas exóticas</p>
+            <span class="price">€22.90</span>
+            <a href="#" class="product-button">Añadir al carrito</a>
+          </div>
+          <div class="collection-item">
+            <div class="item-image" style="background-image: url('assets/images/vela-3.jpg')">
+              <div class="product-flame"></div>
+            </div>
+            <h4>Lavanda serena</h4>
+            <p>Calma y relajación profunda</p>
+            <span class="price">€19.90</span>
+            <a href="#" class="product-button">Añadir al carrito</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sección de historia -->
+      <section class="story-section section-animate">
+        <div class="story-content">
+          <h3>Artesanía con alma</h3>
+          <p>
+            Cada vela Candle Flame es creada a mano con cera de soja natural y aceites esenciales puros. Nuestro proceso artesanal garantiza
+            una calidad excepcional y una experiencia aromática única.
+          </p>
+          <a href="historias.html" class="secondary-button">Conoce nuestra historia</a>
+        </div>
+        <div class="story-image"></div>
+      </section>
+
+      <!-- Sección de personalización destacada -->
+      <section class="customization-highlight section-light section-animate">
+        <div class="section-header">
+          <h3>Crea tu vela perfecta</h3>
+          <p>Personaliza cada detalle para una experiencia única</p>
+        </div>
+        <div class="customization-preview">
+          <div class="preview-image" style="background-image: url('assets/images/personalizar-preview.jpg')"></div>
+          <div class="preview-content">
+            <h4>Diseña tu propia vela</h4>
+            <p>Elige el color, tamaño, aroma y tipo de llama para crear una vela que sea tan única como tú.</p>
+            <ul class="customization-features">
+              <li><i class="fas fa-palette"></i> 12 colores de cera</li>
+              <li><i class="fas fa-fire"></i> 4 tipos de llama</li>
+              <li><i class="fas fa-arrows-alt-v"></i> 3 tamaños diferentes</li>
+              <li><i class="fas fa-wind"></i> 8 aromas exclusivos</li>
+            </ul>
+            <a href="personalizar.html" class="cta-button">Personalizar ahora</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-wave"></div>
+      <div class="footer-content">
+        <div class="footer-main">
+          <div class="footer-links">
+            <div class="links-group">
+              <h4>Productos</h4>
+              <ul>
+                <li><a href="esencia.html">Velas aromáticas</a></li>
+                <li><a href="plumiferos.html">Difusores</a></li>
+                <li><a href="#">Colección limitada</a></li>
+                <li><a href="#">Kits de regalo</a></li>
+              </ul>
+            </div>
+
+            <div class="links-group">
+              <h4>Compañía</h4>
+              <ul>
+                <li><a href="historias.html">Nuestra historia</a></li>
+                <li><a href="#">Artesanía</a></li>
+                <li><a href="#">Sostenibilidad</a></li>
+                <li><a href="#">Trabaja con nosotros</a></li>
+              </ul>
+            </div>
+
+            <div class="links-group">
+              <h4>Soporte</h4>
+              <ul>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="envios.html">Envíos y devoluciones</a></li>
+                <li><a href="preguntas.html">FAQ</a></li>
+                <li><a href="#">Guía de aromas</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="footer-newsletter">
+            <h4>Únete a nuestro mundo</h4>
+            <p>Recibe novedades y ofertas exclusivas</p>
+            <form class="newsletter-form">
+              <input type="email" placeholder="Tu email" required />
+              <button type="submit">
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </form>
+          </div>
+
+          <div class="footer-social-container">
+            <h4 class="footer-social-title">Síguenos en redes</h4>
+            <div class="footer-social">
+              <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+              <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+              <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-legal">
+          <p>&copy; 2025 Candle Flame. Todos los derechos reservados.</p>
+          <div class="legal-links">
+            <a href="politica-privacidad.html">Privacidad</a>
+            <a href="terminos.html">Términos</a>
+            <a href="cookies.html">Cookies</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
