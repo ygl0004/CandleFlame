@@ -49,7 +49,7 @@
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100dvh; /* Adjusted to account for mobile browser navigation bar */
   z-index: -2;
   overflow: hidden;
 }
