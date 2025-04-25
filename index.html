@@ -6,40 +6,19 @@
     <meta name="author" content="Yeray Garrido Linares" />
     <meta name="description" content="Candle Flame - Velas artesanales con esencias únicas" />
     <link rel="preload" href="assets/fonts/TAN_Meringue/TAN MERINGUE.ttf" as="font" type="font/ttf" crossorigin />
-    <link rel="preload" href="assets/fonts/Stinger_Fit/StingerFitTrial-Regular.ttf" as="font" type="font/ttf" crossorigin />
+    <link rel="preload" href="assets/fonts/Stinger_Fit/Stinger Fit Regular.otf" as="font" type="font/otf" crossorigin />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <link rel="stylesheet" href="styles.css" />
-    <script src="scripts.js"></script>
+    <script defer src="scripts.js"></script>
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <title>Candle Flame - Inicio</title>
   </head>
 
   <body>
-    <!-- Animación de bienvenida -->
-    <!-- <div id="transition-animation" style="display: none">
-      <div id="transition"></div>
-      <div id="experience">
-        <div class="fire-border" id="fire-border"></div>
-        <div class="light-wave" id="light-wave"></div>
-        <div class="message">
-          <h1>El momento es ahora</h1>
-          <p>Todo lo que has vivido te ha preparado para este instante de transformación</p>
-          <div id="candle-interactive">
-            <div id="candle-container">
-              <div class="wax"></div>
-              <div class="wick"></div>
-              <div class="wick-glow"></div>
-              <div class="flame"></div>
-            </div>
-            <div class="hint">Pulsa para encender</div>
-          </div>
-        </div>
-      </div>
-      <button id="skip-animation">Saltar</button>
-    </div> -->
-
-    <!-- Video de fondo -->
+    <!-- ********************************************* -->
+    <!-- ************** VIDEO DE FONDO ************** -->
+    <!-- ********************************************* -->
     <div class="video-container">
       <video muted loop playsinline id="background-video-desktop" autoplay>
         <source src="assets/media/video/portada/CandleFlame_Ordenador.mp4" type="video/mp4" />
@@ -50,7 +29,9 @@
       <div class="video-overlay"></div>
     </div>
 
-    <!-- Header -->
+    <!-- ********************************************* -->
+    <!-- **************** HEADER ******************** -->
+    <!-- ********************************************* -->
     <header>
       <div class="header_container">
         <div class="header_logo">
@@ -60,12 +41,22 @@
           <i class="fas fa-bars"></i>
         </button>
         <nav class="header_nav">
+          <!-- Opciones del menú -->
           <a class="header_link active" href="index.html">Inicio</a>
-          <a class="header_link" href="esencia.html">Esencia</a>
-          <a class="header_link" href="plumiferos.html">Plumíferos</a>
-          <a class="header_link" href="personalizar.html">Personalizar</a>
-          <a class="header_link" href="historias.html">Historias</a>
+          <a class="header_link" href="blog.html">Blog</a>
+          <a class="header_link" href="servicio.html">Servicio</a>
+          <a class="header_link" href="productos.html">Productos</a>
+          <a class="header_link" href="contacto.html">Contacto</a>
+
+          <!-- Iconos inferiores -->
+          <div class="mobile-icons">
+            <a href="carrito.html" aria-label="Carrito"><i class="fas fa-shopping-cart"></i></a>
+            <a href="busqueda.html" aria-label="Buscar"><i class="fas fa-search"></i></a>
+            <a href="cuenta.html" aria-label="Cuenta"><i class="fas fa-user"></i></a>
+          </div>
         </nav>
+
+        <!-- Estos son los que aparecen en el header normal (no móvil) -->
         <div class="header_container_icons">
           <a class="header_link icon-cart" href="carrito.html" aria-label="Carrito"></a>
           <a class="header_link icon-search" href="busqueda.html" aria-label="Buscar"></a>
@@ -74,75 +65,75 @@
       </div>
     </header>
 
-    <!-- Contenido principal -->
     <main>
-      <!-- Hero Section -->
+      <!-- ********************************************* -->
+      <!-- ************** HERO SECTION *************** -->
+      <!-- ********************************************* -->
       <section class="hero">
         <div class="hero-content">
-          <h2>Ilumina tus momentos</h2>
-          <p class="subtitle">Velas artesanales con esencias únicas inspiradas en la naturaleza</p>
-          <a href="#coleccion" class="cta-button">Descubre la colección</a>
+          <h2>Los detalles que importan, iluminan tu espacio</h2>
+          <a href="#coleccion" class="cta-button">Manifiesta tu yo interior</a>
         </div>
       </section>
 
-      <!-- Sección de colección -->
+      <!-- ********************************************* -->
+      <!-- ************** SECCIÓN COLECCIÓN ********** -->
+      <!-- ********************************************* -->
       <section id="coleccion" class="collection-section section-light section-animate">
         <div class="section-header">
-          <h3>Nuestras esencias</h3>
+          <h3>Nuestras Esencias</h3>
           <p>Descubre la magia en cada aroma</p>
         </div>
         <div class="collection-grid">
           <div class="collection-item">
-            <div class="item-image" style="background-image: url('assets/images/vela-1.jpg')">
-              <!-- <div class="product-flame"></div> -->
-            </div>
-            <h4>Bosque nocturno</h4>
-            <p>Notas de pino y tierra húmeda</p>
+            <div class="item-image vela-1"></div>
+            <h4>Gama Básica</h4>
+            <p>
+              Una línea de velas aromáticas que ofrece una selección de aromas clásicos y reconfortantes y otra línea de velas decorativas.
+            </p>
             <span class="price">€24.90</span>
             <a href="#" class="product-button">Añadir al carrito</a>
           </div>
           <div class="collection-item">
-            <div class="item-image" style="background-image: url('assets/images/vela-2.jpg')">
-              <!-- <div class="product-flame"></div> -->
-            </div>
-            <h4>Amancer tropical</h4>
-            <p>Mezcla de frutas exóticas</p>
+            <div class="item-image vela-2"></div>
+            <h4>Gama Premium</h4>
+            <p>Contiene una línea de velas aromáticas exclusivas y otra línea de velas con llama de colores.</p>
             <span class="price">€22.90</span>
             <a href="#" class="product-button">Añadir al carrito</a>
           </div>
           <div class="collection-item">
-            <div class="item-image" style="background-image: url('assets/images/vela-3.jpg')">
-              <!-- <div class="product-flame"></div> -->
-            </div>
-            <h4>Lavanda serena</h4>
-            <p>Calma y relajación profunda</p>
+            <div class="item-image vela-3"></div>
+            <h4>Gama Personalización Total</h4>
+            <p>Contiene una línea de kits personalizables y talleres en nuestra tienda física.</p>
             <span class="price">€19.90</span>
             <a href="#" class="product-button">Añadir al carrito</a>
           </div>
         </div>
       </section>
 
-      <!-- Sección de historia -->
+      <!-- ********************************************* -->
+      <!-- ************** SECCIÓN HISTORIA *********** -->
+      <!-- ********************************************* -->
       <section class="story-section section-animate">
         <div class="story-content">
-          <h3>Artesanía con alma</h3>
-          <p>
-            Cada vela Candle Flame es creada a mano con cera de soja natural y aceites esenciales puros. Nuestro proceso artesanal garantiza
-            una calidad excepcional y una experiencia aromática única.
-          </p>
-          <a href="historias.html" class="secondary-button">Conoce nuestra historia</a>
+          <h3>Hogar saludable</h3>
+          <h4>Claves para transformar tu espacio en un santuario de bienestar</h4>
+          <p>Diseña un espacio donde la calma habite, con ideas de organización, decoración y aromas que revitalizan tu día a día.</p>
+          <a href="historias.html" class="secondary-button">Empieza por ti</a>
         </div>
         <div class="story-image"></div>
       </section>
 
-      <!-- Sección de personalización destacada -->
+      <!-- ********************************************* -->
+      <!-- ************** SECCIÓN PERSONALIZACIÓN **** -->
+      <!-- ********************************************* -->
       <section class="customization-highlight section-light section-animate">
         <div class="section-header">
           <h3>Crea tu vela perfecta</h3>
-          <p>Personaliza cada detalle para una experiencia única</p>
+          <p>Personaliza cada detalle creando momentos cálidos</p>
         </div>
         <div class="customization-preview">
-          <div class="preview-image" style="background-image: url('assets/images/personalizar-preview.jpg')"></div>
+          <div class="preview-image customization-preview-image"></div>
           <div class="preview-content">
             <h4>Diseña tu propia vela</h4>
             <p>Elige el color, tamaño, aroma y tipo de llama para crear una vela que sea tan única como tú.</p>
@@ -150,15 +141,19 @@
               <li><i class="fas fa-palette"></i> 12 colores de cera</li>
               <li><i class="fas fa-fire"></i> 4 tipos de llama</li>
               <li><i class="fas fa-arrows-alt-v"></i> 3 tamaños diferentes</li>
-              <li><i class="fas fa-wind"></i> 8 aromas exclusivos</li>
+              <li><i class="fas fa-wind"></i> 6 aromas exclusivos</li>
             </ul>
-            <a href="personalizar.html" class="cta-button">Personalizar ahora</a>
+            <div class="customization-button-container">
+              <a href="personalizar.html" class="cta-button">Personalizar ahora</a>
+            </div>
           </div>
         </div>
       </section>
     </main>
 
-    <!-- Footer -->
+    <!-- ********************************************* -->
+    <!-- **************** FOOTER ******************** -->
+    <!-- ********************************************* -->
     <footer>
       <div class="footer-wave"></div>
       <div class="footer-content">
@@ -167,30 +162,28 @@
             <div class="links-group">
               <h4>Productos</h4>
               <ul>
-                <li><a href="esencia.html">Velas aromáticas</a></li>
-                <li><a href="plumiferos.html">Difusores</a></li>
-                <li><a href="#">Colección limitada</a></li>
-                <li><a href="#">Kits de regalo</a></li>
+                <li><a href="#">Gama básica</a></li>
+                <li><a href="#">Gama premium</a></li>
+                <li><a href="#">Kits personalizables</a></li>
+                <li><a href="#">Taller de velas</a></li>
               </ul>
             </div>
 
             <div class="links-group">
-              <h4>Compañía</h4>
+              <h4>Blog</h4>
               <ul>
-                <li><a href="historias.html">Nuestra historia</a></li>
-                <li><a href="#">Artesanía</a></li>
-                <li><a href="#">Sostenibilidad</a></li>
-                <li><a href="#">Trabaja con nosotros</a></li>
+                <li><a href="#">Hogar saludable</a></li>
               </ul>
             </div>
 
             <div class="links-group">
               <h4>Soporte</h4>
               <ul>
-                <li><a href="contacto.html">Contacto</a></li>
-                <li><a href="envios.html">Envíos y devoluciones</a></li>
-                <li><a href="preguntas.html">FAQ</a></li>
-                <li><a href="#">Guía de aromas</a></li>
+                <li><a href="#">Contacto</a></li>
+                <li><a href="#">Política de cookies</a></li>
+                <li><a href="#">Política de privacidad</a></li>
+                <li><a href="#">Aviso legal</a></li>
+                <li><a href="#">Condiciones de compra</a></li>
               </ul>
             </div>
           </div>

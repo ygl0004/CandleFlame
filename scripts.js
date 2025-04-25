@@ -1,10 +1,11 @@
 // scripts.js
-// Header y menú móvil
 document.addEventListener("DOMContentLoaded", function () {
   const header = document.querySelector("header");
   const menuButton = document.querySelector(".mobile-menu-button");
   const headerNav = document.querySelector(".header_nav");
   const body = document.body;
+  const headerLinks = document.querySelectorAll(".header_link");
+  const mobileIcons = document.querySelector(".mobile-icons");
 
   // Efecto scroll para header
   window.addEventListener("scroll", function () {
@@ -15,46 +16,67 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Menú móvil
+  // Control del menú móvil con animaciones mejoradas
   if (menuButton) {
-    if (!menuButton.querySelector("i")) {
-      menuButton.innerHTML = '<i class="fas fa-bars"></i>';
-    }
-
     menuButton.addEventListener("click", function () {
       const isOpen = headerNav.classList.contains("show");
 
+      // Alternar estado del menú
       headerNav.classList.toggle("show");
-      body.classList.toggle("no-scroll");
+      body.classList.toggle("menu-open");
 
+      // Cambiar icono del botón
       const icon = this.querySelector("i");
-      icon.classList.toggle("fa-bars");
-      icon.classList.toggle("fa-times");
-
-      const iconsContainer = document.querySelector(".header_container_icons");
       if (!isOpen) {
-        iconsContainer.style.display = "flex";
+        icon.classList.remove("fa-bars");
+        icon.classList.add("fa-times");
+        this.style.transform = "rotate(90deg)";
+
+        // Configurar delays escalonados para los elementos del menú
+        headerLinks.forEach((link, index) => {
+          link.style.transitionDelay = `${0.1 + index * 0.1}s`;
+        });
+
+        // Configurar delay para los iconos móviles
+        if (mobileIcons) {
+          mobileIcons.style.transitionDelay = `${0.1 + headerLinks.length * 0.1}s`;
+        }
       } else {
-        setTimeout(() => {
-          iconsContainer.style.display = "none";
-        }, 300);
+        icon.classList.remove("fa-times");
+        icon.classList.add("fa-bars");
+        this.style.transform = "rotate(0)";
+
+        // Resetear delays al cerrar el menú
+        headerLinks.forEach((link) => {
+          link.style.transitionDelay = "0s";
+        });
+
+        if (mobileIcons) {
+          mobileIcons.style.transitionDelay = "0s";
+        }
       }
     });
 
-    document.querySelectorAll(".header_nav a").forEach((link) => {
+    // Cerrar menú al hacer clic en un enlace (mobile)
+    headerLinks.forEach((link) => {
       link.addEventListener("click", function () {
         if (window.innerWidth <= 768) {
-          menuButton.classList.remove("active");
           headerNav.classList.remove("show");
-          body.classList.remove("no-scroll");
+          body.classList.remove("menu-open");
 
           const icon = menuButton.querySelector("i");
           icon.classList.remove("fa-times");
           icon.classList.add("fa-bars");
+          menuButton.style.transform = "rotate(0)";
 
-          setTimeout(() => {
-            document.querySelector(".header_container_icons").style.display = "none";
-          }, 300);
+          // Resetear delays al cerrar el menú
+          headerLinks.forEach((link) => {
+            link.style.transitionDelay = "0s";
+          });
+
+          if (mobileIcons) {
+            mobileIcons.style.transitionDelay = "0s";
+          }
         }
       });
     });
@@ -76,105 +98,142 @@ document.addEventListener("DOMContentLoaded", function () {
             behavior: "smooth",
           });
 
-          if (window.innerWidth <= 768 && menuButton.classList.contains("active")) {
-            menuButton.classList.remove("active");
+          // Cerrar menú móvil si está abierto
+          if (window.innerWidth <= 768 && headerNav.classList.contains("show")) {
             headerNav.classList.remove("show");
-            body.classList.remove("no-scroll");
+            body.classList.remove("menu-open");
 
             const icon = menuButton.querySelector("i");
             icon.classList.remove("fa-times");
             icon.classList.add("fa-bars");
-
-            setTimeout(() => {
-              document.querySelector(".header_container_icons").style.display = "none";
-            }, 300);
+            menuButton.style.transform = "rotate(0)";
           }
         }
       }
     });
   });
 
-  // Ajustar video de fondo
-  const adjustVideoSize = () => {
-    const video = document.getElementById("background-video");
-    if (video) {
-      const windowWidth = window.innerWidth;
-      const windowHeight = window.innerHeight;
-      const videoRatio = video.videoWidth / video.videoHeight;
-      const windowRatio = windowWidth / windowHeight;
+  // Control de videos de fondo
+  const desktopVideo = document.getElementById("background-video-desktop");
+  const mobileVideo = document.getElementById("background-video-mobile");
 
-      if (windowRatio < videoRatio) {
-        video.style.width = "auto";
-        video.style.height = "100%";
-      } else {
-        video.style.width = "100%";
-        video.style.height = "auto";
+  const handleVideoDisplay = () => {
+    if (window.innerWidth <= 768) {
+      if (desktopVideo) desktopVideo.style.display = "none";
+      if (mobileVideo) {
+        mobileVideo.style.display = "block";
+        mobileVideo.play().catch((e) => console.log("Autoplay prevented:", e));
+      }
+    } else {
+      if (mobileVideo) mobileVideo.style.display = "none";
+      if (desktopVideo) {
+        desktopVideo.style.display = "block";
+        desktopVideo.play().catch((e) => console.log("Autoplay prevented:", e));
       }
     }
   };
 
-  window.addEventListener("load", adjustVideoSize);
-  window.addEventListener("resize", adjustVideoSize);
+  // Inicializar videos
+  handleVideoDisplay();
+  window.addEventListener("resize", handleVideoDisplay);
 
   // Animación al hacer scroll
-  const animateSections = document.querySelectorAll(".section-animate");
+  // const animateSections = document.querySelectorAll(".section-animate");
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = 1;
-        }
-      });
-    },
-    { threshold: 0.1 }
-  );
+  // const observer = new IntersectionObserver(
+  //   (entries) => {
+  //     entries.forEach((entry) => {
+  //       if (entry.isIntersecting) {
+  //         entry.target.style.opacity = 1;
+  //         entry.target.style.transform = "translateY(0)";
+  //       }
+  //     });
+  //   },
+  //   { threshold: 0.1 }
+  // );
 
-  animateSections.forEach((section) => {
-    observer.observe(section);
+  // animateSections.forEach((section) => {
+  //   section.style.opacity = 0;
+  //   section.style.transform = "translateY(20px)";
+  //   section.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+  //   observer.observe(section);
+  // });
+
+  // Efecto hover para elementos de la colección
+  document.querySelectorAll(".collection-item").forEach((item) => {
+    item.addEventListener("mouseenter", function () {
+      this.style.transform = "translateY(-10px)";
+      this.style.boxShadow = "var(--shadow-hover)";
+    });
+
+    item.addEventListener("mouseleave", function () {
+      this.style.transform = "";
+      this.style.boxShadow = "var(--shadow)";
+    });
   });
 
-  const desktopVideo = document.getElementById("background-video-desktop");
-  const mobileVideo = document.getElementById("background-video-mobile");
+  // Validación del formulario de newsletter
+  const newsletterForm = document.querySelector(".newsletter-form");
+  if (newsletterForm) {
+    newsletterForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const emailInput = this.querySelector('input[type="email"]');
 
-  if (window.innerWidth <= 768) {
-    mobileVideo.style.display = "block";
-    mobileVideo.play();
-  } else {
-    desktopVideo.style.display = "block";
-    desktopVideo.play();
+      if (emailInput.value && emailInput.checkValidity()) {
+        const button = this.querySelector("button");
+        button.innerHTML = '<i class="fas fa-check"></i>';
+        button.style.backgroundColor = "var(--color-accent-light)";
+
+        setTimeout(() => {
+          button.innerHTML = '<i class="fas fa-paper-plane"></i>';
+          button.style.backgroundColor = "var(--color-accent)";
+          emailInput.value = "";
+          showNotification("¡Gracias por suscribirte!");
+        }, 1000);
+      } else {
+        emailInput.focus();
+      }
+    });
+  }
+
+  // Función para mostrar notificaciones (opcional)
+  function showNotification(message) {
+    const notification = document.createElement("div");
+    notification.className = "notification";
+    notification.textContent = message;
+    document.body.appendChild(notification);
+
+    setTimeout(() => {
+      notification.classList.add("show");
+    }, 10);
+
+    setTimeout(() => {
+      notification.classList.remove("show");
+      setTimeout(() => {
+        document.body.removeChild(notification);
+      }, 300);
+    }, 3000);
   }
 });
 
-// Efecto hover para elementos de la colección
-document.querySelectorAll(".collection-item").forEach((item) => {
-  item.addEventListener("mouseenter", function () {
-    this.style.transform = "translateY(-10px)";
-    this.style.boxShadow = "0 8px 25px rgba(0, 0, 0, 0.15)";
-  });
-
-  item.addEventListener("mouseleave", function () {
-    this.style.transform = "";
-    this.style.boxShadow = "0 4px 20px rgba(0, 0, 0, 0.1)";
-  });
-});
-
-// Validación del formulario de newsletter
-const newsletterForm = document.querySelector(".newsletter-form");
-if (newsletterForm) {
-  newsletterForm.addEventListener("submit", function (e) {
-    e.preventDefault();
-    const emailInput = this.querySelector('input[type="email"]');
-
-    if (emailInput.value && emailInput.checkValidity()) {
-      this.querySelector("button").innerHTML = '<i class="fas fa-check"></i>';
-      setTimeout(() => {
-        this.querySelector("button").innerHTML = '<i class="fas fa-paper-plane"></i>';
-        emailInput.value = "";
-        alert("¡Gracias por suscribirte!");
-      }, 1000);
-    } else {
-      emailInput.focus();
-    }
-  });
+// Añadir estilos para la notificación (opcional)
+const notificationStyles = document.createElement("style");
+notificationStyles.textContent = `
+.notification {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: var(--color-accent);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 30px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  z-index: 10000;
+  transition: transform 0.3s ease;
 }
+.notification.show {
+  transform: translateX(-50%) translateY(0);
+}
+`;
+document.head.appendChild(notificationStyles);
