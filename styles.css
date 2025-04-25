@@ -46,9 +46,11 @@
 /* ********************************************* */
 .video-container {
   position: fixed;
-  inset: 0; /* Ensures the container fully covers the viewport */
+  top: -80px;
+  left: 0;
   width: 100vw;
-  height: 100dvh; /* Ensures compatibility with mobile browsers */
+  height: calc(100vh + 80px);
+  height: calc(100dvh + 80px);
   z-index: -2;
   overflow: hidden;
 }
@@ -56,11 +58,11 @@
 #background-video-desktop,
 #background-video-mobile {
   position: absolute;
-  inset: 0; /* Ensures the video fully covers the container */
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Ensures the video scales properly */
-  display: none;
+  object-fit: cover;
 }
 
 #background-video-desktop {
