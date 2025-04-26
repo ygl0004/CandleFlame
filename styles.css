@@ -64,7 +64,7 @@ body {
   overflow-x: hidden;
   padding-top: 80px;
   min-height: 100vh;
-  min-height: -webkit-fill-available;
+  min-height: 100dvh;
   position: relative;
 }
 
@@ -112,11 +112,11 @@ a {
   left: 0;
   width: 100%;
   height: 100vh;
-  height: -webkit-fill-available;
-  height: fill-available;
+  height: 100dvh;
   z-index: -2;
   overflow: hidden;
   -webkit-overflow-scrolling: touch;
+  transition: height 0.3s ease-out;
 }
 
 #background-video-desktop,
@@ -151,8 +151,7 @@ a {
   
   .video-container {
     height: 100vh;
-    height: -webkit-fill-available;
-    height: fill-available;
+    height: 100dvh;
   }
 }
 
@@ -381,7 +380,6 @@ header.scrolled {
 /* ************** HERO SECTION **************** */
 /* ********************************************* */
 .hero {
-  height: calc(100vh - 80px);
   height: calc(100dvh - 80px);
   display: flex;
   align-items: flex-end;
@@ -391,8 +389,8 @@ header.scrolled {
   padding: 0 20px 100px;
   position: relative;
   overflow: hidden;
-  min-height: calc(100vh - 80px);
   min-height: calc(100dvh - 80px);
+  transition: height 0.3s ease-out;
 }
 
 .hero-content {
@@ -946,7 +944,7 @@ footer {
     padding-top: 70px;
     overflow-y: auto;
     min-height: 100vh;
-    min-height: -webkit-fill-available;
+    min-height: 100dvh;
   }
 
   /* Header Mobile */
