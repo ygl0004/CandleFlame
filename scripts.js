@@ -1,44 +1,40 @@
-// scripts.js - Versión completa y corregida (para ambas páginas)
 document.addEventListener("DOMContentLoaded", function () {
   // =============================================
   // 1. SISTEMA DE VIEWPORT INTELIGENTE
   // =============================================
   let allowResize = false;
-  const heroSection = document.querySelector('.hero, .customization-hero'); // Compatible con ambas páginas
-  
+  const heroSection = document.querySelector(".hero, .customization-hero"); // Compatible con ambas páginas
+
   const setFixedViewport = () => {
-      const vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty("--vh", `${vh}px`);
-      
-      // Ajustar menú móvil si está abierto
-      const headerNav = document.querySelector(".header_nav");
-      if (headerNav && headerNav.classList.contains("show")) {
-          headerNav.style.height = `${window.innerHeight}px`;
-      }
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty("--vh", `${vh}px`);
+
+    // Ajustar menú móvil si está abierto
+    const headerNav = document.querySelector(".header_nav");
+    if (headerNav && headerNav.classList.contains("show")) {
+      headerNav.style.height = `${window.innerHeight}px`;
+    }
   };
 
   const checkHeroVisibility = () => {
-      if (!heroSection) return;
-      
-      const heroRect = heroSection.getBoundingClientRect();
-      allowResize = (
-          heroRect.top >= -100 && 
-          heroRect.bottom <= (window.innerHeight + 100)
-      );
+    if (!heroSection) return;
+
+    const heroRect = heroSection.getBoundingClientRect();
+    allowResize = heroRect.top >= -100 && heroRect.bottom <= window.innerHeight + 100;
   };
 
   const optimizedResizeHandler = () => {
-      checkHeroVisibility();
-      if (allowResize) {
-          requestAnimationFrame(setFixedViewport);
-      }
+    checkHeroVisibility();
+    if (allowResize) {
+      requestAnimationFrame(setFixedViewport);
+    }
   };
 
   // Configuración inicial
   setFixedViewport();
-  window.addEventListener('orientationchange', setFixedViewport);
-  window.addEventListener('scroll', checkHeroVisibility);
-  window.addEventListener('resize', optimizedResizeHandler);
+  window.addEventListener("orientationchange", setFixedViewport);
+  window.addEventListener("scroll", checkHeroVisibility);
+  window.addEventListener("resize", optimizedResizeHandler);
 
   // =============================================
   // 2. HEADER Y MENÚ MÓVIL
@@ -52,107 +48,107 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Efecto scroll para header
   window.addEventListener("scroll", function () {
-      if (window.scrollY > 50) {
-          header.classList.add("scrolled");
-      } else {
-          header.classList.remove("scrolled");
-      }
+    if (window.scrollY > 50) {
+      header.classList.add("scrolled");
+    } else {
+      header.classList.remove("scrolled");
+    }
   });
 
   // Control del menú móvil
   if (menuButton) {
-      menuButton.addEventListener("click", function (e) {
-          e.preventDefault();
-          const isOpen = headerNav.classList.contains("show");
+    menuButton.addEventListener("click", function (e) {
+      e.preventDefault();
+      const isOpen = headerNav.classList.contains("show");
 
-          // Alternar estado del menú
-          headerNav.classList.toggle("show");
-          body.classList.toggle("menu-open");
+      // Alternar estado del menú
+      headerNav.classList.toggle("show");
+      body.classList.toggle("menu-open");
 
-          if (!isOpen) {
-              headerNav.style.height = `${window.innerHeight}px`;
-              body.style.overflow = "hidden";
-              body.style.position = "fixed";
-          } else {
-              headerNav.style.height = "";
-              body.style.overflow = "";
-              body.style.position = "";
-          }
+      if (!isOpen) {
+        headerNav.style.height = `${window.innerHeight}px`;
+        body.style.overflow = "hidden";
+        body.style.position = "fixed";
+      } else {
+        headerNav.style.height = "";
+        body.style.overflow = "";
+        body.style.position = "";
+      }
 
-          // Cambiar icono
-          const icon = this.querySelector("i");
-          icon.classList.toggle("fa-bars");
-          icon.classList.toggle("fa-times");
-      });
+      // Cambiar icono
+      const icon = this.querySelector("i");
+      icon.classList.toggle("fa-bars");
+      icon.classList.toggle("fa-times");
+    });
   }
 
   // Cerrar menú al hacer clic en enlaces (mobile)
-  headerLinks.forEach(link => {
-      link.addEventListener("click", function (e) {
-          if (window.innerWidth <= 768 && headerNav.classList.contains("show")) {
-              e.preventDefault();
-              headerNav.classList.remove("show");
-              body.classList.remove("menu-open");
-              headerNav.style.height = "";
-              body.style.overflow = "";
-              body.style.position = "";
+  headerLinks.forEach((link) => {
+    link.addEventListener("click", function (e) {
+      if (window.innerWidth <= 768 && headerNav.classList.contains("show")) {
+        e.preventDefault();
+        headerNav.classList.remove("show");
+        body.classList.remove("menu-open");
+        headerNav.style.height = "";
+        body.style.overflow = "";
+        body.style.position = "";
 
-              const target = this.getAttribute("href");
-              setTimeout(() => {
-                  if (target.startsWith("#")) {
-                      const targetElement = document.querySelector(target);
-                      if (targetElement) {
-                          targetElement.scrollIntoView({ behavior: "smooth" });
-                      }
-                  } else {
-                      window.location.href = target;
-                  }
-              }, 300);
+        const target = this.getAttribute("href");
+        setTimeout(() => {
+          if (target.startsWith("#")) {
+            const targetElement = document.querySelector(target);
+            if (targetElement) {
+              targetElement.scrollIntoView({ behavior: "smooth" });
+            }
+          } else {
+            window.location.href = target;
           }
-      });
+        }, 300);
+      }
+    });
   });
 
   // =============================================
   // 3. SCROLL SUAVE Y CONTROL DE VIDEOS
   // =============================================
   // Smooth scroll para anclas
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener("click", function (e) {
-          if (this.getAttribute("href").startsWith("#")) {
-              e.preventDefault();
-              const target = document.querySelector(this.getAttribute("href"));
-              if (target) {
-                  const headerHeight = header?.offsetHeight || 80;
-                  const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
-                  const offsetPosition = targetPosition - headerHeight;
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
+      if (this.getAttribute("href").startsWith("#")) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute("href"));
+        if (target) {
+          const headerHeight = header?.offsetHeight || 80;
+          const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+          const offsetPosition = targetPosition - headerHeight;
 
-                  window.scrollTo({
-                      top: offsetPosition,
-                      behavior: "smooth"
-                  });
-              }
-          }
-      });
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth",
+          });
+        }
+      }
+    });
   });
 
   // Control de videos de fondo
   const handleVideoDisplay = () => {
-      const desktopVideo = document.getElementById("background-video-desktop");
-      const mobileVideo = document.getElementById("background-video-mobile");
-      
-      if (window.innerWidth <= 768) {
-          if (desktopVideo) desktopVideo.style.display = "none";
-          if (mobileVideo) {
-              mobileVideo.style.display = "block";
-              mobileVideo.play().catch(e => console.log("Autoplay prevented:", e));
-          }
-      } else {
-          if (mobileVideo) mobileVideo.style.display = "none";
-          if (desktopVideo) {
-              desktopVideo.style.display = "block";
-              desktopVideo.play().catch(e => console.log("Autoplay prevented:", e));
-          }
+    const desktopVideo = document.getElementById("background-video-desktop");
+    const mobileVideo = document.getElementById("background-video-mobile");
+
+    if (window.innerWidth <= 768) {
+      if (desktopVideo) desktopVideo.style.display = "none";
+      if (mobileVideo) {
+        mobileVideo.style.display = "block";
+        mobileVideo.play().catch((e) => console.log("Autoplay prevented:", e));
       }
+    } else {
+      if (mobileVideo) mobileVideo.style.display = "none";
+      if (desktopVideo) {
+        desktopVideo.style.display = "block";
+        desktopVideo.play().catch((e) => console.log("Autoplay prevented:", e));
+      }
+    }
   };
 
   // Inicialización de videos
@@ -164,14 +160,14 @@ document.addEventListener("DOMContentLoaded", function () {
   // (Solo se ejecutan si existen los elementos)
   // =============================================
   if (document.querySelector(".candle-model")) {
-      // Sistema de partículas para la llama
-      function createFlameParticles() {
-          const container = document.querySelector(".flame-sparks");
-          setInterval(() => {
-              if (Math.random() > 0.5) {
-                  const particle = document.createElement("div");
-                  particle.className = "flame-particle";
-                  particle.style.cssText = `
+    // Sistema de partículas para la llama
+    function createFlameParticles() {
+      const container = document.querySelector(".flame-sparks");
+      setInterval(() => {
+        if (Math.random() > 0.5) {
+          const particle = document.createElement("div");
+          particle.className = "flame-particle";
+          particle.style.cssText = `
                       position: absolute;
                       bottom: 0;
                       left: ${50 + (Math.random() * 20 - 10)}%;
@@ -182,79 +178,79 @@ document.addEventListener("DOMContentLoaded", function () {
                       filter: blur(1px);
                       opacity: ${Math.random() * 0.8 + 0.2};
                   `;
-                  container.appendChild(particle);
+          container.appendChild(particle);
 
-                  anime({
-                      targets: particle,
-                      translateY: [0, -Math.random() * 100 - 50],
-                      translateX: [0, Math.random() * 20 - 10],
-                      scale: [1, Math.random() * 0.5 + 0.5],
-                      opacity: [1, 0],
-                      duration: Math.random() * 1000 + 500,
-                      easing: "easeOutQuad",
-                      complete: () => particle.remove()
-                  });
-              }
-          }, 100);
-      }
-
-      // Interacción 3D con la vela
-      const candle = document.querySelector(".candle-model");
-      const candlePreview = document.querySelector(".candle-preview");
-
-      if (candlePreview) {
-          candlePreview.addEventListener("mousemove", (e) => {
-              const rect = candlePreview.getBoundingClientRect();
-              const x = (e.clientX - rect.left) / rect.width;
-              const y = (e.clientY - rect.top) / rect.height;
-
-              const rotateX = (0.5 - y) * 25;
-              const rotateY = (0.5 - x) * 25;
-
-              candle.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-              candle.style.filter = `drop-shadow(${(0.5 - x) * 15}px ${(0.5 - y) * 15}px 25px rgba(0,0,0,0.3))`;
-
-              const reflection = document.querySelector(".candle-reflection");
-              if (reflection) {
-                  reflection.style.left = `${15 + (0.5 - x) * 10}%`;
-                  reflection.style.top = `${15 + (0.5 - y) * 10}%`;
-              }
+          anime({
+            targets: particle,
+            translateY: [0, -Math.random() * 100 - 50],
+            translateX: [0, Math.random() * 20 - 10],
+            scale: [1, Math.random() * 0.5 + 0.5],
+            opacity: [1, 0],
+            duration: Math.random() * 1000 + 500,
+            easing: "easeOutQuad",
+            complete: () => particle.remove(),
           });
+        }
+      }, 100);
+    }
 
-          candlePreview.addEventListener("mouseleave", () => {
-              candle.style.transform = "rotateX(0deg) rotateY(0deg)";
-              candle.style.filter = "drop-shadow(0 10px 20px rgba(0,0,0,0.15))";
-              const reflection = document.querySelector(".candle-reflection");
-              if (reflection) {
-                  reflection.style.left = "15%";
-                  reflection.style.top = "15%";
-              }
-          });
-      }
+    // Interacción 3D con la vela
+    const candle = document.querySelector(".candle-model");
+    const candlePreview = document.querySelector(".candle-preview");
 
-      // Inicializar efectos
-      createFlameParticles();
+    if (candlePreview) {
+      candlePreview.addEventListener("mousemove", (e) => {
+        const rect = candlePreview.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width;
+        const y = (e.clientY - rect.top) / rect.height;
+
+        const rotateX = (0.5 - y) * 25;
+        const rotateY = (0.5 - x) * 25;
+
+        candle.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        candle.style.filter = `drop-shadow(${(0.5 - x) * 15}px ${(0.5 - y) * 15}px 25px rgba(0,0,0,0.3))`;
+
+        const reflection = document.querySelector(".candle-reflection");
+        if (reflection) {
+          reflection.style.left = `${15 + (0.5 - x) * 10}%`;
+          reflection.style.top = `${15 + (0.5 - y) * 10}%`;
+        }
+      });
+
+      candlePreview.addEventListener("mouseleave", () => {
+        candle.style.transform = "rotateX(0deg) rotateY(0deg)";
+        candle.style.filter = "drop-shadow(0 10px 20px rgba(0,0,0,0.15))";
+        const reflection = document.querySelector(".candle-reflection");
+        if (reflection) {
+          reflection.style.left = "15%";
+          reflection.style.top = "15%";
+        }
+      });
+    }
+
+    // Inicializar efectos
+    createFlameParticles();
   }
 
   // =============================================
-  // 5. NOTIFICACIONES (OPCIONAL)
+  // 5. NOTIFICACIONES
   // =============================================
   function showNotification(message) {
-      const notification = document.createElement("div");
-      notification.className = "notification";
-      notification.textContent = message;
-      document.body.appendChild(notification);
+    const notification = document.createElement("div");
+    notification.className = "notification";
+    notification.textContent = message;
+    document.body.appendChild(notification);
 
-      setTimeout(() => {
-          notification.classList.add("show");
-      }, 10);
+    setTimeout(() => {
+      notification.classList.add("show");
+    }, 10);
 
+    setTimeout(() => {
+      notification.classList.remove("show");
       setTimeout(() => {
-          notification.classList.remove("show");
-          setTimeout(() => {
-              document.body.removeChild(notification);
-          }, 300);
-      }, 3000);
+        document.body.removeChild(notification);
+      }, 300);
+    }, 3000);
   }
 
   // Estilos para notificaciones
@@ -279,4 +275,19 @@ document.addEventListener("DOMContentLoaded", function () {
       }
   `;
   document.head.appendChild(notificationStyles);
+
+  // Control del formulario de newsletter
+  const newsletterForm = document.querySelector(".newsletter-form");
+  if (newsletterForm) {
+    newsletterForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      // Simular envío exitoso
+      const emailInput = this.querySelector('input[type="email"]');
+      emailInput.value = ""; // Limpiar el campo
+
+      // Mostrar notificación
+      showNotification("¡Gracias por suscribirte a nuestro newsletter!");
+    });
+  }
 });

@@ -863,6 +863,39 @@ footer {
 }
 
 /* ================================================== */
+/* ============= NOTIFICACIONES TOAST ============== */
+/* ================================================== */
+.notification {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: var(--color-accent);
+  color: var(--color-text-light);
+  padding: 12px 24px;
+  border-radius: 30px;
+  box-shadow: var(--shadow-hover);
+  z-index: 10000;
+  transition: transform 0.4s cubic-bezier(0.33, 1, 0.68, 1);
+  text-align: center;
+  font-size: 0.95rem;
+  max-width: 90%;
+  width: max-content;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.notification.show {
+  transform: translateX(-50%) translateY(0);
+}
+
+.notification i {
+  font-size: 1.1rem;
+  color: var(--color-text-light);
+}
+
+/* ================================================== */
 /* ================== MENÚ MÓVIL ================== */
 /* ================================================== */
 .mobile-menu-button {
@@ -1185,6 +1218,12 @@ footer {
     height: calc(calc(var(--vh, 1vh) * 100) - 70px);
     min-height: calc(calc(var(--vh, 1vh) * 100) - 70px);
     padding-bottom: 60px;
+  }
+
+  .notification {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    bottom: 20px;
   }
 }
 
