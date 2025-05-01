@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+    />
+    <meta name="author" content="Yeray Garrido Linares" />
+    <meta name="description" content="Candle Flame - Taller de velas aromáticas" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="servicio.css" />
+    <script defer src="scripts.js"></script>
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <title>Candle Flame - Taller de Velas</title>
+  </head>
+  <body>
+    <!-- ********************************************* -->
+    <!-- ************** VIDEO DE FONDO ************** -->
+    <!-- ********************************************* -->
+    <div class="video-container">
+      <video muted loop playsinline id="background-video-desktop" autoplay>
+        <source src="assets/media/video/portada/Personalizar.mp4" type="video/mp4" />
+      </video>
+      <video muted loop playsinline id="background-video-mobile" autoplay>
+        <source src="assets/media/video/portada/Personalizar.mp4" type="video/mp4" />
+      </video>
+      <div class="video-overlay"></div>
+    </div>
+    <!-- Header -->
+    <header>
+      <div class="header_container">
+        <div class="header_logo">
+          <a href="index.html"><h1>Candle Flame</h1></a>
+        </div>
+        <button class="mobile-menu-button" aria-label="Menú móvil">
+          <i class="fas fa-bars"></i>
+        </button>
+        <nav class="header_nav">
+          <a class="header_link" href="index.html">Inicio</a>
+          <a class="header_link" href="blog.html">Blog</a>
+          <a class="header_link active" href="servicio.html">Servicio</a>
+          <a class="header_link" href="productos.html">Productos</a>
+          <a class="header_link" href="contacto.html">Contacto</a>
+
+          <div class="mobile-icons">
+            <a href="carrito.html" aria-label="Carrito"><i class="fas fa-shopping-cart"></i></a>
+            <a href="busqueda.html" aria-label="Buscar"><i class="fas fa-search"></i></a>
+            <a href="cuenta.html" aria-label="Cuenta"><i class="fas fa-user"></i></a>
+          </div>
+        </nav>
+
+        <div class="header_container_icons">
+          <a class="header_link icon-cart" href="carrito.html" aria-label="Carrito"></a>
+          <a class="header_link icon-search" href="busqueda.html" aria-label="Buscar"></a>
+          <a class="header_link icon-account" href="cuenta.html" aria-label="Cuenta"></a>
+        </div>
+      </div>
+    </header>
+    <!-- ********************************************* -->
+    <!-- ************** HERO SECTION *************** -->
+    <!-- ********************************************* -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Taller de Velas Aromáticas</h1>
+        <p>Vive una experiencia única creando tu propia vela personalizada</p>
+        <a href="#reserva" class="cta-button">Reserva tu lugar ahora</a>
+      </div>
+      <a href="#servicio" class="scroll-down" aria-label="Ir a reservas">
+        <i class="fas fa-chevron-down"></i>
+      </a>
+    </section>
+
+    <!-- Sección de información -->
+    <section id="servicio" class="service-info-section">
+      <div class="service-info-container">
+        <div class="service-info-content">
+          <div class="service-info-text">
+            <h2>Disfruta de nuestro taller</h2>
+            <div class="service-info-details">
+              <div class="info-detail">
+                <i class="fas fa-calendar-alt"></i>
+                <div>
+                  <h4>Horarios</h4>
+                  <p>Martes, Viernes y Fin de Semanas</p>
+                </div>
+              </div>
+              <div class="info-detail">
+                <i class="fas fa-map-marker-alt"></i>
+                <div>
+                  <h4>Ubicación</h4>
+                  <p>2 Av. de Villa Real, Castellón, 12006</p>
+                </div>
+              </div>
+              <div class="info-detail">
+                <i class="fas fa-clock"></i>
+                <div>
+                  <h4>Horario</h4>
+                  <p>11:30 - 13:30 / 16:00 - 18:00</p>
+                </div>
+              </div>
+            </div>
+            <div class="service-contact">
+              <a href="mailto:informacion@candleflame.com" class="contact-link">
+                <i class="fas fa-envelope"></i> informacion@candleflame.com
+              </a>
+              <a href="https://candle-flame.onrender.com" target="_blank" class="contact-link">
+                <i class="fas fa-globe"></i> candle-flame.onrender.com
+              </a>
+            </div>
+          </div>
+          <div class="service-info-image">
+            <img src="assets/media/img/servicios/taller.png" alt="Taller de velas Candle Flame" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección de reserva -->
+    <section id="reserva" class="service-reservation-section">
+      <div class="service-reservation-container">
+        <h2>Reserva tu momento</h2>
+        <form class="reservation-form" data-toast="¡Gracias por reservar con nosotros!">
+          <div class="form-group">
+            <input type="text" id="name" name="name" placeholder="Nombre completo" required />
+          </div>
+          <div class="form-group">
+            <input type="email" id="email" name="email" placeholder="Correo electrónico" required />
+          </div>
+          <div class="form-group">
+            <input type="tel" id="phone" name="phone" placeholder="Teléfono" required />
+          </div>
+          <div class="form-group">
+            <select id="date" name="date" required>
+              <option value="" disabled selected>Selecciona una fecha</option>
+              <option value="2025-05-07">Miercoles, 7 de Mayo</option>
+              <option value="2025-05-10">Sabado, 10 de Mayo</option>
+              <option value="2025-05-11">Domingo, 11 de Mayo</option>
+              <option value="2025-05-14">Miercoles, 14 de Mayo</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <select id="time" name="time" required>
+              <option value="" disabled selected>Selecciona un horario</option>
+              <option value="11:30">11:30 - 13:30</option>
+              <option value="16:00">16:00 - 18:00</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <input type="number" id="people" name="people" min="1" max="8" placeholder="Número de personas" required />
+          </div>
+          <button type="submit" class="cta-button">Confirmar reserva</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-wave"></div>
+      <div class="footer-content">
+        <div class="footer-main">
+          <div class="footer-links">
+            <div class="links-group">
+              <h4>Productos</h4>
+              <ul>
+                <li><a href="#">Gama básica</a></li>
+                <li><a href="#">Gama premium</a></li>
+                <li><a href="#">Kits personalizables</a></li>
+                <li><a href="#">Taller de velas</a></li>
+              </ul>
+            </div>
+
+            <div class="links-group">
+              <h4>Blog</h4>
+              <ul>
+                <li><a href="#">Hogar saludable</a></li>
+              </ul>
+            </div>
+
+            <div class="links-group">
+              <h4>Soporte</h4>
+              <ul>
+                <li><a href="#">Contacto</a></li>
+                <li><a href="#">Política de cookies</a></li>
+                <li><a href="#">Política de privacidad</a></li>
+                <li><a href="#">Aviso legal</a></li>
+                <li><a href="#">Condiciones de compra</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="footer-newsletter">
+            <h4>Únete a nuestro mundo</h4>
+            <p>Recibe novedades y ofertas exclusivas</p>
+            <form class="newsletter-form">
+              <input type="email" placeholder="Tu email" required />
+              <button type="submit">
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </form>
+          </div>
+
+          <div class="footer-social-container">
+            <h4 class="footer-social-title">Síguenos en redes</h4>
+            <div class="footer-social">
+              <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+              <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+              <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-legal">
+          <p>&copy; 2025 Candle Flame. Todos los derechos reservados.</p>
+          <div class="legal-links">
+            <a href="politica-privacidad.html">Privacidad</a>
+            <a href="terminos.html">Términos</a>
+            <a href="cookies.html">Cookies</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- Botón flotante "Volver arriba" -->
+    <div id="back-to-top" class="back-to-top">
+      <i class="fas fa-chevron-up"></i>
+    </div>
+  </body>
+</html>

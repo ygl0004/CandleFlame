@@ -1,4 +1,11 @@
 /* ================================================== */
+/* ================== DEBUGGING ===================== */
+/* ================================================== */
+/* * { 
+  outline: 1px solid red; 
+} */
+
+/* ================================================== */
 /* ================== VARIABLES ===================== */
 /* ================================================== */
 :root {
@@ -73,7 +80,7 @@ body {
 
 h1, h2, h3, h4 {
   font-family: "Tan_Meringue", serif;
-  font-weight: normal;
+  /* font-weight: normal; */
   line-height: 1.4;
 }
 
@@ -979,6 +986,55 @@ footer {
   }
 }
 
+/* ================================================== */
+/* ============= BOTÓN VOLVER ARRIBA ================ */
+/* ================================================== */
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background: var(--color-accent);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all 0.4s cubic-bezier(0.33, 1, 0.68, 1);
+  z-index: 999;
+}
+
+.back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  background: var(--color-accent-light);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: var(--shadow-hover);
+}
+
+.back-to-top i {
+  font-size: 1.2rem;
+}
+
+/* Ajustes para móvil */
+@media (max-width: 768px) {
+  .back-to-top {
+    width: 45px;
+    height: 45px;
+    bottom: 20px;
+    right: 20px;
+  }
+}
 /* ----------- 768px ----------- */
 @media (max-width: 768px) {
   body {

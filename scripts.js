@@ -290,4 +290,41 @@ document.addEventListener("DOMContentLoaded", function () {
       showNotification("¡Gracias por suscribirte a nuestro newsletter!");
     });
   }
+
+  // Notificaciones para formularios de contacto
+  document.querySelectorAll("form[data-toast]").forEach((form) => {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      // Simular envío exitoso
+      const toastMessage = form.getAttribute("data-toast");
+      showNotification(toastMessage);
+
+      // Limpiar el formulario
+      form.reset();
+    });
+  });
+
+  // =============================================
+  // 6. BOTÓN "VOLVER ARRIBA"
+  // =============================================
+  const backToTopButton = document.getElementById("back-to-top");
+
+  // Mostrar/ocultar botón al hacer scroll
+  window.addEventListener("scroll", function () {
+    if (window.scrollY > 300) {
+      backToTopButton.classList.add("show");
+    } else {
+      backToTopButton.classList.remove("show");
+    }
+  });
+
+  // Scroll suave al hacer clic
+  backToTopButton.addEventListener("click", function (e) {
+    e.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  });
 });

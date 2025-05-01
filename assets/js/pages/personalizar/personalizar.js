@@ -1,14 +1,14 @@
 document.addEventListener("DOMContentLoaded", function () {
   // 1. Fijar el tamaño del viewport SOLO al cargar y en cambio de orientación
   const setFixedViewport = () => {
-      const vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty("--vh", `${vh}px`);
-      
-      // Ajustar altura del menú móvil si está abierto
-      const headerNav = document.querySelector(".header_nav");
-      if (headerNav && headerNav.classList.contains("show")) {
-          headerNav.style.height = `${window.innerHeight}px`;
-      }
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty("--vh", `${vh}px`);
+
+    // Ajustar altura del menú móvil si está abierto
+    const headerNav = document.querySelector(".header_nav");
+    if (headerNav && headerNav.classList.contains("show")) {
+      headerNav.style.height = `${window.innerHeight}px`;
+    }
   };
 
   // Solo ejecutar al cargar y en orientationchange
@@ -213,4 +213,45 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Inicializar efectos
   createFlameParticles();
+
+  // Función para actualizar características
+  function updateFeatures() {
+    // Tamaño
+    const sizeOption = document.querySelector(".size-option.selected");
+    if (sizeOption) {
+      const sizeText = sizeOption.querySelector("div:first-child").textContent;
+      document.getElementById("feature-size").textContent =
+        sizeOption.dataset.scale === "0.8" ? "8cm" : sizeOption.dataset.scale === "1" ? "12cm" : "16cm";
+
+      // Actualizar tiempo de uso basado en tamaño
+      document.getElementById("feature-burn-time").textContent =
+        sizeOption.dataset.scale === "0.8" ? "20h" : sizeOption.dataset.scale === "1" ? "25h" : "36h";
+    }
+
+    // Aroma
+    const scentOption = document.querySelector(".scent-option.selected");
+    if (scentOption) {
+      document.getElementById("feature-scent").textContent = scentOption.querySelector("div:last-child").textContent;
+    }
+
+    // Color de llama
+    const flameOption = document.querySelector(".flame-color-option.selected");
+    if (flameOption) {
+      document.getElementById("feature-flame").textContent = flameOption.getAttribute("title");
+    }
+
+    // Color de cera
+    const waxOption = document.querySelector(".color-option.selected");
+    if (waxOption) {
+      document.getElementById("feature-color").textContent = waxOption.getAttribute("title");
+    }
+  }
+
+  // Llama a updateFeatures cuando se selecciona cualquier opción
+  document.querySelectorAll(".color-option, .flame-color-option, .size-option, .scent-option").forEach((option) => {
+    option.addEventListener("click", updateFeatures);
+  });
+
+  // Inicializar características
+  updateFeatures();
 });

@@ -1,14 +1,13 @@
-/* Reset general */
-html, body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  overflow-x: hidden;
-}
+/* ================================================== */
+/* ================== DEBUGGING ===================== */
+/* ================================================== */
+/* * { 
+  outline: 1px solid red; 
+} */
 
-/* ********************************************* */
-/* ************** VARIABLES LOCALES ************ */
-/* ********************************************* */
+/* ================================================== */
+/* ================== VARIABLES ===================== */
+/* ================================================== */
 :root {
   /* Colores de cera */
   --wax-color-light: #f8f0e5;
@@ -23,125 +22,141 @@ html, body {
   --candle-scale: 1;
   
   /* Fondo */
-  /* --bg-image: url('assets/media/img/personalizacion/aromas/vainilla.jpg'); */
+  --bg-image: url('assets/media/img/personalizacion/aromas/template.jpg');
 }
 
-/* ********************************************* */
-/* ************** ANIMACIONES ****************** */
-/* ********************************************* */
+/* ================================================== */
+/* ================== ANIMACIONES =================== */
+/* ================================================== */
 @keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
-    transform: translateY(0) translateX(-50%);
-  }
-  40% {
-    transform: translateY(-20px) translateX(-50%);
-  }
-  60% {
-    transform: translateY(-10px) translateX(-50%);
-  }
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+  40% { transform: translateY(-20px) translateX(-50%); }
+  60% { transform: translateY(-10px) translateX(-50%); }
 }
 
 @keyframes melt {
-  0%, 100% {
-    height: 40px;
-    opacity: 0.8;
-  }
-  50% {
-    height: 70px;
-    opacity: 1;
-  }
+  0%, 100% { height: 40px; opacity: 0.8; }
+  50% { height: 70px; opacity: 1; }
 }
 
 @keyframes flame-transition {
-  0% {
-    opacity: 1;
-    transform: translateX(-50%) scaleY(1.2) scaleX(0.9);
-  }
-  20% {
-    opacity: 0.7;
-    transform: translateX(-50%) scaleY(0.8) scaleX(1.1);
-  }
-  40% {
-    opacity: 0.4;
-    transform: translateX(-50%) scaleY(1.3) scaleX(0.7);
-  }
-  60% {
-    opacity: 0.7;
-    transform: translateX(-50%) scaleY(0.9) scaleX(1);
-  }
-  80% {
-    opacity: 0.5;
-    transform: translateX(-50%) scaleY(1.1) scaleX(0.8);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(-50%) scaleY(1) scaleX(1);
-  }
+  0% { opacity: 1; transform: translateX(-50%) scaleY(1.2) scaleX(0.9); }
+  20% { opacity: 0.7; transform: translateX(-50%) scaleY(0.8) scaleX(1.1); }
+  40% { opacity: 0.4; transform: translateX(-50%) scaleY(1.3) scaleX(0.7); }
+  60% { opacity: 0.7; transform: translateX(-50%) scaleY(0.9) scaleX(1); }
+  80% { opacity: 0.5; transform: translateX(-50%) scaleY(1.1) scaleX(0.8); }
+  100% { opacity: 1; transform: translateX(-50%) scaleY(1) scaleX(1); }
 }
 
 @keyframes flicker-back {
-  from {
-    transform: translateX(-50%) scaleY(1) scaleX(1);
-    opacity: 0.2;
-  }
-  to {
-    transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
-    opacity: 0.5;
-  }
+  from { transform: translateX(-50%) scaleY(1) scaleX(1); opacity: 0.2; }
+  to { transform: translateX(-50%) scaleY(1.3) scaleX(0.8); opacity: 0.5; }
 }
 
 @keyframes flicker-main {
-  from {
-    transform: translateX(-50%) scaleY(1) scaleX(1);
-  }
-  to {
-    transform: translateX(-50%) scaleY(1.4) scaleX(0.7);
-  }
+  from { transform: translateX(-50%) scaleY(1) scaleX(1); }
+  to { transform: translateX(-50%) scaleY(1.4) scaleX(0.7); }
 }
 
 @keyframes flicker-inner {
-  from {
-    transform: translateX(-50%) scale(0.8);
-    opacity: 0.5;
-  }
-  to {
-    transform: translateX(-50%) scale(1.3);
-    opacity: 0.9;
-  }
+  from { transform: translateX(-50%) scale(0.8); opacity: 0.5; }
+  to { transform: translateX(-50%) scale(1.3); opacity: 0.9; }
 }
 
 @keyframes reflection-shift {
-  0%, 100% {
-    transform: translate(0, 0) translateZ(20px);
-  }
-  50% {
-    transform: translate(10px, 10px) translateZ(20px);
-  }
+  0%, 100% { transform: translate(0, 0) translateZ(20px); }
+  50% { transform: translate(10px, 10px) translateZ(20px); }
 }
 
 @keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.02);
-  }
-  100% {
-    transform: scale(1);
-  }
+  0% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+  100% { transform: scale(1); }
 }
 
-/* ********************************************* */
-/* ************** HERO SECTION ***************** */
-/* ********************************************* */
+/* ================================================== */
+/* ================== RESET/BASE ==================== */
+/* ================================================== */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* ================================================== */
+/* ================== ESTRUCTURA ==================== */
+/* ================================================== */
+.customization-wrapper {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  background-color: var(--color-bg-light);
+  position: relative;
+  z-index: 2;
+}
+
+.customization-main-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  width: 100%;
+}
+
+.customization-section {
+  width: 100%;
+  padding: 20px 0;
+  box-sizing: border-box;
+  background-color: var(--color-bg-light);
+  margin: 0;
+}
+
+.customization-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.product-details-section {
+  width: 100%;
+  padding: 20px 0 40px;
+  box-sizing: border-box;
+  background-color: var(--color-bg-light);
+  margin: 0;
+  position: relative;
+  z-index: 2;
+}
+
+.product-details-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* ================================================== */
+/* ================== HERO SECTION ================== */
+/* ================================================== */
 .customization-hero {
   position: relative;
-  height: calc(100 * var(--vh)); /* Usar la variable --vh */
+  height: calc(100 * var(--vh));
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0;
-  padding: 80px 0 0; /* Compensa el header */
+  padding: 80px 0 0;
   box-sizing: border-box;
   color: var(--color-text-light);
 }
@@ -155,7 +170,6 @@ html, body {
   height: 100%;
   background: rgba(35, 11, 2, 0.2);
   z-index: -1;
-  /* margin-top: -80px; */
   padding-top: 80px;
   box-sizing: border-box;
 }
@@ -180,7 +194,6 @@ html, body {
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
-/* Scroll down indicator */
 .scroll-down {
   position: absolute;
   bottom: 40px;
@@ -203,55 +216,28 @@ html, body {
   transform: translateY(5px);
 }
 
-/* Video background */
 .video-container {
   position: fixed;
   top: -80px;
   left: 0;
   width: 100vw;
-  height: calc(100 * var(--vh) + 80px); /* Usar la variable --vh establecida al cargar */
+  height: calc(100 * var(--vh) + 80px);
   z-index: -2;
   overflow: hidden;
 }
 
-/* ********************************************* */
-/* ************** SECCIÓN PRINCIPAL *********** */
-/* ********************************************* */
-.customization-section {
-  height: calc(100vh - 80px);
-  padding: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  box-sizing: border-box;
-  background-color: var(--color-bg-light);
-}
-
-.customization-container {
-  display: flex;
-  flex-direction: row;
-  gap: 40px;
-  width: 100%;
-  height: 100%;
-  max-width: 1400px;
-  align-items: center;
-  justify-content: center;
-}
-
-/* ********************************************* */
-/* ************** VELA 3D ********************* */
-/* ********************************************* */
+/* ================================================== */
+/* ================== VELA 3D ======================= */
+/* ================================================== */
 .candle-preview {
-  flex-basis: 48%;
-  height: 100%;
+  flex: 1;
+  min-width: 300px;
+  height: auto;
   display: flex;
   align-items: center;
   justify-content: center;
   perspective: 1200px;
   position: relative;
-  min-height: 500px;
-  aspect-ratio: 1/1.5;
   overflow: hidden;
 }
 
@@ -363,20 +349,9 @@ html, body {
   transform: translateZ(-2px);
 }
 
-.drip-1 {
-  left: 15%;
-  animation-delay: 0.5s;
-}
-
-.drip-2 {
-  left: 45%;
-  animation-delay: 1.2s;
-}
-
-.drip-3 {
-  left: 75%;
-  animation-delay: 0.8s;
-}
+.drip-1 { left: 15%; animation-delay: 0.5s; }
+.drip-2 { left: 45%; animation-delay: 1.2s; }
+.drip-3 { left: 75%; animation-delay: 0.8s; }
 
 .wax-inner-layer {
   position: absolute;
@@ -481,9 +456,9 @@ html, body {
   animation: pulse 0.6s ease;
 }
 
-/* ********************************************* */
-/* ************** LLAMA *********************** */
-/* ********************************************* */
+/* ================================================== */
+/* ================== LLAMA ======================== */
+/* ================================================== */
 .candle-flame-container {
   position: absolute;
   top: calc(-70px * var(--candle-scale));
@@ -555,21 +530,26 @@ html, body {
   z-index: 5;
 }
 
-/* ********************************************* */
-/* ************** PANEL OPCIONES ************** */
-/* ********************************************* */
+/* ================================================== */
+/* ================== PANEL OPCIONES =============== */
+/* ================================================== */
+.customization-options, 
+.features-box {
+  background: white;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: var(--shadow);
+}
+
 .customization-options {
-  flex-basis: 52%;
-  height: 100%;
+  flex: 1;
+  min-width: 300px;
+  max-width: 600px;
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 20px 25px;
-  box-sizing: border-box;
-  background: white;
-  border-radius: 16px;
-  box-shadow: var(--shadow);
-  overflow: hidden;
+  overflow: visible;
 }
 
 .customization-options h2 {
@@ -600,7 +580,6 @@ html, body {
   background: var(--color-accent-light);
 }
 
-/* Precio */
 .price-display {
   font-size: 1.6rem;
   font-family: "Tan_Meringue";
@@ -609,9 +588,9 @@ html, body {
   margin: 15px 0;
 }
 
-/* ********************************************* */
-/* ************** OPCIONES DE COLOR *********** */
-/* ********************************************* */
+/* ================================================== */
+/* ================== OPCIONES COLOR ================ */
+/* ================================================== */
 .color-options {
   display: flex;
   gap: 12px;
@@ -650,29 +629,16 @@ html, body {
   opacity: 1;
 }
 
-/* Colores de cera */
-.color-beige {
-  background: #f8f0e5;
-}
-.color-crema {
-  background: #fff5e6;
-}
-.color-arena {
-  background: #e6d5b8;
-}
-.color-caramelo {
-  background: #d4c0a1;
-}
-.color-rojo {
-  background: #af0000;
-}
-.color-marron-oscuro {
-  background: #4b1c0b;
-}
+.color-beige { background: #f8f0e5; }
+.color-crema { background: #fff5e6; }
+.color-arena { background: #e6d5b8; }
+.color-caramelo { background: #d4c0a1; }
+.color-rojo { background: #af0000; }
+.color-marron-oscuro { background: #4b1c0b; }
 
-/* ********************************************* */
-/* ************** OPCIONES DE LLAMA *********** */
-/* ********************************************* */
+/* ================================================== */
+/* ================== OPCIONES LLAMA =============== */
+/* ================================================== */
 .flame-color-options {
   display: flex;
   gap: 12px;
@@ -712,27 +678,14 @@ html, body {
   opacity: 1;
 }
 
-/* Colores de llama */
-.flame-clasica {
-  --flame-color1: #ff9a3c;
-  --flame-color2: #ffeb99;
-}
-.flame-ambar {
-  --flame-color1: #ff6b00;
-  --flame-color2: #ffcc33;
-}
-.flame-blanca {
-  --flame-color1: #ffdd99;
-  --flame-color2: #ffffff;
-}
-.flame-azulada {
-  --flame-color1: #00a8ff;
-  --flame-color2: #99e6ff;
-}
+.flame-clasica { --flame-color1: #ff9a3c; --flame-color2: #ffeb99; }
+.flame-ambar { --flame-color1: #ff6b00; --flame-color2: #ffcc33; }
+.flame-blanca { --flame-color1: #ffdd99; --flame-color2: #ffffff; }
+.flame-azulada { --flame-color1: #00a8ff; --flame-color2: #99e6ff; }
 
-/* ********************************************* */
-/* ************** OPCIONES DE AROMA *********** */
-/* ********************************************* */
+/* ================================================== */
+/* ================== OPCIONES AROMA ================ */
+/* ================================================== */
 .scent-options {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -768,9 +721,9 @@ html, body {
   transform: scale(1.1);
 }
 
-/* ********************************************* */
-/* ************** OPCIONES DE TAMAÑO ********** */
-/* ********************************************* */
+/* ================================================== */
+/* ================== OPCIONES TAMAÑO =============== */
+/* ================================================== */
 .size-options {
   display: flex;
   gap: 12px;
@@ -842,12 +795,11 @@ html, body {
   transform: scale(1.05);
 }
 
-/* ********************************************* */
-/* ************** BOTÓN CTA ******************* */
-/* ********************************************* */
+/* ================================================== */
+/* ================== BOTÓN CTA ===================== */
+/* ================================================== */
 .customization-options .cta-button {
   display: block;
-  margin: 30px auto 0;
   width: fit-content;
   min-width: 200px;
   text-align: center;
@@ -856,22 +808,225 @@ html, body {
   align-self: center;
 }
 
-/* ********************************************* */
-/* ************** RESPONSIVE ****************** */
-/* ********************************************* */
+/* ================================================== */
+/* ================== SECCIÓN DETALLES ============= */
+/* ================================================== */
+.reviews-box {
+  text-align: center;
+  margin: 0 auto;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.reviews-box,
+.product-image-box {
+  flex: 1;
+  min-width: 250px;
+  padding: 25px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+}
+
+.product-image-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-image-box img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.rating {
+  margin: 15px 0;
+}
+
+.stars {
+  color: var(--color-accent);
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
+.stars span {
+  color: var(--color-text-medium);
+  font-size: 1rem;
+  margin-left: 10px;
+}
+
+.review-count {
+  color: var(--color-text-medium);
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+}
+
+.review-button {
+  background: var(--color-accent);
+  color: white;
+  border: none;
+  border-radius: 30px;
+  padding: 8px 20px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: var(--transition);
+  margin-bottom: 15px;
+}
+
+.review-button:hover {
+  color: var(--color-accent-dark);
+  transform: translateY(-2px);
+}
+
+.all-reviews-link a {
+  color: var(--color-accent);
+  font-size: 0.9rem;
+  transition: var(--transition);
+}
+
+.all-reviews-link a:hover {
+  color: var(--color-accent-dark);
+  text-decoration: underline;
+}
+
+.features-box {
+  flex: 2;
+  min-width: 300px;
+  padding: 25px;
+}
+
+.features-box h3,
+.reviews-box h3 {
+  font-size: 1.3rem;
+  color: var(--color-secondary);
+  position: relative;
+  padding-bottom: 10px;
+  font-family: "Tan_Meringue", serif;
+  text-align: center;
+}
+
+.features-box h3::after,
+.reviews-box h3::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 200px; 
+  height: 2px;
+  background: var(--color-accent-light);
+}
+
+.feature-specs {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.spec-row {
+  display: flex;
+  align-items: center;
+}
+
+.spec-name {
+  font-weight: 600;
+  color: var(--color-secondary);
+  min-width: 120px;
+  font-size: 0.95rem;
+}
+
+.spec-dots {
+  flex: 1;
+  border-bottom: 2px dotted #e0e0e0;
+  margin: 0 10px;
+  position: relative;
+  bottom: -3px;
+}
+
+.spec-value {
+  color: var(--color-text-medium);
+  font-size: 0.95rem;
+  min-width: 80px;
+  text-align: right;
+}
+
+/* ================================================== */
+/* ================== RESPONSIVE =================== */
+/* ================================================== */
+@media (max-width: 1200px) {
+  .customization-main-container,
+  .product-details-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .product-details-container {
+    gap: 20px;
+  }
+  
+  .reviews-box,
+  .product-image-box,
+  .features-box {
+    width: 100%;
+  }
+}
+
 @media (max-width: 992px) {
   .customization-container {
-    grid-template-columns: 1fr;
-    gap: 25px;
-  }
-
-  .candle-preview {
-    height: 400px;
-    margin-bottom: 30px;
+    gap: 30px;
   }
 }
 
 @media (max-width: 768px) {
+  .customization-container,
+  .product-details-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .customization-container > *,
+  .product-details-container > * {
+    width: 100%;
+    max-width: none;
+  }
+
+  .candle-preview {
+    height: auto;
+    order: -1;
+  }
+
+  .customization-options {
+    padding: 15px;
+  }
+
+  .reviews-box,
+  .product-image-box,
+  .features-box {
+    flex: 1 1 auto;
+    margin: 0;
+  }
+
+  .candle-preview {
+    height: 350px;
+    order: -1;
+  }
+
+  .reviews-box,
+  .product-image-box,
+  .features-box {
+    flex: 1 1 100%;
+  }
+
+  .customization-section,
+  .product-details-section {
+    padding: 15px;
+    margin: -1px;
+  }
+
   .customization-section {
     height: auto;
     padding: 30px 15px;
@@ -923,10 +1078,21 @@ html, body {
     width: 100%;
     margin-top: 20px;
   }
-}
 
-@media (max-width: 480px) {
-  .scent-options {
-    grid-template-columns: 1fr 1fr;
+  .product-details-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .features-box {
+    grid-column: span 1;
+  }
+  
+  .spec-name {
+    min-width: 110px;
+    font-size: 0.9rem;
+  }
+  
+  .spec-value {
+    font-size: 0.9rem;
   }
 }

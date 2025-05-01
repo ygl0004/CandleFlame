@@ -2,11 +2,12 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+    />
     <meta name="author" content="Yeray Garrido Linares" />
     <meta name="description" content="Candle Flame - Personaliza tu vela artesanal" />
-    <!-- <link rel="preload" href="assets/fonts/TAN_Meringue/TAN MERINGUE.ttf" as="font" type="font/ttf" crossorigin /> -->
-    <!-- <link rel="preload" href="assets/fonts/Stinger_Fit/StingerFitTrial-Regular.ttf" as="font" type="font/ttf" crossorigin /> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="personalizar.css" />
@@ -243,6 +244,75 @@
     </main>
 
     <!-- ********************************************* -->
+    <!-- ************** SECCIÓN DETALLES ************* -->
+    <!-- ********************************************* -->
+    <section class="product-details-section">
+      <div class="product-details-container">
+        <!-- Opiniones -->
+        <div class="reviews-box">
+          <h3>Opiniones de clientes</h3>
+          <div class="rating">
+            <div class="stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+              <span>4.5/5</span>
+            </div>
+          </div>
+          <p class="review-count">1 opiniones</p>
+          <button class="review-button">Dar una opinión</button>
+          <div class="all-reviews-link">
+            <a href="#">Ver todas las opiniones</a>
+          </div>
+        </div>
+
+        <!-- Foto del producto -->
+        <div class="product-image-box">
+          <img src="assets/media/img/coleccion/vela_2.png" alt="Vela personalizada" />
+        </div>
+
+        <!-- Características -->
+        <div class="features-box">
+          <h3>Características</h3>
+          <div class="feature-specs">
+            <div class="spec-row">
+              <span class="spec-name">Tamaño:</span>
+              <span class="spec-dots"></span>
+              <span class="spec-value" id="feature-size">12cm</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-name">Aroma:</span>
+              <span class="spec-dots"></span>
+              <span class="spec-value" id="feature-scent">Vainilla</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-name">Tiempo de uso:</span>
+              <span class="spec-dots"></span>
+              <span class="spec-value" id="feature-burn-time">25h</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-name">Llama:</span>
+              <span class="spec-dots"></span>
+              <span class="spec-value" id="feature-flame">Clásica</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-name">Material envase:</span>
+              <span class="spec-dots"></span>
+              <span class="spec-value">Vidrio</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-name">Color:</span>
+              <span class="spec-dots"></span>
+              <span class="spec-value" id="feature-color">Beige</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ********************************************* -->
     <!-- **************** FOOTER ******************** -->
     <!-- ********************************************* -->
     <footer>
@@ -310,5 +380,9 @@
         </div>
       </div>
     </footer>
+    <!-- Botón flotante "Volver arriba" -->
+    <div id="back-to-top" class="back-to-top">
+      <i class="fas fa-chevron-up"></i>
+    </div>
   </body>
 </html>
