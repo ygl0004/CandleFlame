@@ -327,4 +327,45 @@ document.addEventListener("DOMContentLoaded", function () {
       behavior: "smooth",
     });
   });
+
+  // =============================================
+  // 7. GALERÍA AUTOMÁTICA STORY SECTION
+  // =============================================
+  // Galería automática
+  const gallerySlides = document.querySelectorAll(".gallery-slide");
+  if (gallerySlides.length > 0) {
+    let currentIndex = 0;
+
+    // Función para cambiar de slide
+    function changeSlide() {
+      gallerySlides[currentIndex].classList.remove("active");
+      currentIndex = (currentIndex + 1) % gallerySlides.length;
+      gallerySlides[currentIndex].classList.add("active");
+    }
+
+    // Iniciar intervalo
+    let slideInterval = setInterval(changeSlide, 6000); // Cambia cada 6 segundos
+
+    // Pausar al hacer hover
+    const gallery = document.querySelector(".story-gallery");
+    if (gallery) {
+      gallery.addEventListener("mouseenter", () => clearInterval(slideInterval));
+      gallery.addEventListener("mouseleave", () => {
+        clearInterval(slideInterval);
+        slideInterval = setInterval(changeSlide, 6000); // Reiniciar intervalo
+      });
+    }
+
+    // Ajustar imágenes al cargar
+    window.addEventListener("load", function () {
+      gallerySlides.forEach((slide) => {
+        const img = slide.querySelector("img");
+        if (img) {
+          // Forzar redimensionamiento inicial
+          img.style.width = "100%";
+          img.style.height = "100%";
+        }
+      });
+    });
+  }
 });
