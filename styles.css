@@ -9,7 +9,7 @@
 /* ================== VARIABLES ===================== */
 /* ================================================== */
 :root {
-  --vh: 1vh; /* Variable para altura fija del viewport */
+  --vh: 1vh;
   --color-primary: #230b02;
   --color-secondary: #6a1f04;
   --color-accent: #dd5215;
@@ -575,7 +575,7 @@ header.scrolled {
 .story-section {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  min-height: 500px; /* Altura mínima para sección */
+  min-height: 500px;
   background-color: var(--color-primary);
   color: var(--color-text-light);
 }
@@ -606,7 +606,7 @@ header.scrolled {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center center; /* Enfoca el centro de la imagen */
+  object-position: center center;
 }
 
 /* ================================================== */
@@ -1428,7 +1428,7 @@ footer {
   left: 50%;
   transform: translateX(-50%);
   z-index: 10;
-  animation: bounce 2s infinite; /* Asegúrate de que esta línea esté presente */
+  animation: bounce 2s infinite;
   cursor: pointer;
 }
 
