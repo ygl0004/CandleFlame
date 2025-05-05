@@ -347,14 +347,14 @@ document.addEventListener("DOMContentLoaded", function () {
     let slideInterval = setInterval(changeSlide, 6000); // Cambia cada 6 segundos
 
     // Pausar al hacer hover
-    const gallery = document.querySelector(".story-gallery");
-    if (gallery) {
-      gallery.addEventListener("mouseenter", () => clearInterval(slideInterval));
-      gallery.addEventListener("mouseleave", () => {
-        clearInterval(slideInterval);
-        slideInterval = setInterval(changeSlide, 6000); // Reiniciar intervalo
-      });
-    }
+    // const gallery = document.querySelector(".story-gallery");
+    // if (gallery) {
+    //   gallery.addEventListener("mouseenter", () => clearInterval(slideInterval));
+    //   gallery.addEventListener("mouseleave", () => {
+    //     clearInterval(slideInterval);
+    //     slideInterval = setInterval(changeSlide, 6000); // Reiniciar intervalo
+    //   });
+    // }
 
     // Ajustar imágenes al cargar
     window.addEventListener("load", function () {
