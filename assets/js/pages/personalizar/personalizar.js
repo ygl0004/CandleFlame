@@ -15,6 +15,16 @@ document.addEventListener("DOMContentLoaded", function () {
   setFixedViewport();
   window.addEventListener("orientationchange", setFixedViewport);
 
+  // Establecer el color de cera inicial según la opción marcada por defecto
+  const defaultWaxOption = document.querySelector(".color-option.selected");
+  if (defaultWaxOption) {
+    document.documentElement.style.setProperty("--wax-color-light", defaultWaxOption.dataset.colorLight);
+    document.documentElement.style.setProperty("--wax-color-dark", defaultWaxOption.dataset.colorDark);
+  }
+
+  // Establecer el tamaño inicial de la vela
+  document.documentElement.style.setProperty("--candle-scale", "1");
+
   // Sistema de partículas para la llama
   function createFlameParticles() {
     const container = document.querySelector(".flame-sparks");
