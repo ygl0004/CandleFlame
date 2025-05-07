@@ -10,7 +10,9 @@
     <meta name="description" content="Candle Flame - Velas artesanales con esencias únicas" />
     <link rel="stylesheet" href="assets/css/FontAwesome/css/all.min.css" />
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="reproductor.css" />
     <script defer src="scripts.js"></script>
+    <script defer src="reproductor.js"></script>
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <title>Candle Flame - Inicio</title>
   </head>
@@ -232,5 +234,82 @@
     <div id="back-to-top" class="back-to-top">
       <i class="fas fa-chevron-up"></i>
     </div>
+
+    <!-- ********************************************* -->
+    <!-- ************* Barra de Cookies ************** -->
+    <!-- ********************************************* -->
+    <div id="cookie-bar" class="cookie-bar">
+      <div class="cookie-content">
+        <div class="cookie-text">
+          <p>Utilizamos cookies propias y de terceros para mejorar nuestros servicios. Puedes gestionar tus preferencias a continuación.</p>
+        </div>
+        <div class="cookie-buttons">
+          <button id="cookie-accept-all" class="cookie-button accept-all">Aceptar</button>
+          <button id="cookie-accept-necessary" class="cookie-button accept-necessary">Solo necesarias</button>
+          <button id="cookie-configure" class="cookie-button configure">Configurar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Configuración de Cookies -->
+    <div id="cookie-modal" class="cookie-modal">
+      <div class="modal-content">
+        <h3>Preferencias de Cookies</h3>
+        <p>Selecciona qué tipo de cookies deseas permitir:</p>
+
+        <div class="cookie-option">
+          <div class="option-header">
+            <input type="checkbox" id="necessary-cookies" checked disabled />
+            <label for="necessary-cookies">Cookies necesarias</label>
+          </div>
+          <p class="option-description">Estas cookies son esenciales para que el sitio web funcione correctamente.</p>
+        </div>
+
+        <div class="cookie-option">
+          <div class="option-header">
+            <input type="checkbox" id="analytics-cookies" />
+            <label for="analytics-cookies">Cookies analíticas</label>
+          </div>
+          <p class="option-description">Nos ayudan a entender cómo interactúan los usuarios con nuestro sitio.</p>
+        </div>
+
+        <div class="cookie-option">
+          <div class="option-header">
+            <input type="checkbox" id="marketing-cookies" />
+            <label for="marketing-cookies">Cookies de marketing</label>
+          </div>
+          <p class="option-description">Nos permiten mostrar anuncios relevantes para ti.</p>
+        </div>
+
+        <div class="modal-buttons">
+          <button id="cookie-save" class="cookie-button save">Guardar preferencias</button>
+          <button id="cookie-cancel" class="cookie-button cancel">Cancelar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ********************************************* -->
+    <!-- ************* REPRODUCTOR DE MÚSICA ********* -->
+    <!-- ********************************************* -->
+    <!-- <div id="music-player" class="music-player">
+      <div class="player-controls">
+        <button id="prev-track" class="control-button" aria-label="Canción anterior">
+          <i class="fas fa-step-backward"></i>
+        </button>
+        <button id="play-pause" class="control-button" aria-label="Reproducir/Pausar">
+          <i class="fas fa-play"></i>
+        </button>
+        <button id="next-track" class="control-button" aria-label="Siguiente canción">
+          <i class="fas fa-step-forward"></i>
+        </button>
+      </div>
+      <div class="player-info">
+        <div id="now-playing" class="now-playing">Selecciona una canción</div>
+        <div class="progress-container">
+          <div class="progress-bar"></div>
+        </div>
+      </div>
+      <audio id="audio-element"></audio>
+    </div> -->
   </body>
 </html>

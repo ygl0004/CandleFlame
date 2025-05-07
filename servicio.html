@@ -227,5 +227,58 @@
     <div id="back-to-top" class="back-to-top">
       <i class="fas fa-chevron-up"></i>
     </div>
+
+    <!-- ********************************************* -->
+    <!-- ************* Barra de Cookies ************** -->
+    <!-- ********************************************* -->
+    <div id="cookie-bar" class="cookie-bar">
+      <div class="cookie-content">
+        <div class="cookie-text">
+          <p>Utilizamos cookies propias y de terceros para mejorar nuestros servicios. Puedes gestionar tus preferencias a continuación.</p>
+        </div>
+        <div class="cookie-buttons">
+          <button id="cookie-accept-all" class="cookie-button accept-all">Aceptar</button>
+          <button id="cookie-accept-necessary" class="cookie-button accept-necessary">Solo necesarias</button>
+          <button id="cookie-configure" class="cookie-button configure">Configurar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Configuración de Cookies -->
+    <div id="cookie-modal" class="cookie-modal">
+      <div class="modal-content">
+        <h3>Preferencias de Cookies</h3>
+        <p>Selecciona qué tipo de cookies deseas permitir:</p>
+
+        <div class="cookie-option">
+          <div class="option-header">
+            <input type="checkbox" id="necessary-cookies" checked disabled />
+            <label for="necessary-cookies">Cookies necesarias</label>
+          </div>
+          <p class="option-description">Estas cookies son esenciales para que el sitio web funcione correctamente.</p>
+        </div>
+
+        <div class="cookie-option">
+          <div class="option-header">
+            <input type="checkbox" id="analytics-cookies" />
+            <label for="analytics-cookies">Cookies analíticas</label>
+          </div>
+          <p class="option-description">Nos ayudan a entender cómo interactúan los usuarios con nuestro sitio.</p>
+        </div>
+
+        <div class="cookie-option">
+          <div class="option-header">
+            <input type="checkbox" id="marketing-cookies" />
+            <label for="marketing-cookies">Cookies de marketing</label>
+          </div>
+          <p class="option-description">Nos permiten mostrar anuncios relevantes para ti.</p>
+        </div>
+
+        <div class="modal-buttons">
+          <button id="cookie-save" class="cookie-button save">Guardar preferencias</button>
+          <button id="cookie-cancel" class="cookie-button cancel">Cancelar</button>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
