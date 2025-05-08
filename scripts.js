@@ -491,5 +491,63 @@ document.addEventListener("DOMContentLoaded", function () {
   // Inicialización con retraso para mejor UX
   setTimeout(showCookieBar, 1500);
 
-  
+  // =============================================
+  // 9. POPUP PERSONALIZACIÓN AL SCROLL
+  // =============================================
+  const personalizacionPopup = document.getElementById('personalizacion-popup');
+  const popupClose = document.querySelector('.popup-close');
+  const collectionSection = document.getElementById('coleccion');
+
+  // Mostrar popup con animación
+  function showCustomizationPopup() {
+    if (personalizacionPopup) {
+      personalizacionPopup.style.display = 'flex';
+      void personalizacionPopup.offsetWidth; // Forzar reflow para activar la animación
+      setTimeout(() => {
+        personalizacionPopup.classList.add('show');
+      }, 50);
+    }
+  }
+
+  // Ocultar popup
+  function hideCustomizationPopup() {
+    if (personalizacionPopup) {
+      personalizacionPopup.classList.remove('show');
+      setTimeout(() => {
+        personalizacionPopup.style.display = 'none';
+      }, 400);
+    }
+  }
+
+  // Mostrar popup al recorrer la mitad de la sección "Nuestras Esencias"
+  function handleScrollForPopup() {
+    if (collectionSection) {
+      const sectionRect = collectionSection.getBoundingClientRect();
+      const sectionMidpoint = sectionRect.top + sectionRect.height / 2;
+      if (sectionMidpoint <= window.innerHeight) {
+        showCustomizationPopup();
+        window.removeEventListener('scroll', handleScrollForPopup); // Evitar múltiples activaciones
+      }
+    }
+  }
+
+  // Event listeners
+  if (popupClose) {
+    popupClose.addEventListener('click', (e) => {
+      e.preventDefault();
+      hideCustomizationPopup();
+    });
+  }
+
+  if (personalizacionPopup) {
+    personalizacionPopup.addEventListener('click', (e) => {
+      if (e.target.classList.contains('popup-overlay')) {
+        hideCustomizationPopup();
+      }
+    });
+  }
+
+  // Inicialización - Mostrar al recorrer la mitad de la sección
+  window.addEventListener('scroll', handleScrollForPopup);
+
 });
