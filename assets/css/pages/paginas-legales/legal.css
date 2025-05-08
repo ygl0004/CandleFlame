@@ -1,48 +1,44 @@
 /* ================================================== */
-/* ============ ESTILOS HERO =================== */
+/* ============ HEADER LEGAL ======================== */
 /* ================================================== */
-.hero-content {
-  font-size: 2rem;
-  max-width: 800px;
-  margin: 25vh auto;
-  animation: fadeIn 1.5s ease-out;
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  position: absolute;
+/* Forzar header opaco en páginas legales */
+header {
+  background: rgba(35, 11, 2, 0.9);
+  backdrop-filter: blur(5px);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  transition: none;
 }
 
-.hero-content h1 {
+/* Eliminar cualquier transformación */
+header.scrolled {
+  transform: none;
+}
+
+/* ================================================== */
+/* ============ ESTILOS HERO SIMPLE ================ */
+/* ================================================== */
+.hero-simple {
+  background-color: var(--color-primary);
+  color: var(--color-text-light);
+  padding: 100px 20px;
+  text-align: center;
+  position: relative;
+}
+
+.hero-simple-content {
+  max-width: 800px;
+  margin: 0 auto;
+  animation: fadeIn 1.5s ease-out;
+}
+
+.hero-simple h1 {
   font-size: clamp(2.5rem, 5vw, 3.5rem);
   margin-bottom: 20px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.hero-content p {
+.hero-simple p {
   font-size: clamp(1.2rem, 2.5vw, 1.5rem);
   margin-bottom: 30px;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-}
-
-/* Scroll down (Flecha) */
-.scroll-down {
-  position: absolute;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
-  animation: bounce 2s infinite;
-  cursor: pointer;
-}
-
-.scroll-down i {
-  font-size: 2.5rem;
-  color: var(--color-accent-light);
-  transition: var(--transition);
-  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-}
-
-.scroll-down:hover i {
-  color: white;
-  transform: translateY(5px);
 }
 
 /* ================================================== */
@@ -347,5 +343,9 @@
 
   .legal-article {
     margin-bottom: 30px;
+  }
+  
+  .hero-simple {
+    padding: 80px 20px;
   }
 }

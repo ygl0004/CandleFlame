@@ -547,6 +547,22 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  // Cierra el popup cuando se pincha en "Personalizar ahora"
+  const customizationButton = document.querySelector('.popup-text .cta-button');
+  if (customizationButton) {
+    customizationButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      hideCustomizationPopup();
+      const target = customizationButton.getAttribute('href');
+      if (target.startsWith("#")) {
+        const targetElement = document.querySelector(target);
+        if (targetElement) {
+          targetElement.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    });
+  }
+
   // Inicialización - Mostrar al recorrer la mitad de la sección
   window.addEventListener('scroll', handleScrollForPopup);
 
