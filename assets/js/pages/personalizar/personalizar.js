@@ -216,9 +216,6 @@ document.addEventListener("DOMContentLoaded", function () {
       const scale = parseFloat(sizeOption.dataset.scale);
       price = basePrice * scale;
     }
-
-    // Mostrar precio formateado
-    // document.querySelector(".price-display").textContent = `$${price.toFixed(2)}`;
   }
 
   // Inicializar efectos

@@ -34,27 +34,36 @@
         <div class="header_logo">
           <a href="index.html"><h1>Candle Flame</h1></a>
         </div>
+
+        <!-- Iconos móviles - solo se muestran en móvil -->
+        <div class="header_mobile_icons">
+          <a href="#" aria-label="Buscar"><i class="icon-search"></i></a>
+          <a href="#" aria-label="Cuenta"><i class="icon-account"></i></a>
+          <a href="carrito.html" aria-label="Carrito" class="cart-icon">
+            <i class="icon-cart"></i>
+            <span class="cart-count"></span>
+          </a>
+        </div>
+
         <button class="mobile-menu-button" aria-label="Menú móvil">
           <i class="fas fa-bars"></i>
         </button>
+
         <nav class="header_nav">
           <a class="header_link" href="index.html">Inicio</a>
           <a class="header_link" href="#">Blog</a>
           <a class="header_link active" href="servicio.html">Servicio</a>
-          <a class="header_link" href="#">Productos</a>
-          <a class="header_link" href="#l">Contacto</a>
-
-          <div class="mobile-icons">
-            <a href="#" aria-label="Carrito"><i class="icon-cart"></i></a>
-            <a href="#" aria-label="Buscar"><i class="icon-search"></i></a>
-            <a href="#" aria-label="Cuenta"><i class="icon-account"></i></a>
-          </div>
+          <a class="header_link" href="productos.html">Productos</a>
+          <a class="header_link" href="#footer-contacto">Contacto</a>
         </nav>
 
+        <!-- Iconos de escritorio - solo se muestran en desktop -->
         <div class="header_container_icons">
-          <a class="header_link icon-cart" href="#" aria-label="Carrito"></a>
-          <a class="header_link icon-search" href="#" aria-label="Buscar"></a>
-          <a class="header_link icon-account" href="#" aria-label="Cuenta"></a>
+          <a href="#" aria-label="Buscar" class="icon-search"></a>
+          <a href="#" aria-label="Cuenta" class="icon-account"></a>
+          <a href="carrito.html" aria-label="Carrito" class="icon-cart header_link">
+            <span class="cart-count"></span>
+          </a>
         </div>
       </div>
     </header>
@@ -164,9 +173,9 @@
             <div class="links-group">
               <h4>Productos</h4>
               <ul>
-                <li><a href="#">Gama básica</a></li>
-                <li><a href="#">Gama premium</a></li>
-                <li><a href="#">Kits personalizables</a></li>
+                <li><a href="personalizar.html">Gama básica</a></li>
+                <li><a href="productos.html">Gama premium</a></li>
+                <li><a href="personalizar.html">Kits personalizables</a></li>
                 <li><a href="#">Taller de velas</a></li>
               </ul>
             </div>
@@ -208,6 +217,11 @@
               <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
               <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
               <a href="#" aria-label="Youtube"><i class="fab fa-youtube"></i></a>
+            </div>
+            <div id="footer-contacto" class="footer-phone">
+              <a href="tel:865616365">
+                <i class="fas fa-phone-alt"></i> 865 61 63 65
+              </a>
             </div>
           </div>
         </div>

@@ -1,0 +1,522 @@
+      /* ================================================== */
+      /* ============ HEADER LEGAL ======================== */
+      /* ================================================== */
+      /* Forzar header opaco en páginas legales */
+      header {
+        background: var(--color-primary) !important;
+        backdrop-filter: none !important;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        transition: none;
+      }
+
+      /* Eliminar cualquier transformación */
+      header.scrolled {
+        transform: none;
+      }
+
+      /* ================================================== */
+      /* ============ ESTILOS HERO SIMPLE ================ */
+      /* ================================================== */
+      .hero-simple {
+        background: linear-gradient(rgba(35, 11, 2, 0.85), rgba(35, 11, 2, 0.85));
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        overflow: hidden;
+        color: var(--color-text-light);
+        padding: 80px 20px;
+        text-align: center;
+        position: relative;
+      }
+
+      .hero-simple::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(ellipse at center,
+                    rgba(221, 82, 21, 0.15) 0%,
+                    rgba(35, 11, 2, 0.9) 70%);
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      .hero-simple-content {
+        max-width: 800px;
+        margin: 0 auto;
+        animation: fadeIn 1.5s ease-out;
+        position: relative;
+        z-index: 2;
+      }
+
+      .hero-simple h1 {
+        font-size: clamp(2.5rem, 5vw, 3.5rem);
+        margin-bottom: 20px;
+        color: var(--color-accent-light);
+      }
+
+      .hero-simple p {
+        font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+        margin-bottom: 30px;
+      }
+
+      /* ================================================== */
+      /* ============= SECCIÓN LEGAL ====================== */
+      /* ================================================== */
+      .legal-section {
+        padding: 60px 20px;
+        background: white;
+        position: relative;
+        z-index: 2;
+      }
+
+      /* Contenedor interno para centrar el contenido */
+      .legal-container {
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      /* ================================================== */
+      /* ============ ESTILOS DE PRODUCTO ================ */
+      /* ================================================== */
+      .product-main-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .product-title-container {
+        grid-column: 1 / -1;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .product-title-container h2 {
+        font-size: 2.2rem;
+        color: var(--color-secondary);
+        margin-bottom: 15px;
+        font-family: "Tan_Meringue", serif;
+        position: relative;
+        display: inline-block;
+        padding-bottom: 10px;
+      }
+
+      .product-title-container h2::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80%;
+        height: 2px;
+        background: var(--color-accent-light);
+      }
+
+      .product-image-container {
+        position: relative;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .product-image-container img {
+        width: 60%;
+        max-width: 320px;
+        height: auto;
+        display: block;
+        transition: transform 0.5s ease;
+        margin: 0 auto;
+      }
+
+      .product-info {
+        padding: 10px 0;
+      }
+
+      .product-price {
+        font-size: 1.5rem;
+        color: var(--color-accent);
+        margin-bottom: 20px;
+        font-weight: bold;
+        text-align: center;
+      }
+
+      .product-description {
+        font-size: 1rem;
+        line-height: 1.7;
+        color: var(--color-text-medium);
+        margin-bottom: 30px;
+      }
+
+      .product-description p {
+        margin-bottom: 15px;
+      }
+
+      .product-cta {
+        margin-top: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* ================================================== */
+      /* ================== VARIABLES ===================== */
+      /* ================================================== */
+      :root {
+        /* Colores base */
+        --color-primary: #230b02;
+        --color-secondary: #6a1f04;
+        --color-accent: #dd5215;
+        --color-accent-light: #fb8d51;
+        --color-text-light: #ffffff;
+        --color-text-dark: #230b02;
+        --color-text-medium: #5a5a5a;
+        --color-bg-light: #f9f5f2;
+      }
+
+      /* ================================================== */
+      /* ================== SECCIÓN DETALLES ============= */
+      /* ================================================== */
+      .product-details-section {
+        width: 100%;
+        padding: 20px 0 40px;
+        box-sizing: border-box;
+        background-color: var(--color-bg-light);
+        margin: 0;
+        position: relative;
+        z-index: 2;
+      }
+
+      .product-details-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        width: 100%;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+
+      .reviews-box {
+        text-align: center;
+        margin: 0 auto;
+        padding: 25px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .reviews-box,
+      .product-image-box {
+        flex: 1;
+        min-width: 250px;
+        padding: 25px;
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+      }
+
+      .product-image-box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .product-image-box img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+      }
+
+      .rating {
+        margin: 15px 0;
+      }
+
+      .stars {
+        color: var(--color-accent);
+        font-size: 1.2rem;
+        margin-bottom: 5px;
+      }
+
+      .stars span {
+        color: var(--color-text-medium);
+        font-size: 1rem;
+        margin-left: 10px;
+      }
+
+      .review-count {
+        color: var(--color-text-medium);
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+      }
+
+      .review-button {
+        background: var(--color-accent);
+        color: white;
+        border: none;
+        border-radius: 30px;
+        padding: 8px 20px;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-bottom: 15px;
+      }
+
+      .review-button:hover {
+        color: var(--color-accent-dark);
+        transform: translateY(-2px);
+      }
+
+      .all-reviews-link a {
+        color: var(--color-accent);
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+      }
+
+      .all-reviews-link a:hover {
+        color: var(--color-accent-dark);
+        text-decoration: underline;
+      }
+
+      .features-box {
+        flex: 2;
+        min-width: 300px;
+        padding: 25px;
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+      }
+
+      .features-box h3,
+      .reviews-box h3 {
+        font-size: 1.3rem;
+        color: var(--color-secondary);
+        position: relative;
+        padding-bottom: 10px;
+        font-family: "Tan_Meringue", serif;
+        text-align: center;
+      }
+
+      .features-box h3::after,
+      .reviews-box h3::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        max-width: 200px;
+        height: 2px;
+        background: var(--color-accent-light);
+      }
+
+      .feature-specs {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .spec-row {
+        display: flex;
+        align-items: center;
+      }
+
+      .spec-name {
+        font-weight: 600;
+        color: var(--color-secondary);
+        min-width: 120px;
+        font-size: 0.95rem;
+      }
+
+      .spec-dots {
+        flex: 1;
+        border-bottom: 2px dotted #e0e0e0;
+        margin: 0 10px;
+        position: relative;
+        bottom: -3px;
+      }
+
+      .spec-value {
+        color: var(--color-text-medium);
+        font-size: 0.95rem;
+        min-width: 80px;
+        text-align: right;
+      }
+
+      /* ================================================== */
+      /* ================== RESPONSIVE =================== */
+      /* ================================================== */
+      @media (max-width: 1200px) {
+        .product-main-container,
+        .product-details-container {
+          grid-template-columns: 1fr;
+        }
+
+        .product-details-container {
+          gap: 20px;
+        }
+
+        .reviews-box,
+        .product-image-box,
+        .features-box {
+          width: 100%;
+        }
+      }
+
+      @media (max-width: 992px) {
+        .customization-container {
+          gap: 30px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .hero-simple {
+          padding: 60px 20px;
+        }
+
+        .product-main-container {
+          grid-template-columns: 1fr;
+        }
+
+        .product-image-container {
+          margin-bottom: 20px;
+        }
+
+        .customization-container,
+        .product-details-container {
+          flex-direction: column;
+          gap: 20px;
+        }
+
+        .customization-container > *,
+        .product-details-container > * {
+          width: 100%;
+          max-width: none;
+        }
+
+        .candle-preview {
+          height: auto;
+          order: -1;
+        }
+
+        .customization-options {
+          padding: 15px;
+        }
+
+        .reviews-box,
+        .product-image-box,
+        .features-box {
+          flex: 1 1 auto;
+          margin: 0;
+        }
+
+        .candle-preview {
+          height: 350px;
+          order: -1;
+        }
+
+        .reviews-box,
+        .product-image-box,
+        .features-box {
+          flex: 1 1 100%;
+        }
+
+        .customization-section,
+        .product-details-section {
+          padding: 15px;
+          margin: -1px;
+        }
+
+        .customization-section {
+          height: auto;
+          padding: 30px 15px;
+          display: block;
+        }
+
+        .customization-container {
+          flex-direction: column;
+          gap: 30px;
+          margin-top: 0;
+          padding: 15px;
+        }
+
+        .candle-preview {
+          height: 350px;
+        }
+
+        .candle-model {
+          transform: scale(0.7);
+        }
+
+        :root {
+          --candle-scale: 0.8;
+        }
+
+        .customization-hero h1 {
+          font-size: 2rem;
+        }
+
+        .customization-hero p {
+          font-size: 1rem;
+        }
+
+        .size-options {
+          flex-direction: column;
+        }
+
+        .customization-options {
+          width: 100%;
+          padding: 20px;
+          height: auto;
+        }
+
+        .scent-options {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .customization-options .cta-button {
+          width: 100%;
+          margin-top: 20px;
+        }
+
+        .product-details-container {
+          grid-template-columns: 1fr;
+        }
+
+        .features-box {
+          grid-column: span 1;
+        }
+
+        .spec-name {
+          min-width: 110px;
+          font-size: 0.9rem;
+        }
+
+        .spec-value {
+          font-size: 0.9rem;
+        }
+      }
+
+      /* ================================================== */
+      /* ============ ANIMACIONES ========================= */
+      /* ================================================== */
+      @keyframes slideUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }

@@ -307,6 +307,7 @@ header.scrolled {
   background-size: contain;
   background-position: center;
   transition: var(--transition);
+  position: relative;
 }
 
 .icon-cart {
@@ -344,6 +345,7 @@ header.scrolled {
   box-shadow: var(--shadow);
   text-transform: uppercase;
   letter-spacing: 1px;
+  cursor: pointer;
 }
 
 .cta-button:hover {
@@ -896,6 +898,42 @@ footer {
   display: flex;
   justify-content: center;
   gap: 12px;
+  margin-bottom: 15px;
+}
+
+.footer-phone {
+  color: var(--color-text-light);
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  opacity: 0.9;
+  transition: var(--transition);
+}
+
+/* Aplica el hover solo al enlace */
+.footer-phone a:hover {
+  opacity: 1;
+  color: var(--color-accent-light);
+}
+
+.footer-phone i {
+  font-size: 0.9rem;
+}
+
+.footer-phone a {
+  color: inherit;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.3s, opacity 0.3s;
+}
+
+.footer-phone a:hover {
+  opacity: 1;
+  color: var(--color-accent-light);
 }
 
 .footer-social a {
@@ -1239,7 +1277,7 @@ footer {
 .mobile-icons {
   display: none;
   justify-content: center;
-  gap: 20px;
+  gap: 12px;
   margin-top: 30px;
 }
 
@@ -1325,44 +1363,93 @@ footer {
 
   /* Header Mobile */
   .header_container {
-    padding: 0 15px;
-    flex-wrap: wrap;
+    padding: 0 10px;
+    flex-wrap: nowrap;
     height: 60px;
-  }
-
-  .header_logo {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1002;
-  }
-
-  .header_logo h1 {
-    font-size: clamp(1.2rem, 5vw, 1.5rem);
-    color: var(--color-accent-light);
-    white-space: nowrap;
+    align-items: center;
+    position: relative;
+    min-height: 60px;
+    display: flex;
+    justify-content: space-between;
   }
 
   .mobile-menu-button {
-    display: block;
-    order: -1;
-    margin-right: auto;
-    position: relative;
-    z-index: 1003;
+    display: flex;
+    order: 1;
+    margin-right: 0;
+    margin-left: 3%;
+    position: static;
     background: var(--color-accent);
     color: white;
     border: none;
     border-radius: 50%;
     width: 40px;
     height: 40px;
-    display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+    z-index: 1003;
+    flex: 0 0 40px;
   }
 
-  .mobile-menu-button:hover {
-    transform: scale(1.1);
+  .header_logo {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    margin: 0;
+    z-index: 1002;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    min-width: unset;
+    width: max-content;
+    pointer-events: none;
+  }
+  .header_logo a, .header_logo h1 {
+    pointer-events: auto;
+  }
+
+  .header_logo h1 {
+    font-size: 1rem;
+    color: var(--color-accent-light);
+    white-space: nowrap;
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+  }
+
+  .header_mobile_icons {
+    display: flex;
+    gap: 0;
+    align-items: center;
+    margin-left: 0;
+    margin-right: 0;
+    order: 2;
+    height: 100%;
+    z-index: 1002;
+    flex: 0 0 auto;
+  }
+
+  .header_mobile_icons a {
+    color: var(--color-text-light);
+    font-size: 1.1rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
+    height: 40px;
+  }
+
+  .header_mobile_icons .icon-cart {
+    width: 24px;
+    height: 24px;
+  }
+
+  .header_container_icons {
+    display: none;
   }
 
   body.menu-open {
@@ -1450,7 +1537,7 @@ footer {
     transition: all 0.5s ease 0.6s;
     display: flex;
     justify-content: center;
-    gap: 25px;
+    gap: 12px;
     margin-top: 30px;
     width: 100%;
   }
@@ -1568,7 +1655,15 @@ footer {
     width: 45px;
     height: 45px;
     bottom: 20px;
-    right: 20px;
+  }
+}
+
+@media (max-width: 539px) {
+  #background-video-desktop {
+    display: none !important;
+  }
+  #background-video-mobile {
+    display: block !important;
   }
 }
 
@@ -1658,7 +1753,7 @@ footer {
 
   .legal-links {
     flex-direction: column;
-    gap: 8px;
+    gap: 4px;
     align-items: center;
   }
   
@@ -1896,5 +1991,91 @@ footer {
     font-size: 1.1rem;
     top: 10px;
     right: 10px;
+  }
+}
+
+/* ================================================== */
+/* ================== CARRITO DE COMPRAS =========== */
+/* ================================================== */
+
+/* Estilos para el contador del carrito */
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: var(--color-accent);
+  color: white;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  font-size: 0.7rem;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+/* Notificación de producto añadido */
+.cart-notification {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--color-secondary);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1000;
+}
+
+.cart-notification.show {
+  opacity: 1;
+}
+
+.cart-notification i {
+  color: white;
+}
+
+/* ================================================== */
+/* ============= ICONOS MÓVILES DEL HEADER ========== */
+/* ================================================== */
+.header_mobile_icons {
+  display: none;
+  gap: 4px;
+  align-items: center;
+  margin-left: auto;
+}
+
+@media (max-width: 768px) {
+  .header_mobile_icons {
+    display: flex;
+    gap: 0;
+    align-items: center;
+    margin-left: 0;
+    margin-right: 0;
+    order: 2;
+    height: 100%;
+    z-index: 1002;
+    flex: 0 0 auto;
+  }
+  
+  .header_mobile_icons a {
+    color: var(--color-text-light);
+    font-size: 1.1rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .header_mobile_icons .icon-cart {
+    width: 24px;
+    height: 24px;
   }
 }

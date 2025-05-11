@@ -44,7 +44,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const headerNav = document.querySelector(".header_nav");
   const body = document.body;
   const headerLinks = document.querySelectorAll(".header_link");
-  const mobileIcons = document.querySelector(".mobile-icons");
 
   // Efecto scroll para header
   window.addEventListener("scroll", function () {
@@ -136,17 +135,18 @@ document.addEventListener("DOMContentLoaded", function () {
     const desktopVideo = document.getElementById("background-video-desktop");
     const mobileVideo = document.getElementById("background-video-mobile");
 
-    if (window.innerWidth <= 768) {
-      if (desktopVideo) desktopVideo.style.display = "none";
-      if (mobileVideo) {
-        mobileVideo.style.display = "block";
-        mobileVideo.play().catch((e) => console.log("Autoplay prevented:", e));
-      }
-    } else {
+    // Mostrar video de escritorio si el ancho es al menos 540px (Surface Duo y tablets horizontales)
+    if (window.innerWidth >= 540) {
       if (mobileVideo) mobileVideo.style.display = "none";
       if (desktopVideo) {
         desktopVideo.style.display = "block";
         desktopVideo.play().catch((e) => console.log("Autoplay prevented:", e));
+      }
+    } else {
+      if (desktopVideo) desktopVideo.style.display = "none";
+      if (mobileVideo) {
+        mobileVideo.style.display = "block";
+        mobileVideo.play().catch((e) => console.log("Autoplay prevented:", e));
       }
     }
   };
@@ -494,17 +494,17 @@ document.addEventListener("DOMContentLoaded", function () {
   // =============================================
   // 9. POPUP PERSONALIZACIÓN AL SCROLL
   // =============================================
-  const personalizacionPopup = document.getElementById('personalizacion-popup');
-  const popupClose = document.querySelector('.popup-close');
-  const collectionSection = document.getElementById('coleccion');
+  const personalizacionPopup = document.getElementById("personalizacion-popup");
+  const popupClose = document.querySelector(".popup-close");
+  const collectionSection = document.getElementById("coleccion");
 
   // Mostrar popup con animación
   function showCustomizationPopup() {
     if (personalizacionPopup) {
-      personalizacionPopup.style.display = 'flex';
+      personalizacionPopup.style.display = "flex";
       void personalizacionPopup.offsetWidth; // Forzar reflow para activar la animación
       setTimeout(() => {
-        personalizacionPopup.classList.add('show');
+        personalizacionPopup.classList.add("show");
       }, 50);
     }
   }
@@ -512,9 +512,9 @@ document.addEventListener("DOMContentLoaded", function () {
   // Ocultar popup
   function hideCustomizationPopup() {
     if (personalizacionPopup) {
-      personalizacionPopup.classList.remove('show');
+      personalizacionPopup.classList.remove("show");
       setTimeout(() => {
-        personalizacionPopup.style.display = 'none';
+        personalizacionPopup.style.display = "none";
       }, 400);
     }
   }
@@ -526,34 +526,34 @@ document.addEventListener("DOMContentLoaded", function () {
       const sectionMidpoint = sectionRect.top + sectionRect.height / 2;
       if (sectionMidpoint <= window.innerHeight) {
         showCustomizationPopup();
-        window.removeEventListener('scroll', handleScrollForPopup); // Evitar múltiples activaciones
+        window.removeEventListener("scroll", handleScrollForPopup); // Evitar múltiples activaciones
       }
     }
   }
 
   // Event listeners
   if (popupClose) {
-    popupClose.addEventListener('click', (e) => {
+    popupClose.addEventListener("click", (e) => {
       e.preventDefault();
       hideCustomizationPopup();
     });
   }
 
   if (personalizacionPopup) {
-    personalizacionPopup.addEventListener('click', (e) => {
-      if (e.target.classList.contains('popup-overlay')) {
+    personalizacionPopup.addEventListener("click", (e) => {
+      if (e.target.classList.contains("popup-overlay")) {
         hideCustomizationPopup();
       }
     });
   }
 
   // Cierra el popup cuando se pincha en "Personalizar ahora"
-  const customizationButton = document.querySelector('.popup-text .cta-button');
+  const customizationButton = document.querySelector(".popup-text .cta-button");
   if (customizationButton) {
-    customizationButton.addEventListener('click', (e) => {
+    customizationButton.addEventListener("click", (e) => {
       e.preventDefault();
       hideCustomizationPopup();
-      const target = customizationButton.getAttribute('href');
+      const target = customizationButton.getAttribute("href");
       if (target.startsWith("#")) {
         const targetElement = document.querySelector(target);
         if (targetElement) {
@@ -564,6 +564,49 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Inicialización - Mostrar al recorrer la mitad de la sección
-  window.addEventListener('scroll', handleScrollForPopup);
+  window.addEventListener("scroll", handleScrollForPopup);
 
+  // =============================================
+  // 10. NOTIFICACIÓN DE ITEMS EN EL CARRITO
+  // =============================================
+  class ShoppingCart {
+    constructor() {
+      this.cart = JSON.parse(localStorage.getItem("cart")) || [];
+      this.updateCartCount();
+    }
+
+    getTotalItems() {
+      return this.cart.reduce((total, item) => total + item.quantity, 0);
+    }
+
+    updateCartCount() {
+      const count = this.getTotalItems();
+      const cartCountElements = document.querySelectorAll(".cart-count");
+
+      cartCountElements.forEach((element) => {
+        if (count > 0) {
+          element.textContent = count;
+          element.style.display = "flex";
+        } else {
+          element.style.display = "none";
+        }
+      });
+    }
+  }
+
+  // Inicializar carrito
+  const cart = new ShoppingCart();
+
+  // Actualizar enlaces del carrito para incluir el contador
+  document.addEventListener("DOMContentLoaded", function () {
+    const cartLinks = document.querySelectorAll(".header_link.icon-cart, .mobile-icons .icon-cart");
+
+    cartLinks.forEach((link) => {
+      const countSpan = document.createElement("span");
+      countSpan.className = "cart-count";
+      link.appendChild(countSpan);
+    });
+
+    cart.updateCartCount();
+  });
 });
