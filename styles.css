@@ -98,6 +98,12 @@ a {
   background: var(--color-accent);
 }
 
+  /* Estilos de la barra de scroll en Firefox */
+html {
+  scrollbar-color: var(--color-accent-light) var(--color-primary);
+  scrollbar-width: thin;
+}
+
 /* ================================================== */
 /* ================== ANIMACIONES =================== */
 /* ================================================== */
