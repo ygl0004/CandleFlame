@@ -235,20 +235,45 @@ document.addEventListener("DOMContentLoaded", function () {
   // =============================================
   // 5. NOTIFICACIONES
   // =============================================
+  let notificationTimeout = null;
+  let currentNotification = null;
+
   function showNotification(message) {
+    // Si ya hay una notificación visible, actualiza el mensaje y extiende la duración
+    if (currentNotification) {
+      currentNotification.textContent = message;
+      clearTimeout(notificationTimeout);
+      notificationTimeout = setTimeout(() => {
+        currentNotification.classList.remove("show");
+        setTimeout(() => {
+          if (currentNotification && currentNotification.parentNode) {
+            currentNotification.parentNode.removeChild(currentNotification);
+          }
+          currentNotification = null;
+        }, 300);
+      }, 3000);
+      return;
+    }
+
     const notification = document.createElement("div");
     notification.className = "notification";
     notification.textContent = message;
     document.body.appendChild(notification);
+    currentNotification = notification;
 
     setTimeout(() => {
       notification.classList.add("show");
     }, 10);
 
-    setTimeout(() => {
+    notificationTimeout = setTimeout(() => {
       notification.classList.remove("show");
       setTimeout(() => {
-        document.body.removeChild(notification);
+        if (notification && notification.parentNode) {
+          notification.parentNode.removeChild(notification);
+        }
+        if (currentNotification === notification) {
+          currentNotification = null;
+        }
       }, 300);
     }, 3000);
   }
@@ -276,15 +301,31 @@ document.addEventListener("DOMContentLoaded", function () {
   `;
   document.head.appendChild(notificationStyles);
 
-  // Control del formulario de newsletter
+  // Control del formulario de newsletter (actualizado)
   const newsletterForm = document.querySelector(".newsletter-form");
   if (newsletterForm) {
+    // Solo el primer checkbox es obligatorio
+    const checkboxes = newsletterForm.querySelectorAll('input[type="checkbox"]');
+    if (checkboxes[0]) checkboxes[0].removeAttribute("required");
+    if (checkboxes[1]) checkboxes[1].removeAttribute("required");
+
     newsletterForm.addEventListener("submit", function (e) {
       e.preventDefault();
 
+      // Solo la primera casilla (privacidad) es obligatoria
+      const faltaPrivacidad = !checkboxes[0]?.checked;
+
+      if (faltaPrivacidad) {
+        showNotification("Debes aceptar la Política de Privacidad para suscribirte");
+        return;
+      }
+
       // Simular envío exitoso
       const emailInput = this.querySelector('input[type="email"]');
-      emailInput.value = ""; // Limpiar el campo
+      if (emailInput) emailInput.value = ""; // Limpiar el campo
+
+      // Resetear checkboxes
+      checkboxes.forEach((checkbox) => (checkbox.checked = false));
 
       // Mostrar notificación
       showNotification("¡Gracias por suscribirte a nuestro newsletter!");

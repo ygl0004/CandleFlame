@@ -63,7 +63,7 @@
           <a class="header_link" href="#">Blog</a>
           <a class="header_link" href="servicio.html">Servicio</a>
           <a class="header_link" href="productos.html">Productos</a>
-          <a class="header_link" href="#footer-contacto">Contacto</a>
+          <a class="header_link" href="contacto.html">Contacto</a>
         </nav>
 
         <!-- Iconos de escritorio - solo se muestran en desktop -->
@@ -361,7 +361,7 @@
             <div class="links-group">
               <h4>Soporte</h4>
               <ul>
-                <li><a href="#">Contacto</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
                 <li><a href="politica-cookies.html">Política de cookies</a></li>
                 <li><a href="privacidad.html">Política de privacidad</a></li>
                 <li><a href="aviso-legal.html">Aviso legal</a></li>
@@ -374,11 +374,27 @@
             <h4>Únete a nuestro mundo</h4>
             <p>Recibe novedades y ofertas exclusivas</p>
             <form class="newsletter-form">
-              <input type="email" placeholder="Tu email" required />
-              <button type="submit">
-                <i class="fas fa-paper-plane"></i>
-              </button>
+              <div class="newsletter-input-row">
+                <input type="email" placeholder="Tu email" required />
+                <button type="submit">
+                  <i class="fas fa-paper-plane"></i>
+                </button>
+              </div>
+              <div class="newsletter-checkboxes">
+                <label class="checkbox-label">
+                  <input type="checkbox" required />
+                  <span>Leo y acepto la <a href="privacidad.html" class="privacy-link">Política de Privacidad</a></span>
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" />
+                  <span>Acepto envío de comunicados comerciales</span>
+                </label>
+              </div>
             </form>
+            <div class="footer-help">
+              <h4>¿Necesitas más ayuda?</h4>
+              <a href="contacto.html" class="help-link">Ponte en contacto con nosotros</a>
+            </div>
           </div>
 
           <div class="footer-social-container">
@@ -390,9 +406,8 @@
               <a href="#" aria-label="Youtube"><i class="fab fa-youtube"></i></a>
             </div>
             <div id="footer-contacto" class="footer-phone">
-              <a href="tel:865616365">
-                <i class="fas fa-phone-alt"></i> 865 61 63 65
-              </a>
+              <a href="tel:865616365"> <i class="fas fa-phone-alt"></i> 865 61 63 65 </a>
+              <a href="mailto:informacion@candleflame.com"> <i class="fas fa-envelope"></i> informacion@candleflame.com </a>
             </div>
           </div>
         </div>
