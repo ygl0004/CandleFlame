@@ -43,9 +43,7 @@ main {
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(ellipse at center, 
-              rgba(221, 82, 21, 0.15) 0%, 
-              rgba(35, 11, 2, 0.9) 70%);
+  background: radial-gradient(ellipse at center, rgba(221, 82, 21, 0.15) 0%, rgba(35, 11, 2, 0.9) 70%);
   z-index: 1;
   pointer-events: none;
 }
@@ -372,7 +370,7 @@ main {
   .legal-article {
     margin-bottom: 30px;
   }
-  
+
   .hero-simple {
     padding: 80px 20px;
   }

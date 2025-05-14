@@ -1,5 +1,5 @@
 // Script para los acordeones
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
   const articles = document.querySelectorAll(".legal-article");
 
   articles.forEach((article) => {

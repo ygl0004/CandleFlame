@@ -229,6 +229,68 @@ class ShoppingCart {
     }, 3000);
   }
 
+  // Nueva función para renderizar los elementos del carrito
+  renderCartItems() {
+    const cartItemsContainer = document.getElementById("cart-items-container");
+    if (!cartItemsContainer) return;
+
+    // Limpiar el contenedor
+    cartItemsContainer.innerHTML = "";
+
+    // Obtener los items del carrito
+    const cartItems = this.cart;
+
+    // Renderizar cada item
+    cartItems.forEach((item, index) => {
+      // Generar HTML para las opciones del producto
+      let optionsHTML = "";
+      // Si tienes un array de opciones, úsalo. Si no, usa los campos individuales.
+      if (item.options && Array.isArray(item.options) && item.options.length > 0) {
+        item.options.forEach((option) => {
+          optionsHTML += `<span class="cart-item-option">${option}</span>`;
+        });
+      } else {
+        // Compatibilidad con la estructura actual
+        if (item.size) optionsHTML += `<span class="cart-item-option"><strong>Tamaño:</strong> ${this.formatOptionName(item.size)}</span>`;
+        if (item.color) optionsHTML += `<span class="cart-item-option"><strong>Color:</strong> ${this.formatOptionName(item.color)}</span>`;
+        if (item.flame) optionsHTML += `<span class="cart-item-option"><strong>Llama:</strong> ${this.formatOptionName(item.flame)}</span>`;
+        if (item.scent) optionsHTML += `<span class="cart-item-option"><strong>Aroma:</strong> ${this.formatOptionName(item.scent)}</span>`;
+      }
+
+      // Crear el elemento del carrito
+      const cartItemElement = document.createElement("div");
+      cartItemElement.className = "cart-item";
+
+      // Estructura HTML exacta como en la versión original
+      cartItemElement.innerHTML = `
+        <div class="cart-item-image-container">
+          <img src="${this.getCandleImagePath(item)}" alt="${item.name}" class="cart-item-image"
+            onerror="this.onerror=null;this.src='${this.getGenericCandleImage(item)}'">
+        </div>
+        <div class="cart-item-details">
+          <h3 class="cart-item-title">${item.name}</h3>
+          <div class="cart-item-options">
+            ${optionsHTML}
+          </div>
+          <div class="cart-item-price">${(item.price * item.quantity).toFixed(2)} €</div>
+        </div>
+        <div class="cart-item-actions">
+          <div class="quantity-selector">
+            <button class="quantity-btn minus" data-index="${index}">-</button>
+            <span class="quantity-value">${item.quantity}</span>
+            <button class="quantity-btn plus" data-index="${index}">+</button>
+          </div>
+          <button class="remove-item" data-index="${index}">
+            <i class="fas fa-trash"></i> Eliminar
+          </button>
+        </div>
+      `;
+
+      // Añadir el elemento al contenedor
+      cartItemsContainer.appendChild(cartItemElement);
+    });
+  }
+
   updateCartUI() {
     const cartItemsContainer = document.getElementById("cart-items-container");
     const emptyCartMessage = document.getElementById("empty-cart-message");
@@ -247,41 +309,8 @@ class ShoppingCart {
 
       emptyCartMessage.style.display = "none";
       cartSummary.style.display = "block";
-      cartItemsContainer.innerHTML = "";
-
-      this.cart.forEach((item, index) => {
-        const cartItem = document.createElement("div");
-        cartItem.className = "cart-item";
-        const candleImage = this.getCandleImagePath(item);
-
-        cartItem.innerHTML = `
-          <div class="cart-item-image-container">
-            <img src="${candleImage}" alt="${item.name}" class="cart-item-image" 
-                 onerror="this.onerror=null;this.src='${this.getGenericCandleImage(item)}'">
-          </div>
-          <div class="cart-item-details">
-            <h3 class="cart-item-title">${item.name}</h3>
-            <div class="cart-item-options">
-              ${item.size ? `<div class="cart-item-option"><strong>Tamaño:</strong> ${this.formatOptionName(item.size)}</div>` : ""}
-              ${item.color ? `<div class="cart-item-option"><strong>Color:</strong> ${this.formatOptionName(item.color)}</div>` : ""}
-              ${item.flame ? `<div class="cart-item-option"><strong>Llama:</strong> ${this.formatOptionName(item.flame)}</div>` : ""}
-              ${item.scent ? `<div class="cart-item-option"><strong>Aroma:</strong> ${this.formatOptionName(item.scent)}</div>` : ""}
-            </div>
-            <div class="cart-item-price">${(item.price * item.quantity).toFixed(2)} €</div>
-          </div>
-          <div class="cart-item-actions">
-            <div class="quantity-selector">
-              <button class="quantity-btn minus" data-index="${index}">-</button>
-              <span class="quantity-value">${item.quantity}</span>
-              <button class="quantity-btn plus" data-index="${index}">+</button>
-            </div>
-            <button class="remove-item" data-index="${index}">
-              <i class="fas fa-trash"></i> Eliminar
-            </button>
-          </div>
-        `;
-        cartItemsContainer.appendChild(cartItem);
-      });
+      // Usar la nueva función para renderizar los items
+      this.renderCartItems();
 
       const subtotal = this.getTotalPrice();
       document.getElementById("subtotal").textContent = subtotal.toFixed(2) + " €";
@@ -556,9 +585,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const button = this;
     const originalHTML = button.innerHTML;
+    const originalClass = button.className;
 
     cart.isAddingToCart = true;
-    button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Procesando...';
+    button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Procesando...</span>';
+    button.classList.add("show-text");
     button.disabled = true;
 
     const ceramicLantern = {
@@ -572,10 +603,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Buscar si ya existe el producto en el carrito
     const existingIndex = cart.cart.findIndex(
-      (item) =>
-        item.name === ceramicLantern.name &&
-        item.price === ceramicLantern.price &&
-        item.image === ceramicLantern.image
+      (item) => item.name === ceramicLantern.name && item.price === ceramicLantern.price && item.image === ceramicLantern.image
     );
 
     setTimeout(() => {
@@ -588,10 +616,12 @@ document.addEventListener("DOMContentLoaded", function () {
         // Añadir un id único solo si es nuevo
         cart.addItem({ ...ceramicLantern, id: "ceramic-lantern-" + Date.now() });
       }
-      button.innerHTML = '<i class="fas fa-check"></i> ¡Añadido!';
+      button.innerHTML = '<i class="fas fa-check"></i> <span>¡Añadido!</span>';
+      button.classList.add("show-text");
 
       setTimeout(() => {
         button.innerHTML = originalHTML;
+        button.className = originalClass;
         button.disabled = false;
         cart.isAddingToCart = false;
       }, 1500);

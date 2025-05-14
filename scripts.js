@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
   // =============================================
   // 1. SISTEMA DE VIEWPORT INTELIGENTE
   // =============================================
@@ -8,6 +8,12 @@ document.addEventListener("DOMContentLoaded", function () {
   const setFixedViewport = () => {
     const vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty("--vh", `${vh}px`);
+
+    // Ajustar el contenedor de video para asegurar que cubra toda la pantalla
+    const videoContainer = document.querySelector(".video-container");
+    if (videoContainer) {
+      videoContainer.style.height = `${window.innerHeight}px`;
+    }
 
     // Ajustar menú móvil si está abierto
     const headerNav = document.querySelector(".header_nav");
@@ -46,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const headerLinks = document.querySelectorAll(".header_link");
 
   // Efecto scroll para header
-  window.addEventListener("scroll", function () {
+  window.addEventListener("scroll", () => {
     if (window.scrollY > 50) {
       header.classList.add("scrolled");
     } else {
@@ -134,6 +140,12 @@ document.addEventListener("DOMContentLoaded", function () {
   const handleVideoDisplay = () => {
     const desktopVideo = document.getElementById("background-video-desktop");
     const mobileVideo = document.getElementById("background-video-mobile");
+    const videoContainer = document.querySelector(".video-container");
+
+    // Asegurar que el contenedor de video cubra toda la pantalla
+    if (videoContainer) {
+      videoContainer.style.height = `${window.innerHeight}px`;
+    }
 
     // Mostrar video de escritorio si el ancho es al menos 540px (Surface Duo y tablets horizontales)
     if (window.innerWidth >= 540) {
@@ -334,7 +346,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Notificaciones para formularios de contacto
   document.querySelectorAll("form[data-toast]").forEach((form) => {
-    form.addEventListener("submit", function (e) {
+    form.addEventListener("submit", (e) => {
       e.preventDefault();
 
       // Simular envío exitoso
@@ -352,7 +364,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const backToTopButton = document.getElementById("back-to-top");
 
   // Mostrar/ocultar botón al hacer scroll
-  window.addEventListener("scroll", function () {
+  window.addEventListener("scroll", () => {
     if (window.scrollY > 300) {
       backToTopButton.classList.add("show");
     } else {
@@ -361,7 +373,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Scroll suave al hacer clic
-  backToTopButton.addEventListener("click", function (e) {
+  backToTopButton.addEventListener("click", (e) => {
     e.preventDefault();
     window.scrollTo({
       top: 0,
@@ -385,7 +397,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Iniciar intervalo
-    let slideInterval = setInterval(changeSlide, 6000); // Cambia cada 6 segundos
+    const slideInterval = setInterval(changeSlide, 6000); // Cambia cada 6 segundos
 
     // Pausar al hacer hover
     // const gallery = document.querySelector(".story-gallery");
@@ -398,7 +410,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // }
 
     // Ajustar imágenes al cargar
-    window.addEventListener("load", function () {
+    window.addEventListener("load", () => {
       gallerySlides.forEach((slide) => {
         const img = slide.querySelector("img");
         if (img) {
@@ -639,7 +651,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const cart = new ShoppingCart();
 
   // Actualizar enlaces del carrito para incluir el contador
-  document.addEventListener("DOMContentLoaded", function () {
+  document.addEventListener("DOMContentLoaded", () => {
     const cartLinks = document.querySelectorAll(".header_link.icon-cart, .mobile-icons .icon-cart");
 
     cartLinks.forEach((link) => {

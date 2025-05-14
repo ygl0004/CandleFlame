@@ -43,7 +43,7 @@
         <nav class="header_nav">
           <!-- Opciones del menú -->
           <a class="header_link" href="index.html">Inicio</a>
-          <a class="header_link" href="#">Blog</a>
+          <a class="header_link" href="blog.html">Blog</a>
           <a class="header_link" href="servicio.html">Servicio</a>
           <a class="header_link" href="productos.html">Productos</a>
           <a class="header_link" href="contacto.html">Contacto</a>
@@ -64,7 +64,7 @@
     <!-- ************** MAIN CONTENT **************** -->
     <!-- ********************************************* -->
     <main>
-      <!-- Hero section simplificada sin video -->
+      <!-- Hero section con fondo mejorado -->
       <section class="cart-hero">
         <div class="hero-content">
           <h2>Tu Carrito de Compras</h2>
@@ -73,32 +73,85 @@
       </section>
 
       <!-- Cart content -->
-      <div class="cart-container section-light">
-        <div id="cart-items-container" class="cart-items">
-          <!-- Los elementos del carrito se añadirán dinámicamente aquí -->
+      <div class="cart-container">
+        <!-- Botón continuar comprando -->
+        <a href="productos.html" class="continue-shopping"> <i class="fas fa-arrow-left"></i> Continuar comprando </a>
+
+        <!-- Nueva estructura de dos columnas -->
+        <div class="cart-layout">
+          <!-- Columna izquierda: Items del carrito -->
+          <div class="cart-items-column">
+            <div id="cart-items-container" class="cart-items">
+              <!-- Los elementos del carrito se añadirán dinámicamente aquí -->
+            </div>
+          </div>
+
+          <!-- Columna derecha: Resumen y checkout -->
+          <div class="cart-summary-column">
+            <div id="cart-summary" class="cart-summary" style="display: none">
+              <h3 class="summary-title">Resumen del pedido</h3>
+
+              <!-- Cupón de descuento -->
+              <div class="coupon-container">
+                <form class="coupon-form" id="coupon-form">
+                  <input type="text" class="coupon-input" id="coupon-code" placeholder="Código de descuento" />
+                  <button class="coupon-button">Aplicar</button>
+                </form>
+              </div>
+
+              <div class="summary-row">
+                <span>Subtotal</span>
+                <span id="subtotal">0.00 €</span>
+              </div>
+              <div class="summary-row discount-row" id="discount-row" style="display: none">
+                <span>Descuento</span>
+                <span id="discount-amount">-0.00 €</span>
+              </div>
+              <div class="summary-row">
+                <span>Envío</span>
+                <span>Gratis</span>
+              </div>
+              <div class="summary-row summary-total">
+                <span>Total</span>
+                <span id="total">0.00 €</span>
+              </div>
+
+              <!-- Métodos de pago con iconos -->
+              <div class="payment-methods">
+                <div class="payment-method">
+                  <i class="fab fa-cc-visa"></i>
+                </div>
+                <div class="payment-method">
+                  <i class="fab fa-cc-mastercard"></i>
+                </div>
+                <div class="payment-method">
+                  <i class="fab fa-paypal"></i>
+                </div>
+                <div class="payment-method">
+                  <i class="fas fa-mobile-alt"></i>
+                  <span>Bizum</span>
+                </div>
+              </div>
+
+              <button disabled id="checkout-btn" class="cta-button"><i class="fas fa-credit-card"></i> Proceder al pago</button>
+            </div>
+          </div>
         </div>
 
+        <!-- Mensaje de carrito vacío -->
         <div id="empty-cart-message" class="empty-cart" style="display: none">
           <i class="fas fa-shopping-cart"></i>
           <h3>Tu carrito está vacío</h3>
           <p>Añade algunos de nuestros productos artesanales para empezar a comprar</p>
-          <a href="index.html" class="cta-button">Seguir comprando</a>
+          <a href="productos.html" class="cta-button">Ver productos</a>
         </div>
+      </div>
 
-        <div id="cart-summary" class="cart-summary" style="display: none">
-          <div class="summary-row">
-            <span>Subtotal</span>
-            <span id="subtotal">0.00 €</span>
-          </div>
-          <div class="summary-row">
-            <span>Envío</span>
-            <span>Gratis</span>
-          </div>
-          <div class="summary-row summary-total">
-            <span>Total</span>
-            <span id="total">0.00 €</span>
-          </div>
-          <button id="checkout-btn" class="cta-button"><i class="fas fa-credit-card"></i> Proceder al pago</button>
+      <!-- Resumen flotante para móvil -->
+      <div class="floating-summary" id="floating-summary">
+        <div class="floating-summary-content">
+          <div class="floating-total" id="floating-total">Total: 0.00 €</div>
+          <button class="floating-checkout" id="floating-checkout">Pagar</button>
         </div>
       </div>
     </main>
@@ -124,7 +177,7 @@
             <div class="links-group">
               <h4>Blog</h4>
               <ul>
-                <li><a href="#">Hogar saludable</a></li>
+                <li><a href="blog.html">Hogar saludable</a></li>
               </ul>
             </div>
 
