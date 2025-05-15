@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="assets/css/pages/reviews/reviews.css" />
     <script defer src="scripts.js"></script>
     <script defer src="assets/js/pages/carrito/carrito.js"></script>
+    <script defer src="assets/js/pages/reviews/reviews.js"></script>
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <title>Candle Flame - Opiniones de nuestros clientes</title>
   </head>
@@ -41,7 +42,7 @@
         </button>
 
         <nav class="header_nav">
-          <a class="header_link active" href="index.html">Inicio</a>
+          <a class="header_link" href="index.html">Inicio</a>
           <a class="header_link" href="blog.html">Blog</a>
           <a class="header_link" href="servicio.html">Servicio</a>
           <a class="header_link" href="productos.html">Productos</a>
@@ -66,41 +67,8 @@
       <section class="hero-simple">
         <div class="hero-simple-content">
           <h1>Opiniones de nuestros clientes</h1>
-        </div>
-      </section>
-
-      <!-- ********************************************* -->
-      <!-- ************** SECCIÓN ESTADÍSTICAS ******** -->
-      <!-- ********************************************* -->
-      <section class="reviews-stats-section">
-        <div class="reviews-container">
-          <div class="reviews-stats">
-            <div class="stats-item">
-              <div class="stats-number">4.8</div>
-              <div class="stats-stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-              </div>
-              <div class="stats-label">Valoración media</div>
-            </div>
-            <div class="stats-item">
-              <div class="stats-number">98<span>%</span></div>
-              <div class="stats-icon">
-                <i class="fas fa-thumbs-up"></i>
-              </div>
-              <div class="stats-label">Clientes satisfechos</div>
-            </div>
-            <div class="stats-item">
-              <div class="stats-number">1.2k<span>+</span></div>
-              <div class="stats-icon">
-                <i class="fas fa-comment"></i>
-              </div>
-              <div class="stats-label">Opiniones recibidas</div>
-            </div>
-          </div>
+          <p>Descubre lo que opinan quienes ya han disfrutado de nuestros productos</p>
+          <a href="#review-form" class="cta-button">Comparte tu experiencia</a>
         </div>
       </section>
 
@@ -113,7 +81,7 @@
           
           <div class="testimonials-grid">
             <!-- Testimonio 1 -->
-            <div class="testimonial-card">
+            <div class="testimonial-card" data-rating="5">
               <div class="testimonial-header">
                 <div class="testimonial-avatar">
                   <div class="avatar-placeholder">MS</div>
@@ -144,7 +112,7 @@
             </div>
 
             <!-- Testimonio 2 -->
-            <div class="testimonial-card">
+            <div class="testimonial-card" data-rating="5">
               <div class="testimonial-header">
                 <div class="testimonial-avatar">
                   <div class="avatar-placeholder">BH</div>
@@ -175,7 +143,7 @@
             </div>
 
             <!-- Testimonio 3 -->
-            <div class="testimonial-card">
+            <div class="testimonial-card" data-rating="4">
               <div class="testimonial-header">
                 <div class="testimonial-avatar">
                   <div class="avatar-placeholder">LA</div>
@@ -187,7 +155,7 @@
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
+                    <i class="far fa-star"></i>
                   </div>
                 </div>
               </div>
@@ -219,92 +187,151 @@
               <p>Tu opinión es muy importante para nosotros. Comparte tu experiencia y ayuda a otros clientes a encontrar el producto perfecto.</p>
             </div>
             <div class="leave-review-cta">
-              <a href="#" class="cta-button">Dejar una opinión</a>
+              <a href="#review-form" class="cta-button">Dejar una opinión</a>
             </div>
           </div>
         </div>
       </section>
-
+      
       <!-- ********************************************* -->
-      <!-- ************** SECCIÓN PRODUCTOS *********** -->
+      <!-- ************** FORMULARIO DE OPINIÓN ******* -->
       <!-- ********************************************* -->
-      <section class="featured-products-section section-alt">
+      <section id="review-form" class="review-form-section">
         <div class="reviews-container">
-          <h2 class="section-title">Productos mejor valorados</h2>
+          <h2 class="section-title">Comparte tu experiencia</h2>
           
-          <div class="featured-products-grid">
-            <!-- Producto 1 -->
-            <div class="featured-product">
-              <div class="product-image">
-                <img src="assets/media/img/productos/vela_2.png" alt="Farolillo de cerámica premium" />
+          <div class="review-form-container">
+            <form id="new-review-form" class="review-form" data-toast="¡Gracias por compartir tu opinión!">
+              <div class="form-header">
+                <h3>¿Qué te ha parecido tu experiencia con nosotros?</h3>
+                <p>Tu opinión nos ayuda a mejorar y a otros clientes a tomar mejores decisiones</p>
               </div>
-              <div class="product-info">
-                <h3>Farolillo de Cerámica Artesanal</h3>
-                <div class="product-rating">
-                  <div class="rating-stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
+              
+              <div class="form-rating">
+                <label>Tu valoración</label>
+                <div class="star-rating">
+                  <input type="radio" id="star5" name="rating" value="5" required />
+                  <label for="star5"><i class="far fa-star"></i><i class="fas fa-star"></i></label>
+                  
+                  <input type="radio" id="star4" name="rating" value="4" />
+                  <label for="star4"><i class="far fa-star"></i><i class="fas fa-star"></i></label>
+                  
+                  <input type="radio" id="star3" name="rating" value="3" />
+                  <label for="star3"><i class="far fa-star"></i><i class="fas fa-star"></i></label>
+                  
+                  <input type="radio" id="star2" name="rating" value="2" />
+                  <label for="star2"><i class="far fa-star"></i><i class="fas fa-star"></i></label>
+                  
+                  <input type="radio" id="star1" name="rating" value="1" />
+                  <label for="star1"><i class="far fa-star"></i><i class="fas fa-star"></i></label>
+                </div>
+              </div>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="review-name">Nombre</label>
+                  <input type="text" id="review-name" name="name" required />
+                </div>
+                <div class="form-group">
+                  <label for="review-email">Email</label>
+                  <input type="email" id="review-email" name="email" required />
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="review-product">Producto</label>
+                <select id="review-product" name="product" required>
+                  <option value="">Selecciona un producto</option>
+                  <option value="vela-premium">Vela Aromática Premium</option>
+                  <option value="farolillo">Farolillo de Cerámica Artesanal</option>
+                  <option value="kit">Kit Personalizable</option>
+                  <option value="otro">Otro producto</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label for="review-title">Título de tu opinión</label>
+                <input type="text" id="review-title" name="title" placeholder="Resume tu experiencia en una frase" required />
+              </div>
+              
+              <div class="form-group">
+                <label for="review-content">Tu opinión</label>
+                <textarea id="review-content" name="content" rows="5" placeholder="Cuéntanos tu experiencia con el producto..." required></textarea>
+              </div>
+              
+              <div class="form-group photo-upload">
+                <label>Añade fotos (opcional)</label>
+                <div class="upload-container">
+                  <div class="upload-btn">
+                    <i class="fas fa-camera"></i>
+                    <span>Añadir fotos</span>
+                    <input type="file" id="review-photos" name="photos" accept="image/*" multiple />
                   </div>
-                  <span class="rating-count">(42 opiniones)</span>
+                  <div class="upload-preview"></div>
                 </div>
-                <p class="product-price">89,90 €</p>
-                <div class="product-actions">
-                  <a href="productos.html" class="product-link">Ver detalles</a>
-                  <button class="add-to-cart-btn"><i class="fas fa-shopping-cart"></i></button>
-                </div>
+                <p class="upload-help">Puedes subir hasta 3 imágenes (máx. 5MB cada una)</p>
+              </div>
+              
+              <div class="form-group checkbox-group">
+                <label class="checkbox-label">
+                  <input type="checkbox" name="terms" required />
+                  <span>Acepto la <a href="privacidad.html">Política de Privacidad</a> y los <a href="aviso-legal.html">Términos y Condiciones</a></span>
+                </label>
+              </div>
+              
+              <div class="form-actions">
+                <button type="submit" class="submit-btn">Enviar opinión</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+      
+      <!-- ********************************************* -->
+      <!-- ************** SECCIÓN FAQ ***************** -->
+      <!-- ********************************************* -->
+      <section class="faq-section section-alt">
+        <div class="reviews-container">
+          <h2 class="section-title">Preguntas frecuentes</h2>
+          
+          <div class="faq-container">
+            <div class="faq-item">
+              <div class="faq-question">
+                <h3>¿Cómo puedo dejar una opinión sobre un producto?</h3>
+                <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+              </div>
+              <div class="faq-answer">
+                <p>Puedes dejar tu opinión de varias formas: completando el formulario en esta página, desde tu cuenta de usuario en la sección "Mis pedidos", o haciendo clic en el enlace que recibirás por email después de tu compra.</p>
               </div>
             </div>
-
-            <!-- Producto 2 -->
-            <div class="featured-product">
-              <div class="product-image">
-                <img src="assets/media/img/productos/vela_1.png" alt="Vela aromática premium" />
+            
+            <div class="faq-item">
+              <div class="faq-question">
+                <h3>¿Puedo modificar o eliminar mi opinión después de publicarla?</h3>
+                <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
               </div>
-              <div class="product-info">
-                <h3>Vela Aromática Premium</h3>
-                <div class="product-rating">
-                  <div class="rating-stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                  </div>
-                  <span class="rating-count">(38 opiniones)</span>
-                </div>
-                <p class="product-price">45,90 €</p>
-                <div class="product-actions">
-                  <a href="productos.html" class="product-link">Ver detalles</a>
-                  <button class="add-to-cart-btn"><i class="fas fa-shopping-cart"></i></button>
-                </div>
+              <div class="faq-answer">
+                <p>Sí, puedes modificar o eliminar tu opinión accediendo a tu cuenta de usuario en la sección "Mis opiniones". Si tienes algún problema, contacta con nuestro servicio de atención al cliente.</p>
               </div>
             </div>
-
-            <!-- Producto 3 -->
-            <div class="featured-product">
-              <div class="product-image">
-                <img src="assets/media/img/productos/vela_3.png" alt="Kit personalizable" />
+            
+            <div class="faq-item">
+              <div class="faq-question">
+                <h3>¿Por qué no se publica mi opinión inmediatamente?</h3>
+                <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
               </div>
-              <div class="product-info">
-                <h3>Kit Personalizable</h3>
-                <div class="product-rating">
-                  <div class="rating-stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                  </div>
-                  <span class="rating-count">(27 opiniones)</span>
-                </div>
-                <p class="product-price">59,90 €</p>
-                <div class="product-actions">
-                  <a href="personalizar.html" class="product-link">Ver detalles</a>
-                  <button class="add-to-cart-btn"><i class="fas fa-shopping-cart"></i></button>
-                </div>
+              <div class="faq-answer">
+                <p>Todas las opiniones pasan por un proceso de moderación para garantizar que cumplen con nuestras normas de comunidad. Este proceso suele tardar entre 24-48 horas laborables.</p>
+              </div>
+            </div>
+            
+            <div class="faq-item">
+              <div class="faq-question">
+                <h3>¿Qué tipo de fotos puedo subir con mi opinión?</h3>
+                <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+              </div>
+              <div class="faq-answer">
+                <p>Puedes subir fotos del producto en uso, detalles del packaging o cualquier imagen que ayude a otros clientes a entender mejor el producto. Las imágenes deben ser apropiadas y estar relacionadas con el producto.</p>
               </div>
             </div>
           </div>
@@ -379,10 +406,18 @@
           <div class="footer-social-container">
             <h4 class="footer-social-title">Síguenos en redes</h4>
             <div class="footer-social">
-              <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-              <a href="https://pin.it/O0LEWBijB" aria-label="Pinterest" target="_blank" rel="noopener"><i class="fab fa-pinterest"></i></a>
-              <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-              <a href="#" aria-label="Youtube"><i class="fab fa-youtube"></i></a>
+              <a href="https://www.instagram.com/" aria-label="Instagram" target="_blank" rel="noopener">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="https://pin.it/O0LEWBijB" aria-label="Pinterest" target="_blank" rel="noopener">
+                <i class="fab fa-pinterest"></i>
+              </a>
+              <a href="https://www.facebook.com/" aria-label="Facebook" target="_blank" rel="noopener">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="https://www.youtube.com/" aria-label="Youtube" target="_blank" rel="noopener">
+                <i class="fab fa-youtube"></i>
+              </a>
             </div>
             <div id="footer-contacto" class="footer-phone">
               <a href="tel:865616365"> <i class="fas fa-phone-alt"></i> 865 61 63 65 </a>

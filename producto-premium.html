@@ -7,14 +7,14 @@
       content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
     />
     <meta name="author" content="Yeray Garrido Linares" />
-    <meta name="description" content="Candle Flame - Carrito de compras" />
+    <meta name="description" content="Producto premium del mes - Farolillo de cerámica artesanal" />
     <link rel="stylesheet" href="assets/css/FontAwesome/css/all.min.css" />
     <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="assets/css/pages/carrito/carrito.css" />
+    <link rel="stylesheet" href="assets/css/pages/productos/productos.css" />
     <script defer src="scripts.js"></script>
     <script defer src="assets/js/pages/carrito/carrito.js"></script>
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
-    <title>Candle Flame - Carrito</title>
+    <title>Candle Flame - Farolillo de Cerámica Premium</title>
   </head>
   <body>
     <!-- ********************************************* -->
@@ -41,11 +41,10 @@
         </button>
 
         <nav class="header_nav">
-          <!-- Opciones del menú -->
           <a class="header_link" href="index.html">Inicio</a>
           <a class="header_link" href="blog.html">Blog</a>
           <a class="header_link" href="servicio.html">Servicio</a>
-          <a class="header_link" href="productos.html">Productos</a>
+          <a class="header_link active" href="productos.html">Productos</a>
           <a class="header_link" href="contacto.html">Contacto</a>
         </nav>
 
@@ -60,100 +59,127 @@
       </div>
     </header>
 
-    <!-- ********************************************* -->
-    <!-- ************** MAIN CONTENT **************** -->
-    <!-- ********************************************* -->
     <main>
-      <!-- Hero section con fondo mejorado -->
-      <section class="cart-hero">
-        <div class="hero-content">
-          <h2>Tu Carrito de Compras</h2>
-          <p>Revisa y gestiona tus productos antes de finalizar tu pedido</p>
+      <!-- ********************************************* -->
+      <!-- ************** HERO SECTION *************** -->
+      <!-- ********************************************* -->
+      <section class="hero-simple">
+        <div class="hero-simple-content">
+          <h1>Gama Premium</h1>
+          <p>Producto exclusivo del mes</p>
         </div>
       </section>
 
-      <!-- Cart content -->
-      <div class="cart-container">
-        <!-- Botón continuar comprando -->
-        <a href="productos.html" class="continue-shopping"> <i class="fas fa-arrow-left"></i> Continuar comprando </a>
-
-        <!-- Nueva estructura de dos columnas -->
-        <div class="cart-layout">
-          <!-- Columna izquierda: Items del carrito -->
-          <div class="cart-items-column">
-            <div id="cart-items-container" class="cart-items">
-              <!-- Los elementos del carrito se añadirán dinámicamente aquí -->
-            </div>
+      <!-- ********************************************* -->
+      <!-- ************** SECCIÓN PRODUCTO *********** -->
+      <!-- ********************************************* -->
+      <section class="legal-section">
+        <div class="product-main-container">
+          <div class="product-title-container">
+            <h2 class="product-title">Farolillo de Cerámica Artesanal</h2>
           </div>
 
-          <!-- Columna derecha: Resumen y checkout -->
-          <div class="cart-summary-column">
-            <div id="cart-summary" class="cart-summary" style="display: none">
-              <h3 class="summary-title">Resumen del pedido</h3>
+          <div class="product-image-container">
+            <img src="assets/media/img/productos/vela_2.png" alt="Farolillo de cerámica premium con vela" />
+          </div>
 
-              <!-- Cupón de descuento -->
-              <div class="coupon-container">
-                <form class="coupon-form" id="coupon-form">
-                  <input type="text" class="coupon-input" id="coupon-code" placeholder="Código de descuento" />
-                  <button class="coupon-button">Aplicar</button>
-                </form>
-              </div>
+          <div class="product-info">
+            <div class="product-description">
+              <p>
+                Elemento decorativo fabricado en cerámica, diseñado en forma de farolillo. Su estructura permite contener en su interior una
+                vela incluida, que cumple una doble función: iluminar suavemente el entorno y liberar un aroma sutil que contribuye a
+                generar una atmósfera cálida y relajante.
+              </p>
 
-              <div class="summary-row">
-                <span>Subtotal</span>
-                <span id="subtotal">0.00 €</span>
-              </div>
-              <div class="summary-row discount-row" id="discount-row" style="display: none">
-                <span>Descuento</span>
-                <span id="discount-amount">-0.00 €</span>
-              </div>
-              <div class="summary-row">
-                <span>Envío</span>
-                <span>Gratis</span>
-              </div>
-              <div class="summary-row summary-total">
-                <span>Total</span>
-                <span id="total">0.00 €</span>
-              </div>
+              <p>
+                La cerámica ha sido trabajada con acabados en colores cálidos, seleccionados para integrarse fácilmente en espacios
+                interiores o exteriores, aportando sensación de confort visual. La forma del farolillo no solo cumple una función estética,
+                sino que también permite una adecuada ventilación para la vela, garantizando un uso seguro y eficiente.
+              </p>
 
-              <!-- Métodos de pago con iconos -->
-              <div class="payment-methods">
-                <div class="payment-method">
-                  <i class="fab fa-cc-visa"></i>
-                </div>
-                <div class="payment-method">
-                  <i class="fab fa-cc-mastercard"></i>
-                </div>
-                <div class="payment-method">
-                  <i class="fab fa-paypal"></i>
-                </div>
-                <div class="payment-method">
-                  <i class="fas fa-mobile-alt"></i>
-                  <span>Bizum</span>
-                </div>
-              </div>
+              <p>
+                Se trata de una pieza exclusiva, lo que significa que su disponibilidad es limitada y que no forma parte de una producción
+                masiva. Esta característica le otorga un valor añadido para quienes buscan objetos decorativos con identidad y carácter
+                único.
+              </p>
 
-              <button disabled id="checkout-btn" class="cta-button"><i class="fas fa-credit-card"></i> Proceder al pago</button>
+              <p>
+                Este producto está pensado tanto para fines decorativos como funcionales, ideal para quienes valoran los detalles en la
+                ambientación de espacios personales o profesionales.
+              </p>
+            </div>
+
+            <div class="product-cta">
+              <div class="product-price">89,90 €</div>
+              <button id="add-ceramic-lantern" class="cta-button"><i class="fas fa-shopping-cart"></i> Añadir al carrito</button>
             </div>
           </div>
         </div>
+      </section>
 
-        <!-- Mensaje de carrito vacío -->
-        <div id="empty-cart-message" class="empty-cart" style="display: none">
-          <i class="fas fa-shopping-cart"></i>
-          <h3>Tu carrito está vacío</h3>
-          <p>Añade algunos de nuestros productos artesanales para empezar a comprar</p>
-          <a href="productos.html" class="cta-button">Ver productos</a>
-        </div>
-      </div>
+      <!-- ********************************************* -->
+      <!-- ************** SECCIÓN DETALLES ************* -->
+      <!-- ********************************************* -->
+      <section class="product-details-section">
+        <div class="product-details-container">
+          <!-- Opiniones -->
+          <div class="reviews-box">
+            <h3>Opiniones de clientes</h3>
+            <div class="rating">
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+                <span>4.5/5</span>
+              </div>
+            </div>
+            <p class="review-count">1 opiniones</p>
+            <button class="review-button">Dar una opinión</button>
+            <div class="all-reviews-link">
+              <a href="#">Ver todas las opiniones</a>
+            </div>
+          </div>
 
-      <!-- Resumen flotante para móvil -->
-      <div class="floating-summary" id="floating-summary">
-        <div class="floating-summary-content">
-          <div class="floating-total" id="floating-total">Total: 0.00 €</div>
-          <button class="floating-checkout" id="floating-checkout">Pagar</button>
+          <!-- Foto del producto -->
+          <div class="product-image-box">
+            <img src="assets/media/img/productos/Imagen.seccion.png" alt="Detalle del farolillo de cerámica" />
+          </div>
+
+          <!-- Características -->
+          <div class="features-box">
+            <h3>Características</h3>
+            <div class="feature-specs">
+              <div class="spec-row">
+                <span class="spec-name">Altura:</span>
+                <span class="spec-dots"></span>
+                <span class="spec-value">26 cm</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-name">Peso:</span>
+                <span class="spec-dots"></span>
+                <span class="spec-value">Secreto</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-name">Duración vela:</span>
+                <span class="spec-dots"></span>
+                <span class="spec-value">46h</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-name">Material:</span>
+                <span class="spec-dots"></span>
+                <span class="spec-value">Cerámica</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-name">Acabado:</span>
+                <span class="spec-dots"></span>
+                <span class="spec-value">Tonos cálidos</span>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
     </main>
 
     <!-- ********************************************* -->
@@ -177,7 +203,7 @@
             <div class="links-group">
               <h4>Blog</h4>
               <ul>
-                <li><a href="blog.html">Hogar saludable</a></li>
+                <li><a href="blog-bienestar.html">Hogar saludable</a></li>
               </ul>
             </div>
 

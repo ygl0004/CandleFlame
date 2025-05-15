@@ -1,7 +1,6 @@
       /* ================================================== */
       /* ============ HEADER LEGAL ======================== */
       /* ================================================== */
-      /* Forzar header opaco en páginas legales */
       header {
         background: var(--color-primary) !important;
         backdrop-filter: none !important;

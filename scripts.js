@@ -386,28 +386,118 @@ document.addEventListener("DOMContentLoaded", () => {
   // =============================================
   // Galería automática
   const gallerySlides = document.querySelectorAll(".gallery-slide");
-  if (gallerySlides.length > 0) {
+  const storyContent = document.querySelector(".story-content");
+  const storySection = document.querySelector(".story-section");
+  
+  if (gallerySlides.length > 0 && storyContent) {
     let currentIndex = 0;
+    let slideInterval;
+    let isTransitioning = false;
+    
+    // Añadir estilos para las transiciones perfectamente sincronizadas
+    if (!document.getElementById('gallery-transition-styles')) {
+      const styleElement = document.createElement('style');
+      styleElement.id = 'gallery-transition-styles';
+      styleElement.textContent = `
+        .story-content {
+          transition: opacity 0.7s ease-in-out;
+        }
+        .gallery-slide {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          opacity: 0;
+          transition: opacity 0.7s ease-in-out;
+          z-index: 1;
+        }
+        .gallery-slide.active {
+          opacity: 1;
+          z-index: 2;
+        }
+        .story-section.transitioning .story-content,
+        .story-section.transitioning .gallery-slide.active {
+          opacity: 0;
+        }
+      `;
+      document.head.appendChild(styleElement);
+    }
+    
+    // Contenido para cada slide
+    const slideContents = [
+      {
+        title: "Hogar saludable",
+        subtitle: "Claves para transformar tu espacio en un santuario de bienestar",
+        description: "Diseña un espacio donde la calma habite, con ideas de organización, decoración y aromas que revitalizan tu día a día.",
+        link: "blog-bienestar.html",
+        linkText: "Empieza por ti"
+      },
+      {
+        title: "Cómo decorar tu hogar sin grandes cambios",
+        subtitle: "",
+        description: "Descubre cómo renovar la decoración de tu hogar con pequeños cambios. Ideas sencillas y efectivas para crear espacios más frescos, acogedores y llenos de estilo.",
+        link: "blog-decoracion.html",
+        linkText: "Empieza por ti"
+      }
+    ];
 
-    // Función para cambiar de slide
+    // Función para cambiar de slide con transiciones perfectamente sincronizadas
     function changeSlide() {
-      gallerySlides[currentIndex].classList.remove("active");
-      currentIndex = (currentIndex + 1) % gallerySlides.length;
-      gallerySlides[currentIndex].classList.add("active");
+      if (isTransitioning) return;
+      isTransitioning = true;
+      
+      // Calcular el índice del siguiente slide
+      const nextIndex = (currentIndex + 1) % gallerySlides.length;
+      
+      // 1. Añadir clase para iniciar desvanecimiento simultáneo
+      storySection.classList.add('transitioning');
+      
+      // 2. Después de que todo se desvanezca, cambiar contenido
+      setTimeout(() => {
+        // Cambiar la imagen
+        gallerySlides[currentIndex].classList.remove("active");
+        gallerySlides[nextIndex].classList.add("active");
+        
+        // Actualizar el contenido
+        const content = slideContents[nextIndex];
+        const titleElement = storyContent.querySelector("h3");
+        const subtitleElement = storyContent.querySelector("h4");
+        const descriptionElement = storyContent.querySelector("p");
+        const linkElement = storyContent.querySelector("a");
+        
+        // Actualizar textos
+        titleElement.textContent = content.title;
+        
+        // Manejar el subtítulo (puede estar vacío para el segundo slide)
+        if (content.subtitle) {
+          if (subtitleElement) {
+            subtitleElement.textContent = content.subtitle;
+            subtitleElement.style.display = "block";
+          } else {
+            const newSubtitle = document.createElement("h4");
+            newSubtitle.textContent = content.subtitle;
+            titleElement.after(newSubtitle);
+          }
+        } else if (subtitleElement) {
+          subtitleElement.style.display = "none";
+        }
+        
+        descriptionElement.textContent = content.description;
+        linkElement.href = content.link;
+        linkElement.textContent = content.linkText;
+        
+        // 3. Mostrar todo el nuevo contenido simultáneamente
+        setTimeout(() => {
+          storySection.classList.remove('transitioning');
+          currentIndex = nextIndex;
+          isTransitioning = false;
+        }, 50);
+      }, 700); // Este tiempo debe coincidir con la duración de la transición CSS
     }
 
-    // Iniciar intervalo
-    const slideInterval = setInterval(changeSlide, 6000); // Cambia cada 6 segundos
-
-    // Pausar al hacer hover
-    // const gallery = document.querySelector(".story-gallery");
-    // if (gallery) {
-    //   gallery.addEventListener("mouseenter", () => clearInterval(slideInterval));
-    //   gallery.addEventListener("mouseleave", () => {
-    //     clearInterval(slideInterval);
-    //     slideInterval = setInterval(changeSlide, 6000); // Reiniciar intervalo
-    //   });
-    // }
+    // Iniciar intervalo (7 segundos)
+    slideInterval = setInterval(changeSlide, 7000);
 
     // Ajustar imágenes al cargar
     window.addEventListener("load", () => {
@@ -423,7 +513,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // =============================================
-  // 8. GESTIÓN DE COOKIES (VERSIÓN MEJORADA)
+  // 8. GESTIÓN DE COOKIES 
   // =============================================
   const cookieBar = document.getElementById("cookie-bar");
   const cookieAcceptAll = document.getElementById("cookie-accept-all");
@@ -663,3 +753,5 @@ document.addEventListener("DOMContentLoaded", () => {
     cart.updateCartCount();
   });
 });
+
+var anime = anime || {};

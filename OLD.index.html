@@ -7,16 +7,28 @@
       content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
     />
     <meta name="author" content="Yeray Garrido Linares" />
-    <meta name="description" content="Candle Flame - Carrito de compras" />
+    <meta name="description" content="Candle Flame - Velas artesanales con esencias únicas" />
     <link rel="stylesheet" href="assets/css/FontAwesome/css/all.min.css" />
     <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="assets/css/pages/carrito/carrito.css" />
     <script defer src="scripts.js"></script>
-    <script defer src="assets/js/pages/carrito/carrito.js"></script>
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
-    <title>Candle Flame - Carrito</title>
+    <title>Candle Flame - Inicio</title>
   </head>
+
   <body>
+    <!-- ********************************************* -->
+    <!-- ************** VIDEO DE FONDO ************** -->
+    <!-- ********************************************* -->
+    <div class="video-container">
+      <video muted loop playsinline id="background-video-desktop" autoplay>
+        <source src="assets/media/video/portada/Candleflame Ordenador.webm" type="video/webm" />
+      </video>
+      <video muted loop playsinline id="background-video-mobile" autoplay>
+        <source src="assets/media/video/portada/Candleflame Movil.webm" type="video/webm" />
+      </video>
+      <div class="video-overlay"></div>
+    </div>
+
     <!-- ********************************************* -->
     <!-- **************** HEADER ******************** -->
     <!-- ********************************************* -->
@@ -42,7 +54,7 @@
 
         <nav class="header_nav">
           <!-- Opciones del menú -->
-          <a class="header_link" href="index.html">Inicio</a>
+          <a class="header_link active" href="index.html">Inicio</a>
           <a class="header_link" href="blog.html">Blog</a>
           <a class="header_link" href="servicio.html">Servicio</a>
           <a class="header_link" href="productos.html">Productos</a>
@@ -59,101 +71,95 @@
         </div>
       </div>
     </header>
-
-    <!-- ********************************************* -->
-    <!-- ************** MAIN CONTENT **************** -->
-    <!-- ********************************************* -->
     <main>
-      <!-- Hero section con fondo mejorado -->
-      <section class="cart-hero">
+      <!-- ********************************************* -->
+      <!-- ************** HERO SECTION *************** -->
+      <!-- ********************************************* -->
+      <section class="hero">
         <div class="hero-content">
-          <h2>Tu Carrito de Compras</h2>
-          <p>Revisa y gestiona tus productos antes de finalizar tu pedido</p>
+          <h2>Los detalles que importan, iluminan tu espacio</h2>
+          <a href="#coleccion" class="cta-button">Manifiesta tu yo interior</a>
         </div>
       </section>
 
-      <!-- Cart content -->
-      <div class="cart-container">
-        <!-- Botón continuar comprando -->
-        <a href="productos.html" class="continue-shopping"> <i class="fas fa-arrow-left"></i> Continuar comprando </a>
-
-        <!-- Nueva estructura de dos columnas -->
-        <div class="cart-layout">
-          <!-- Columna izquierda: Items del carrito -->
-          <div class="cart-items-column">
-            <div id="cart-items-container" class="cart-items">
-              <!-- Los elementos del carrito se añadirán dinámicamente aquí -->
-            </div>
+      <!-- ********************************************* -->
+      <!-- ************** SECCIÓN COLECCIÓN ********** -->
+      <!-- ********************************************* -->
+      <section id="coleccion" class="collection-section section-light section-animate">
+        <div class="section-header">
+          <h3>Nuestras Esencias</h3>
+          <p>Descubre la magia en cada aroma</p>
+        </div>
+        <div class="collection-grid">
+          <div class="collection-item">
+            <div class="item-image vela-1"></div>
+            <!-- <h4>Gama Básica</h4> -->
+            <p>Una línea de velas aromáticas que ofrece una selección de aromas clásicos y reconfortantes totalmente personalizables</p>
+            <!-- <span class="price">€24.90</span> -->
+            <a href="personalizar.html" class="product-button">Gama Básica</a>
           </div>
-
-          <!-- Columna derecha: Resumen y checkout -->
-          <div class="cart-summary-column">
-            <div id="cart-summary" class="cart-summary" style="display: none">
-              <h3 class="summary-title">Resumen del pedido</h3>
-
-              <!-- Cupón de descuento -->
-              <div class="coupon-container">
-                <form class="coupon-form" id="coupon-form">
-                  <input type="text" class="coupon-input" id="coupon-code" placeholder="Código de descuento" />
-                  <button class="coupon-button">Aplicar</button>
-                </form>
-              </div>
-
-              <div class="summary-row">
-                <span>Subtotal</span>
-                <span id="subtotal">0.00 €</span>
-              </div>
-              <div class="summary-row discount-row" id="discount-row" style="display: none">
-                <span>Descuento</span>
-                <span id="discount-amount">-0.00 €</span>
-              </div>
-              <div class="summary-row">
-                <span>Envío</span>
-                <span>Gratis</span>
-              </div>
-              <div class="summary-row summary-total">
-                <span>Total</span>
-                <span id="total">0.00 €</span>
-              </div>
-
-              <!-- Métodos de pago con iconos -->
-              <div class="payment-methods">
-                <div class="payment-method">
-                  <i class="fab fa-cc-visa"></i>
-                </div>
-                <div class="payment-method">
-                  <i class="fab fa-cc-mastercard"></i>
-                </div>
-                <div class="payment-method">
-                  <i class="fab fa-paypal"></i>
-                </div>
-                <div class="payment-method">
-                  <i class="fas fa-mobile-alt"></i>
-                  <span>Bizum</span>
-                </div>
-              </div>
-
-              <button disabled id="checkout-btn" class="cta-button"><i class="fas fa-credit-card"></i> Proceder al pago</button>
-            </div>
+          <div class="collection-item">
+            <div class="item-image vela-2"></div>
+            <!-- <h4>Gama Premium</h4> -->
+            <p>Contiene una línea de velas aromáticas exclusivas</p>
+            <!-- <span class="price">€22.90</span> -->
+            <a href="productos.html" class="product-button">Gama Premium</a>
+          </div>
+          <div class="collection-item">
+            <div class="item-image vela-3"></div>
+            <!-- <h4>Gama Personalización Total</h4> -->
+            <p>Contiene una línea de kits personalizables</p>
+            <!-- <span class="price">€19.90</span> -->
+            <a href="personalizar.html" class="product-button">Gama Personalización Total</a>
           </div>
         </div>
+      </section>
 
-        <!-- Mensaje de carrito vacío -->
-        <div id="empty-cart-message" class="empty-cart" style="display: none">
-          <i class="fas fa-shopping-cart"></i>
-          <h3>Tu carrito está vacío</h3>
-          <p>Añade algunos de nuestros productos artesanales para empezar a comprar</p>
-          <a href="productos.html" class="cta-button">Ver productos</a>
+      <!-- ********************************************* -->
+      <!-- ************** SECCIÓN HISTORIA *********** -->
+      <!-- ********************************************* -->
+      <section class="story-section section-animate">
+        <div class="story-content">
+          <h3>Hogar saludable</h3>
+          <h4>Claves para transformar tu espacio en un santuario de bienestar</h4>
+          <p>Diseña un espacio donde la calma habite, con ideas de organización, decoración y aromas que revitalizan tu día a día.</p>
+          <a href="#" class="secondary-button">Empieza por ti</a>
         </div>
-      </div>
+        <div class="story-gallery">
+          <div class="gallery-slide active">
+            <img src="assets/media/img/blog/Foto.blog(7.5).JPG" alt="Imagen 1 de la galería" />
+          </div>
+          <div class="gallery-slide">
+            <img src="assets/media/img/blog/Foto.blog.2(7.5).JPG" alt="Imagen 2 de la galería" />
+          </div>
+        </div>
+      </section>
 
-      <!-- Resumen flotante para móvil -->
-      <div class="floating-summary" id="floating-summary">
-        <div class="floating-summary-content">
-          <div class="floating-total" id="floating-total">Total: 0.00 €</div>
-          <button class="floating-checkout" id="floating-checkout">Pagar</button>
+      <!-- ********************************************* -->
+      <!-- ************** SECCIÓN PERSONALIZACIÓN **** -->
+      <!-- ********************************************* -->
+      <section id="section-personalizar-vela" class="customization-highlight section-light section-animate">
+        <div class="section-header">
+          <h3>Crea tu vela perfecta</h3>
+          <p>Personaliza cada detalle creando momentos cálidos</p>
         </div>
-      </div>
+        <div class="customization-preview">
+          <div class="preview-image customization-preview-image"></div>
+          <div class="preview-content">
+            <h4>Diseña tu propia vela</h4>
+            <p>Elige el color, tamaño, aroma y tipo de llama para crear una vela que sea tan única como tú.</p>
+            <ul class="customization-features">
+              <li><i class="fas fa-palette"></i> 6 colores de cera</li>
+              <li><i class="fas fa-fire"></i> 4 tipos de llama</li>
+              <li><i class="fas fa-arrows-alt-v"></i> 3 tamaños diferentes</li>
+              <li><i class="fas fa-wind"></i> 6 aromas exclusivos</li>
+            </ul>
+            <div class="customization-button-container">
+              <a href="personalizar.html" class="cta-button">Personalizar ahora</a>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
     <!-- ********************************************* -->
@@ -177,7 +183,7 @@
             <div class="links-group">
               <h4>Blog</h4>
               <ul>
-                <li><a href="blog.html">Hogar saludable</a></li>
+                <li><a href="blog-bienestar.html">Hogar saludable</a></li>
               </ul>
             </div>
 
@@ -254,10 +260,7 @@
         </div>
       </div>
     </footer>
-
-    <!-- ********************************************* -->
-    <!-- ************** BOTÓN VOLVER ARRIBA ********* -->
-    <!-- ********************************************* -->
+    <!-- Botón flotante "Volver arriba" -->
     <div id="back-to-top" class="back-to-top">
       <i class="fas fa-chevron-up"></i>
     </div>
@@ -311,6 +314,25 @@
         <div class="modal-buttons">
           <button id="cookie-save" class="cookie-button save">Guardar preferencias</button>
           <button id="cookie-cancel" class="cookie-button cancel">Cancelar</button>
+        </div>
+      </div>
+    </div>
+    <!-- ********************************************* -->
+    <!-- ************* Popup Personalización ********* -->
+    <!-- ********************************************* -->
+    <div id="personalizacion-popup" class="personalizacion-popup">
+      <div class="popup-overlay"></div>
+      <div class="popup-container">
+        <button class="popup-close" aria-label="Cerrar popup">&times;</button>
+        <div class="popup-content">
+          <div class="popup-text">
+            <h3>Crea tu vela perfecta</h3>
+            <p class="subtitle">Elige color, tamaño, aroma y tipo de llama para crear una vela tan única como tú</p>
+            <a href="#section-personalizar-vela" class="cta-button">Personalizar ahora</a>
+          </div>
+          <div class="popup-image">
+            <img src="assets/media/img/pop-up/Imagen.pop-up.jpg" alt="Velas aromáticas Candle Flame" />
+          </div>
         </div>
       </div>
     </div>

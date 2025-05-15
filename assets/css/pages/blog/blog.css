@@ -1,7 +1,4 @@
 /* ================================================== */
-/* ============ ESTILOS PARA BLOG ================== */
-/* ================================================== */
-/* ================================================== */
 /* ============ HERO MEJORADO ====================== */
 /* ================================================== */
 .hero-simple {
@@ -408,11 +405,11 @@ header.scrolled {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.3s ease; /* Reducido el tiempo y cambiado el efecto */
+  transition: transform 0.3s ease;
 }
 
 .blog-card:hover .blog-image img {
-  transform: scale(1.03); /* Reducido el zoom para que sea más sutil */
+  transform: scale(1.03);
 }
 
 .blog-content {
@@ -615,7 +612,7 @@ header.scrolled {
 }
 
 .related-product:hover .product-image img {
-  transform: scale(1.05); /* Reducido el zoom */
+  transform: scale(1.05);
 }
 
 .product-info {
@@ -733,7 +730,7 @@ header.scrolled {
 /* ============ PÁGINA DE ARTÍCULO ================= */
 /* ================================================== */
 .blog-post-section {
-  padding: 80px 20px;
+  padding: 50px 20px;
   background: white;
   position: relative;
   z-index: 2;
@@ -857,10 +854,12 @@ header.scrolled {
 /* ============ GALERÍA DE IMÁGENES ================ */
 /* ================================================== */
 .blog-post-gallery {
-  margin: 30px 0;
+  margin: 30px auto;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: var(--shadow);
+  width: 70%;
+  max-width: 700px;
 }
 
 .gallery-image {
@@ -1150,8 +1149,8 @@ header.scrolled {
   flex-direction: column;
   height: 100%;
   position: relative;
-  max-width: 400px; /* Limita el ancho máximo de la tarjeta */
-  margin: 0 auto;   /* Centra la tarjeta si hay espacio extra */
+  max-width: 400px;
+  margin: 0 auto;
 }
 
 .related-post-card::after {
@@ -1198,8 +1197,8 @@ header.scrolled {
 .related-post-image img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Ya está, asegura que la imagen no se deforme */
-  max-height: 200px; /* Opcional: asegura que la imagen no crezca más de lo debido */
+  object-fit: cover;
+  max-height: 200px;
   transition: transform 0.3s ease;
 }
 
@@ -1318,6 +1317,10 @@ header.scrolled {
   .related-posts-grid {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   }
+  
+  .blog-post-gallery {
+    width: 80%;
+  }
 }
 
 @media (max-width: 992px) {
@@ -1336,6 +1339,10 @@ header.scrolled {
   .blog-post-content h2 {
     font-size: 1.6rem;
   }
+  
+  .blog-post-gallery {
+    width: 85%;
+  }
 }
 
 @media (max-width: 768px) {
@@ -1346,7 +1353,7 @@ header.scrolled {
   .blog-section,
   .blog-post-section,
   .related-posts-section {
-    padding: 50px 15px;
+    padding: 40px 15px;
   }
 
   .blog-post-title {
@@ -1429,6 +1436,10 @@ header.scrolled {
     flex: 1 1 auto;
     margin: 0;
   }
+  
+  .blog-post-gallery {
+    width: 90%;
+  }
 }
 
 @media (max-width: 576px) {
@@ -1475,6 +1486,10 @@ header.scrolled {
   .related-title,
   .related-posts-title {
     font-size: 1.5rem;
+  }
+  
+  .blog-post-gallery {
+    width: 100%;
   }
 }
 
