@@ -928,6 +928,11 @@ footer {
   transition: var(--transition);
 }
 
+.checkbox-label a {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
 .checkbox-label input {
   margin-right: 10px;
   margin-top: 2px;

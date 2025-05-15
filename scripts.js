@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const target = this.getAttribute("href");
         setTimeout(() => {
-          if (target.startsWith("#")) {
+          if (target.startsWith("#") && target.length > 1) {
             const targetElement = document.querySelector(target);
             if (targetElement) {
               targetElement.scrollIntoView({ behavior: "smooth" });
@@ -387,17 +387,17 @@ document.addEventListener("DOMContentLoaded", () => {
   // Galería automática
   const gallerySlides = document.querySelectorAll(".gallery-slide");
   const storyContent = document.querySelector(".story-content");
-  const storySection = document.querySelector(".story-section");
-  
+  const storySectionElement = document.querySelector(".story-section");
+
   if (gallerySlides.length > 0 && storyContent) {
     let currentIndex = 0;
     let slideInterval;
     let isTransitioning = false;
-    
+
     // Añadir estilos para las transiciones perfectamente sincronizadas
-    if (!document.getElementById('gallery-transition-styles')) {
-      const styleElement = document.createElement('style');
-      styleElement.id = 'gallery-transition-styles';
+    if (!document.getElementById("gallery-transition-styles")) {
+      const styleElement = document.createElement("style");
+      styleElement.id = "gallery-transition-styles";
       styleElement.textContent = `
         .story-content {
           transition: opacity 0.7s ease-in-out;
@@ -423,52 +423,54 @@ document.addEventListener("DOMContentLoaded", () => {
       `;
       document.head.appendChild(styleElement);
     }
-    
+
     // Contenido para cada slide
     const slideContents = [
       {
         title: "Hogar saludable",
         subtitle: "Claves para transformar tu espacio en un santuario de bienestar",
-        description: "Diseña un espacio donde la calma habite, con ideas de organización, decoración y aromas que revitalizan tu día a día.",
+        description:
+          "Diseña un espacio donde la calma habite, con ideas de organización, decoración y aromas que revitalizan tu día a día.",
         link: "blog-bienestar.html",
-        linkText: "Empieza por ti"
+        linkText: "Empieza por ti",
       },
       {
         title: "Cómo decorar tu hogar sin grandes cambios",
         subtitle: "",
-        description: "Descubre cómo renovar la decoración de tu hogar con pequeños cambios. Ideas sencillas y efectivas para crear espacios más frescos, acogedores y llenos de estilo.",
+        description:
+          "Descubre cómo renovar la decoración de tu hogar con pequeños cambios. Ideas sencillas y efectivas para crear espacios más frescos, acogedores y llenos de estilo.",
         link: "blog-decoracion.html",
-        linkText: "Empieza por ti"
-      }
+        linkText: "Empieza por ti",
+      },
     ];
 
     // Función para cambiar de slide con transiciones perfectamente sincronizadas
     function changeSlide() {
       if (isTransitioning) return;
       isTransitioning = true;
-      
+
       // Calcular el índice del siguiente slide
       const nextIndex = (currentIndex + 1) % gallerySlides.length;
-      
+
       // 1. Añadir clase para iniciar desvanecimiento simultáneo
-      storySection.classList.add('transitioning');
-      
+      storySectionElement.classList.add("transitioning");
+
       // 2. Después de que todo se desvanezca, cambiar contenido
       setTimeout(() => {
         // Cambiar la imagen
         gallerySlides[currentIndex].classList.remove("active");
         gallerySlides[nextIndex].classList.add("active");
-        
+
         // Actualizar el contenido
         const content = slideContents[nextIndex];
         const titleElement = storyContent.querySelector("h3");
         const subtitleElement = storyContent.querySelector("h4");
         const descriptionElement = storyContent.querySelector("p");
         const linkElement = storyContent.querySelector("a");
-        
+
         // Actualizar textos
         titleElement.textContent = content.title;
-        
+
         // Manejar el subtítulo (puede estar vacío para el segundo slide)
         if (content.subtitle) {
           if (subtitleElement) {
@@ -482,14 +484,14 @@ document.addEventListener("DOMContentLoaded", () => {
         } else if (subtitleElement) {
           subtitleElement.style.display = "none";
         }
-        
+
         descriptionElement.textContent = content.description;
         linkElement.href = content.link;
         linkElement.textContent = content.linkText;
-        
+
         // 3. Mostrar todo el nuevo contenido simultáneamente
         setTimeout(() => {
-          storySection.classList.remove('transitioning');
+          storySectionElement.classList.remove("transitioning");
           currentIndex = nextIndex;
           isTransitioning = false;
         }, 50);
@@ -513,7 +515,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // =============================================
-  // 8. GESTIÓN DE COOKIES 
+  // 8. GESTIÓN DE COOKIES
   // =============================================
   const cookieBar = document.getElementById("cookie-bar");
   const cookieAcceptAll = document.getElementById("cookie-accept-all");
@@ -530,7 +532,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return localStorage.getItem("cookiesAccepted") !== null;
   }
 
-  // Mostrar barra con animación mejorada
+  // Mostrar barra con animación
   function showCookieBar() {
     if (!checkCookiesAccepted() && cookieBar) {
       cookieBar.style.display = "block";
@@ -639,7 +641,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // =============================================
   const personalizacionPopup = document.getElementById("personalizacion-popup");
   const popupClose = document.querySelector(".popup-close");
-  const collectionSection = document.getElementById("coleccion");
 
   // Mostrar popup con animación
   function showCustomizationPopup() {
@@ -662,10 +663,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Mostrar popup al recorrer la mitad de la sección "Nuestras Esencias"
+  // Mostrar popup al recorrer la mitad de la sección "story-section"
   function handleScrollForPopup() {
-    if (collectionSection) {
-      const sectionRect = collectionSection.getBoundingClientRect();
+    if (storySectionElement) {
+      const sectionRect = storySectionElement.getBoundingClientRect();
       const sectionMidpoint = sectionRect.top + sectionRect.height / 2;
       if (sectionMidpoint <= window.innerHeight) {
         showCustomizationPopup();
@@ -741,17 +742,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const cart = new ShoppingCart();
 
   // Actualizar enlaces del carrito para incluir el contador
-  document.addEventListener("DOMContentLoaded", () => {
-    const cartLinks = document.querySelectorAll(".header_link.icon-cart, .mobile-icons .icon-cart");
+  const cartLinks = document.querySelectorAll(".header_link.icon-cart, .mobile-icons .icon-cart");
 
-    cartLinks.forEach((link) => {
-      const countSpan = document.createElement("span");
-      countSpan.className = "cart-count";
-      link.appendChild(countSpan);
-    });
-
-    cart.updateCartCount();
+  cartLinks.forEach((link) => {
+    const countSpan = document.createElement("span");
+    countSpan.className = "cart-count";
+    link.appendChild(countSpan);
   });
+
+  cart.updateCartCount();
 });
 
 var anime = anime || {};

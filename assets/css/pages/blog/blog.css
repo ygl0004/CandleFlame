@@ -790,11 +790,12 @@ header.scrolled {
 }
 
 .blog-post-featured-image {
-  margin: 40px 0;
+  margin: 40px auto;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: var(--shadow);
   position: relative;
+  width: 60%;
 }
 
 .blog-post-featured-image::after {
