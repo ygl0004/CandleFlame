@@ -306,11 +306,10 @@
   }
 }
 /* ================================================== */
-/* ============ HEADER LEGAL ======================== */
+/* ================== HEADER ======================== */
 /* ================================================== */
-/* Forzar header opaco en páginas legales */
 header {
-  background: var(--color-primary) !important;
+  background: var(--color-primary);
   backdrop-filter: none !important;
   position: fixed;
   width: 100%;
@@ -330,7 +329,7 @@ header.scrolled {
 /* ================================================== */
 .blog-section {
   padding: 80px 20px;
-  background: white;
+  background: var(--color-bg-pale);
   position: relative;
   z-index: 2;
 }
@@ -506,6 +505,7 @@ header.scrolled {
   margin-top: 60px;
   padding: 40px;
   border-top: 1px solid rgba(35, 11, 2, 0.1);
+  border-radius: 10px;
 }
 
 .related-title {
@@ -731,7 +731,7 @@ header.scrolled {
 /* ================================================== */
 .blog-post-section {
   padding: 50px 20px;
-  background: white;
+  background: var(--color-bg-pale);
   position: relative;
   z-index: 2;
   transition: background-color 0.3s ease;

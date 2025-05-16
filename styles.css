@@ -18,6 +18,7 @@
   --color-text-dark: #230b02;
   --color-text-medium: #5a5a5a;
   --color-bg-light: #f9f5f2;
+  --color-bg-pale: #f6ede7;
   --transition: all 0.4s ease;
   --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.15);

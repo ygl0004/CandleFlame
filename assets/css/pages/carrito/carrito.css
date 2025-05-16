@@ -3,7 +3,7 @@
 /* ================================================== */
 
 header {
-  background: var(--color-primary) !important;
+  background: var(--color-primary);
   backdrop-filter: none !important;
   position: fixed;
   width: 100%;
@@ -14,6 +14,7 @@ header {
 
 main {
   margin-top: 80px;
+  background: var(--color-bg-pale);
 }
 
 /* ================================================== */
@@ -590,17 +591,6 @@ main {
 .notification i {
   margin-right: 10px;
 }
-
-/* Animaciones */
-/* @keyframes flicker {
-  0%,
-  100% {
-    text-shadow: 0 0 10px rgba(251, 141, 81, 0.3);
-  }
-  50% {
-    text-shadow: 0 0 15px rgba(251, 141, 81, 0.5);
-  }
-} */
 
 @keyframes fadeIn {
   from {

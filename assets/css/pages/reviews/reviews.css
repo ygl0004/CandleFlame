@@ -7,7 +7,7 @@
 /* ================================================== */
 /* Forzar header opaco en páginas legales */
 header {
-  background: var(--color-primary) !important;
+  background: var(--color-primary);
   backdrop-filter: none !important;
   position: fixed;
   width: 100%;

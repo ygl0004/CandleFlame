@@ -2,7 +2,7 @@
 /* ============ HEADER LEGAL ======================== */
 /* ================================================== */
 header {
-  background: var(--color-primary) !important;
+  background: var(--color-primary);
   backdrop-filter: none !important;
   position: fixed;
   width: 100%;
@@ -74,7 +74,7 @@ main {
 /* Contenedor principal de la sección legal */
 .legal-section {
   padding: 80px 20px;
-  background: white;
+  background: var(--color-bg-pale);
   position: relative;
   z-index: 2;
 }
