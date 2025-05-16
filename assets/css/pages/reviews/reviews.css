@@ -26,7 +26,7 @@ header.scrolled {
 /* ============ ESTILOS HERO SIMPLE ================ */
 /* ================================================== */
 .hero-simple {
-  background: linear-gradient(rgba(35, 11, 2, 0.85), rgba(35, 11, 2, 0.85)), url('../../../media/img/reviews/reviews-hero-bg.jpg');
+  background: linear-gradient(rgba(35, 11, 2, 0.85), rgba(35, 11, 2, 0.85));
   background-size: cover;
   background-position: center;
   position: relative;
@@ -665,10 +665,9 @@ header.scrolled {
 }
 
 .checkbox-label input[type="checkbox"] {
-  margin-top: 3px;
+  width: auto;
+  margin-top: 0;
   accent-color: var(--color-accent);
-  /* width: 16px; */
-  /* height: 16px; */
   flex-shrink: 0;
 }
 
