@@ -498,6 +498,95 @@ header.scrolled {
 }
 
 /* ================================================== */
+/* ================== SECCIÓN BIENVENIDA ============ */
+/* ================================================== */
+.welcome-section {
+  padding: 80px 20px;
+  background: var(--color-bg-light);
+  position: relative;
+  z-index: 2;
+}
+
+.welcome-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.welcome-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.welcome-header h3 {
+  font-size: 2.2rem;
+  color: var(--color-secondary);
+  margin-bottom: 15px;
+  font-family: "Tan_Meringue", serif;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.welcome-header h3::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 2px;
+  background: linear-gradient(to right, var(--color-accent), var(--color-accent-light));
+}
+
+.welcome-header p {
+  font-size: 1.1rem;
+  color: var(--color-text-medium);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.welcome-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.welcome-image {
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+
+.welcome-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.8s ease;
+}
+
+.welcome-image:hover img {
+  transform: scale(1.05);
+}
+
+.welcome-text {
+  padding: 20px;
+}
+
+.welcome-list {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.welcome-list li {
+  margin-bottom: 20px;
+  color: var(--color-text-medium);
+  font-size: 1.05rem;
+  line-height: 1.5;
+  padding-left: 10px;
+}
+
+/* ================================================== */
 /* ================== COLECCIÓN ==================== */
 /* ================================================== */
 .collection-section {
@@ -1649,6 +1738,16 @@ footer {
   .story-content {
     padding: 40px;
   }
+
+  .welcome-content {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .welcome-image {
+    max-width: 600px;
+    margin: 0 auto;
+  }
 }
 
 /* ----------- 768px ----------- */
@@ -1976,6 +2075,23 @@ footer {
     width: 100%;
     text-align: center;
   }
+
+  .welcome-section {
+    padding: 60px 15px;
+  }
+  
+  .welcome-header h3 {
+    font-size: 1.8rem;
+  }
+  
+  .welcome-header p {
+    font-size: 1rem;
+  }
+  
+  .welcome-list li {
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+  }
 }
 
 @media (max-width: 539px) {
@@ -2158,5 +2274,13 @@ footer {
     font-size: 1.1rem;
     top: 10px;
     right: 10px;
+  }
+
+  .welcome-header {
+    margin-bottom: 30px;
+  }
+  
+  .welcome-list li {
+    margin-bottom: 12px;
   }
 }
