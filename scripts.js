@@ -751,12 +751,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   cart.updateCartCount();
-
-  // Añadir animación de opacidad al h2 de la hero para mejorar LCP
-  const heroTitle = document.querySelector(".hero h2");
-  if (heroTitle) {
-    heroTitle.classList.add("hero-title-animate");
-  }
 });
 
 var anime = anime || {};

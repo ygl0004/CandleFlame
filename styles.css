@@ -137,16 +137,6 @@ a {
   60% { transform: translateY(-10px) translateX(-50%); }
 }
 
-/* Animación rápida solo opacidad para el h2 de la hero */
-.hero h2.hero-title-animate {
-  animation: fadeInHeroTitle 0.7s cubic-bezier(0.33, 1, 0.68, 1);
-}
-
-@keyframes fadeInHeroTitle {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
 /* ================================================== */
 /* ================== BOTONES ====================== */
 /* ================================================== */
@@ -1170,7 +1160,7 @@ footer {
 
 .help-link:hover {
   opacity: 1;
-  color: var (--color-accent-light);
+  color: var(--color-accent-light);
 }
 
 .help-link:hover::after {
@@ -1396,7 +1386,7 @@ footer {
 
 .cookie-button.accept-necessary {
   background: transparent;
-  color: var (--color-text-light);
+  color: var(--color-text-light);
   border: 1px solid var(--color-text-light);
 }
 
