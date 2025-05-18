@@ -16,8 +16,6 @@
     <!-- Precarga de recursos importantes -->
     <link rel="preload" href="assets/css/FontAwesome/css/all.min.css" as="style" />
     <link rel="preload" href="styles.css" as="style" />
-    <link rel="preload" href="assets/media/video/portada/Candleflame%20Ordenador.webm" as="video" type="video/webm" />
-    <link rel="preload" href="assets/media/video/portada/Candleflame%20Movil.webm" as="video" type="video/webm" />
 
     <title>Candle Flame - Inicio</title>
   </head>
@@ -27,10 +25,10 @@
     <!-- ************** VIDEO DE FONDO ************** -->
     <!-- ********************************************* -->
     <div class="video-container">
-      <video muted loop playsinline id="background-video-desktop" autoplay>
+      <video preload="auto" muted loop playsinline id="background-video-desktop" autoplay>
         <source src="assets/media/video/portada/Candleflame Ordenador.webm" type="video/webm" />
       </video>
-      <video muted loop playsinline id="background-video-mobile" autoplay>
+      <video preload="auto" muted loop playsinline id="background-video-mobile" autoplay>
         <source src="assets/media/video/portada/Candleflame Movil.webm" type="video/webm" />
       </video>
       <div class="video-overlay"></div>

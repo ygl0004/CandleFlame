@@ -17,7 +17,6 @@
     <!-- Precarga de recursos importantes -->
     <link rel="preload" href="assets/css/FontAwesome/css/all.min.css" as="style" />
     <link rel="preload" href="styles.css" as="style" />
-    <link rel="preload" href="assets/media/video/servicio/hero/Video.Taller.Velas.webm" as="video" type="video/webm" />
     <title>Candle Flame - Taller de Velas</title>
   </head>
   <body>
@@ -25,10 +24,10 @@
     <!-- ************** VIDEO DE FONDO ************** -->
     <!-- ********************************************* -->
     <div class="video-container">
-      <video muted loop playsinline id="background-video-desktop" autoplay>
+      <video preload="auto" muted loop playsinline id="background-video-desktop" autoplay>
         <source src="assets/media/video/servicio/hero/Video.Taller.Velas.webm" type="video/webm" />
       </video>
-      <video muted loop playsinline id="background-video-mobile" autoplay>
+      <video preload="auto" muted loop playsinline id="background-video-mobile" autoplay>
         <source src="assets/media/video/servicio/hero/Video.Taller.Velas.webm" type="video/webm" />
       </video>
       <div class="video-overlay"></div>
