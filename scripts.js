@@ -136,34 +136,72 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Control de videos de fondo
+  // Control de videos de fondo optimizado
+  let lastVideoType = null; // "desktop" o "mobile"
+  let lastVideoSrc = null;
+
   const handleVideoDisplay = () => {
     const desktopVideo = document.getElementById("background-video-desktop");
     const mobileVideo = document.getElementById("background-video-mobile");
     const videoContainer = document.querySelector(".video-container");
 
+    // Detectar página y asignar rutas de video
+    let desktopSrc = "";
+    let mobileSrc = "";
+    const path = window.location.pathname;
+
+    if (path.endsWith("servicio.html")) {
+      desktopSrc = "assets/media/video/servicio/hero/Video.Taller.Velas.webm";
+      mobileSrc = "assets/media/video/servicio/hero/Video.Taller.Velas.webm";
+    } else if (path.endsWith("personalizar.html")) {
+      desktopSrc = "assets/media/video/personalizacion/Intro_Personalizar_Vela.webm";
+      mobileSrc = "assets/media/video/personalizacion/Intro_Personalizar_Vela.webm";
+    } else {
+      desktopSrc = "assets/media/video/portada/Candleflame Ordenador.webm";
+      mobileSrc = "assets/media/video/portada/Candleflame Movil.webm";
+    }
+
+    const isDesktop = window.innerWidth >= 540;
+    const currentType = isDesktop ? "desktop" : "mobile";
+    const currentSrc = isDesktop ? desktopSrc : mobileSrc;
+
+    // Solo cambiar si el tipo o la ruta han cambiado
+    if (lastVideoType === currentType && lastVideoSrc === currentSrc) {
+      return;
+    }
+    lastVideoType = currentType;
+    lastVideoSrc = currentSrc;
+
+    // Ocultar ambos videos primero
+    if (desktopVideo) desktopVideo.hidden = true;
+    if (mobileVideo) mobileVideo.hidden = true;
+
+    // Seleccionar el video y la ruta a usar
+    const videoEl = isDesktop ? desktopVideo : mobileVideo;
+    if (videoEl) {
+      // Solo cambiar el source si es diferente
+      let sourceEl = videoEl.querySelector("source");
+      if (!sourceEl || sourceEl.getAttribute("src") !== currentSrc) {
+        // Eliminar source anterior
+        while (videoEl.firstChild) videoEl.removeChild(videoEl.firstChild);
+        // Añadir nuevo source
+        sourceEl = document.createElement("source");
+        sourceEl.src = currentSrc;
+        sourceEl.type = "video/webm";
+        videoEl.appendChild(sourceEl);
+        videoEl.load();
+      }
+      videoEl.hidden = false;
+      videoEl.play().catch(() => {});
+    }
+
     // Asegurar que el contenedor de video cubra toda la pantalla
     if (videoContainer) {
       videoContainer.style.height = `${window.innerHeight}px`;
     }
-
-    // Mostrar video de escritorio si el ancho es al menos 540px (Surface Duo y tablets horizontales)
-    if (window.innerWidth >= 540) {
-      if (mobileVideo) mobileVideo.style.display = "none";
-      if (desktopVideo) {
-        desktopVideo.style.display = "block";
-        desktopVideo.play().catch((e) => console.log("Autoplay prevented:", e));
-      }
-    } else {
-      if (desktopVideo) desktopVideo.style.display = "none";
-      if (mobileVideo) {
-        mobileVideo.style.display = "block";
-        mobileVideo.play().catch((e) => console.log("Autoplay prevented:", e));
-      }
-    }
   };
 
-  // Inicialización de videos
+  // Inicialización de videos al cargar la página
   handleVideoDisplay();
   window.addEventListener("resize", handleVideoDisplay);
 
