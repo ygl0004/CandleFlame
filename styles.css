@@ -451,8 +451,8 @@ header.scrolled {
 .hero-content {
   max-width: 800px;
   margin: -3% auto;
-  /* animation: fadeIn 1.5s ease-out; */
-  /* transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); */
+  animation: fadeIn 1.5s ease-out;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .hero h2 {
