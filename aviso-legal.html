@@ -2,10 +2,7 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="author" content="Yeray Garrido Linares" />
     <meta name="description" content="Aviso Legal de Candle Flame - Velas artesanales premium" />
     <link rel="stylesheet" href="assets/css/FontAwesome/css/all.min.css" />
@@ -206,7 +203,7 @@
             <form class="newsletter-form">
               <div class="newsletter-input-row">
                 <input type="email" placeholder="Tu email" required />
-                <button type="submit">
+                <button type="submit" aria-label="Suscribirse al boletín">
                   <i class="fas fa-paper-plane"></i>
                 </button>
               </div>
@@ -264,7 +261,7 @@
     <!-- ********************************************* -->
     <!-- ************** BOTÓN VOLVER ARRIBA ********* -->
     <!-- ********************************************* -->
-    <div id="back-to-top" class="back-to-top">
+    <div id="back-to-top" class="back-to-top" aria-label="Volver arriba">
       <i class="fas fa-chevron-up"></i>
     </div>
 
@@ -277,9 +274,11 @@
           <p>Utilizamos cookies propias y de terceros para mejorar nuestros servicios. Puedes gestionar tus preferencias a continuación.</p>
         </div>
         <div class="cookie-buttons">
-          <button id="cookie-accept-all" class="cookie-button accept-all">Aceptar</button>
-          <button id="cookie-accept-necessary" class="cookie-button accept-necessary">Solo necesarias</button>
-          <button id="cookie-configure" class="cookie-button configure">Configurar</button>
+          <button id="cookie-accept-all" class="cookie-button accept-all" aria-label="Aceptar todas las cookies">Aceptar</button>
+          <button id="cookie-accept-necessary" class="cookie-button accept-necessary" aria-label="Aceptar solo cookies necesarias">
+            Solo necesarias
+          </button>
+          <button id="cookie-configure" class="cookie-button configure" aria-label="Configurar preferencias de cookies">Configurar</button>
         </div>
       </div>
     </div>
@@ -315,8 +314,8 @@
         </div>
 
         <div class="modal-buttons">
-          <button id="cookie-save" class="cookie-button save">Guardar preferencias</button>
-          <button id="cookie-cancel" class="cookie-button cancel">Cancelar</button>
+          <button id="cookie-save" class="cookie-button save" aria-label="Guardar preferencias de cookies">Guardar preferencias</button>
+          <button id="cookie-cancel" class="cookie-button cancel" aria-label="Cancelar y cerrar configuración de cookies">Cancelar</button>
         </div>
       </div>
     </div>
