@@ -1,6 +1,6 @@
 <p align="center">
   <a href="" rel="noopener">
-    <img width=200px height=200px src="assets\media\img\readme\logo.jpg" alt="Logo Candle Flame">
+    <img width=200px height=200px src="assets\media\img\readme\logo.webp" alt="Logo Candle Flame">
   </a>
 </p>
 
