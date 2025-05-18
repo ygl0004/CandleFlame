@@ -136,7 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Control de videos de fondo optimizado
+  // Control de videos de fondo
   let lastVideoType = null; // "desktop" o "mobile"
   let lastVideoSrc = null;
 
