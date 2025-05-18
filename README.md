@@ -77,8 +77,9 @@ CandleFlame/
 │   ├── css/                # Hojas de estilo CSS organizadas por páginas
 │   ├── fonts/              # Tipografías personalizadas
 │   ├── js/                 # Scripts JS organizados por páginas
-│   ├── media/              # Imágenes, videos y recursos multimedia
-│   └── README.md           # Este archivo
+│   └── media/              # Imágenes, videos y recursos multimedia
+│
+├── README.md               # Este archivo
 ├── index.html              # Página principal
 ├── productos.html          # Página de productos
 ├── personalizar.html       # Página de personalización de velas
