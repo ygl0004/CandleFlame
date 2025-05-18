@@ -15,14 +15,14 @@
 
 /* Fondo solo para el hero de blog-bienestar.html */
 #hero-bienestar {
-  background: linear-gradient(rgba(35, 11, 2, 0.7), rgba(35, 11, 2, 0)), url('../../../media/img/blog/Foto.blog.jpg');
+  background: linear-gradient(rgba(35, 11, 2, 0.7), rgba(35, 11, 2, 0)), url('../../../media/img/blog/Foto.blog.webp');
   background-size: cover;
   background-position: center;
 }
 
 /* Fondo solo para el hero de blog-decoracion.html */
 #hero-decoracion {
-  background: linear-gradient(rgba(35, 11, 2, 0.7), rgba(35, 11, 2, 0)), url('../../../media/img/blog/Foto.blog.2.jpg');
+  background: linear-gradient(rgba(35, 11, 2, 0.7), rgba(35, 11, 2, 0)), url('../../../media/img/blog/Foto.blog.2.webp');
   background-size: cover;
   background-position: center;
 }

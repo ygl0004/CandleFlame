@@ -634,15 +634,15 @@ header.scrolled {
 }
 
 .item-image.vela-1 {
-  background-image: url("assets/media/img/coleccion/vela_1.png");
+  background-image: url("assets/media/img/coleccion/vela_1.webp");
 }
 
 .item-image.vela-2 {
-  background-image: url("assets/media/img/coleccion/vela_2.png");
+  background-image: url("assets/media/img/coleccion/vela_2.webp");
 }
 
 .item-image.vela-3 {
-  background-image: url("assets/media/img/coleccion/vela_3.png");
+  background-image: url("assets/media/img/coleccion/vela_3.webp");
 }
 
 .collection-item:hover .item-image {
@@ -777,7 +777,7 @@ header.scrolled {
 }
 
 .customization-preview-image {
-  background-image: url("assets/media/img/story/story_1.jpg");
+  background-image: url("assets/media/img/story/story_1.webp");
 }
 
 .customization-preview:hover .preview-image {
