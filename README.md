@@ -34,8 +34,8 @@
 - [Accesibilidad](#accesibilidad)
 - [Pruebas y Buenas Prácticas](#pruebas)
 - [Notas adicionales](#notas)
-<!-- - [Contribuir](#contribuir) -->
-<!-- - [Enlaces útiles](#enlaces) -->
+  <!-- - [Contribuir](#contribuir) -->
+  <!-- - [Enlaces útiles](#enlaces) -->
 
 ## 🧐 Acerca de <a name="acerca"></a>
 
@@ -66,35 +66,46 @@ No se requiere instalación de dependencias ni backend.
 
 Puedes desplegar el sitio en cualquier servidor estático (por ejemplo, GitHub Pages, Netlify, Vercel) subiendo todos los archivos del proyecto.
 
-## 🗂️ Estructura del Proyecto <a name="estructura"></a>
-
-La organización de carpetas es la siguiente:
+## 📁 Estructura del Proyecto <a name="estructura"></a>
 
 ```
 CandleFlame/
 │
-├── assets/
-│   ├── css/                # Hojas de estilo CSS organizadas por páginas
-│   ├── fonts/              # Tipografías personalizadas
-│   ├── js/                 # Scripts JS organizados por páginas
-│   └── media/              # Imágenes, videos y recursos multimedia
+├── index.html                # Página principal
+├── blog.html                 # Blog principal
+├── blog-bienestar.html       # Artículo: bienestar
+├── blog-decoracion.html      # Artículo: decoración
+├── carrito.html              # Carrito de compras
+├── contacto.html             # Página de contacto
+├── condiciones-compra.html   # Condiciones de compra
+├── aviso-legal.html          # Aviso legal
+├── politica-cookies.html     # Política de cookies
+├── privacidad.html           # Política de privacidad
+├── producto-premium.html     # Producto destacado premium
+├── productos.html            # Catálogo de productos
+├── personalizar.html         # Personalización de velas
+├── reviews.html              # Opiniones de clientes
+├── servicio.html             # Taller/servicio
 │
-├── README.md               # Este archivo
-├── index.html              # Página principal
-├── productos.html          # Página de productos
-├── personalizar.html       # Página de personalización de velas
-├── contacto.html           # Página de contacto
-├── servicio.html           # Página de taller/servicio
-├── blog.html               # Blog principal
-├── ...otros HTML           # Otras páginas (legales, blog, etc)
-├── styles.css              # Estilos globales
-├── scripts.js              # Scripts globales
-└── favicon.ico             # Icono del sitio
+├── scripts.js                # Scripts globales
+├── styles.css                # Estilos globales
+│
+├── assets/
+│   ├── css/                  # Hojas de estilo CSS
+│   │   ├── FontAwesome/      # Iconos
+│   │   └── pages/            # Estilos por página
+│   ├── js/                   # Scripts JS
+│   │   ├── AnimeJS/          # Librería Anime.js
+│   │   ├── html2canvas/      # Librería html2canvas
+│   │   └── pages/            # Scripts por página
+│   └── media/                # Imágenes y vídeos
+│       ├── img/              # Imágenes
+│       └── video/            # Vídeos
+│
+├── favicon.ico               # Icono del sitio
+├── robots.txt                # Archivo robots.txt
+└── README.md                 # Este archivo
 ```
-
-- Los archivos CSS y JS específicos de cada página están en `assets/css/pages/` y `assets/js/pages/`.
-- Los recursos multimedia (imágenes, videos) están en `assets/media/`.
-- Los estilos y scripts globales están en la raíz del proyecto.
 
 ## 🛠️ Scripts y Estilos <a name="scripts"></a>
 

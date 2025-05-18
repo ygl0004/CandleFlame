@@ -163,7 +163,7 @@ class ShoppingCart {
         new Promise((_, reject) => setTimeout(() => reject(new Error("Capture timeout")), this.CAPTURE_TIMEOUT)),
       ]);
 
-      return canvas.toDataURL("image/png", 0.8);
+      return canvas.toDataURL("image/webp", 0.8);
     } finally {
       // Limpieza del contenedor
       const containerElement = document.getElementById(containerId);
@@ -203,7 +203,7 @@ class ShoppingCart {
     const color = colorMap[item?.color || "Beige"] || "beige";
     const flame = flameMap[item?.flame || "Clásica"] || "classic";
 
-    return `${basePath}${size}-${color}-${flame}.png`;
+    return `${basePath}${size}-${color}-${flame}.webp`;
   }
 
   getCandleImagePath(item) {
@@ -596,7 +596,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // id: "ceramic-lantern-" + Date.now(), // Eliminado para evitar duplicados (Puede que lo use en otro producto)
       name: "Farolillo de Cerámica Artesanal",
       price: 89.9,
-      image: "assets/media/img/productos/vela_2.png",
+      image: "assets/media/img/productos/vela_2.webp",
       quantity: 1,
       description: "Farolillo de cerámica artesanal con vela incluida, creación exclusiva y limitada.",
     };

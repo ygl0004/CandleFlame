@@ -352,6 +352,18 @@ header.scrolled {
   z-index: 101;
 }
 
+/* Quitar subrayado animado de los iconos del header */
+.header_container_icons .icon-cart::after,
+.header_container_icons .icon-search::after,
+.header_container_icons .icon-account::after,
+.header_mobile_icons .cart-icon::after,
+.header_mobile_icons .icon-search::after,
+.header_mobile_icons .icon-account::after {
+  display: none !important;
+  content: none !important;
+  width: 0 !important;
+}
+
 /* Iconos móviles del header */
 .header_mobile_icons {
   display: none;
