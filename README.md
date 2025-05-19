@@ -88,6 +88,7 @@ CandleFlame/
 ├── servicio.html             # Taller/servicio
 │
 ├── scripts.js                # Scripts globales
+├── scripts-optimized.js      # Optimizaciones de carga y rendimiento
 ├── styles.css                # Estilos globales
 │
 ├── assets/
