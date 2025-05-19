@@ -145,30 +145,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const mobileVideo = document.getElementById("background-video-mobile");
     const videoContainer = document.querySelector(".video-container");
 
-    // Forzar estilos para evitar que el video afecte el layout
-    if (videoContainer) {
-      videoContainer.style.position = "fixed";
-      videoContainer.style.top = "0";
-      videoContainer.style.left = "0";
-      videoContainer.style.width = "100%";
-      videoContainer.style.height = `${window.innerHeight}px`;
-      videoContainer.style.zIndex = "-2";
-      videoContainer.style.overflow = "hidden";
-      videoContainer.style.pointerEvents = "none";
-    }
-    // Asegurar que los videos no sean accesibles ni seleccionables
-    [desktopVideo, mobileVideo].forEach((video) => {
-      if (video) {
-        video.setAttribute("aria-hidden", "true");
-        video.setAttribute("tabindex", "-1");
-        video.style.pointerEvents = "none";
-        video.style.objectFit = "cover";
-        video.style.width = "100%";
-        video.style.height = "100%";
-        video.style.display = "block";
-      }
-    });
-
     // Detectar página y asignar rutas de video
     let desktopSrc = "";
     let mobileSrc = "";
@@ -196,28 +172,25 @@ document.addEventListener("DOMContentLoaded", () => {
     lastVideoType = currentType;
     lastVideoSrc = currentSrc;
 
-    // Pausar ambos videos y limpiar sources
-    if (desktopVideo) {
-      desktopVideo.pause();
-      desktopVideo.hidden = true;
-      while (desktopVideo.firstChild) desktopVideo.removeChild(desktopVideo.firstChild);
-    }
-    if (mobileVideo) {
-      mobileVideo.pause();
-      mobileVideo.hidden = true;
-      while (mobileVideo.firstChild) mobileVideo.removeChild(mobileVideo.firstChild);
-    }
+    // Ocultar ambos videos primero
+    if (desktopVideo) desktopVideo.hidden = true;
+    if (mobileVideo) mobileVideo.hidden = true;
 
     // Seleccionar el video y la ruta a usar
     const videoEl = isDesktop ? desktopVideo : mobileVideo;
     if (videoEl) {
-      // Añadir nuevo source con preload
-      const sourceEl = document.createElement("source");
-      sourceEl.src = currentSrc;
-      sourceEl.type = "video/webm";
-      videoEl.setAttribute("preload", "auto");
-      videoEl.appendChild(sourceEl);
-      videoEl.load(); // Inicia la precarga del video
+      // Solo cambiar el source si es diferente
+      let sourceEl = videoEl.querySelector("source");
+      if (!sourceEl || sourceEl.getAttribute("src") !== currentSrc) {
+        // Eliminar source anterior
+        while (videoEl.firstChild) videoEl.removeChild(videoEl.firstChild);
+        // Añadir nuevo source
+        sourceEl = document.createElement("source");
+        sourceEl.src = currentSrc;
+        sourceEl.type = "video/webm";
+        videoEl.appendChild(sourceEl);
+        videoEl.load();
+      }
       videoEl.hidden = false;
       videoEl.play().catch(() => {});
     }
@@ -816,6 +789,19 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   cart.updateCartCount();
+
+  // =============================================
+  // RECARGA AUTOMÁTICA AL CAMBIAR ENTRE MÓVIL Y ESCRITORIO
+  // =============================================
+  let lastDeviceMode = window.innerWidth >= 540 ? "desktop" : "mobile";
+  window.addEventListener("resize", () => {
+    const currentMode = window.innerWidth >= 540 ? "desktop" : "mobile";
+    if (currentMode !== lastDeviceMode) {
+      // Recarga la página solo si se cruza el umbral
+      window.location.reload();
+    }
+    lastDeviceMode = currentMode;
+  });
 });
 
 var anime = anime || {};
