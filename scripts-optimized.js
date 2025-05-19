@@ -18,11 +18,9 @@ function initializeVideos() {
 
   if (!desktopVideo || !mobileVideo) return;
 
-  // Determinar qué video mostrar basado en el ancho de la ventana
   const windowWidth = window.innerWidth;
   const isDesktop = windowWidth >= 540;
 
-  // Establecer las fuentes de video
   const path = window.location.pathname;
   let desktopSrc = "";
   let mobileSrc = "";
@@ -43,30 +41,36 @@ function initializeVideos() {
     desktopVideo.hidden = false;
     mobileVideo.hidden = true;
 
-    if (!desktopVideo.querySelector("source")) {
-      const source = document.createElement("source");
-      source.src = desktopSrc;
+    let source = desktopVideo.querySelector("source");
+    if (!source) {
+      source = document.createElement("source");
       source.type = "video/webm";
       desktopVideo.appendChild(source);
     }
-
-    desktopVideo.load();
-    desktopVideo.play().catch((err) => console.log("Error al reproducir video de escritorio:", err));
+    // Solo recargar si la fuente es diferente
+    if (source.src !== location.origin + "/" + desktopSrc && source.src !== desktopSrc) {
+      source.src = desktopSrc;
+      desktopVideo.load();
+      desktopVideo.play().catch((err) => console.log("Error al reproducir video de escritorio:", err));
+    }
   }
   // Configurar el video móvil
   else {
     desktopVideo.hidden = true;
     mobileVideo.hidden = false;
 
-    if (!mobileVideo.querySelector("source")) {
-      const source = document.createElement("source");
-      source.src = mobileSrc;
+    let source = mobileVideo.querySelector("source");
+    if (!source) {
+      source = document.createElement("source");
       source.type = "video/webm";
       mobileVideo.appendChild(source);
     }
-
-    mobileVideo.load();
-    mobileVideo.play().catch((err) => console.log("Error al reproducir video móvil:", err));
+    // Solo recargar si la fuente es diferente
+    if (source.src !== location.origin + "/" + mobileSrc && source.src !== mobileSrc) {
+      source.src = mobileSrc;
+      mobileVideo.load();
+      mobileVideo.play().catch((err) => console.log("Error al reproducir video móvil:", err));
+    }
   }
 }
 
