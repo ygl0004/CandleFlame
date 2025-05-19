@@ -142,7 +142,8 @@ document.addEventListener("DOMContentLoaded", () => {
   let lastVideoType = null; // "desktop" o "mobile"
   let lastVideoSrc = null;
 
-  const handleVideoDisplay = () => {
+  // Modificar la función handleVideoDisplay para corregir la lógica de selección de videos
+  window.handleVideoDisplay = function handleVideoDisplay() {
     const desktopVideo = document.getElementById("background-video-desktop");
     const mobileVideo = document.getElementById("background-video-mobile");
     const videoContainer = document.querySelector(".video-container");
@@ -163,14 +164,17 @@ document.addEventListener("DOMContentLoaded", () => {
       mobileSrc = "assets/media/video/portada/Candleflame Movil.webm";
     }
 
-    const isDesktop = window.innerWidth >= 460;
+    // Determinar qué video mostrar basado en el ancho de la ventana
+    const windowWidth = window.innerWidth;
+    const isDesktop = windowWidth >= 540;
     const currentType = isDesktop ? "desktop" : "mobile";
     const currentSrc = isDesktop ? desktopSrc : mobileSrc;
 
-    // Solo cambiar si el tipo o la ruta han cambiado
+    // Verificar si el video actual es diferente al que ya se está mostrando
     if (lastVideoType === currentType && lastVideoSrc === currentSrc) {
       return;
     }
+
     lastVideoType = currentType;
     lastVideoSrc = currentSrc;
 
@@ -180,12 +184,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Seleccionar el video y la ruta a usar
     const videoEl = isDesktop ? desktopVideo : mobileVideo;
+
     if (videoEl) {
+      // Detener la reproducción del video anterior
+      videoEl.pause();
+
       // Solo cambiar el source si es diferente
       let sourceEl = videoEl.querySelector("source");
       if (!sourceEl || sourceEl.getAttribute("src") !== currentSrc) {
         // Eliminar source anterior
         while (videoEl.firstChild) videoEl.removeChild(videoEl.firstChild);
+
         // Añadir nuevo source
         sourceEl = document.createElement("source");
         sourceEl.src = currentSrc;
@@ -193,8 +202,34 @@ document.addEventListener("DOMContentLoaded", () => {
         videoEl.appendChild(sourceEl);
         videoEl.load();
       }
+
+      // Mostrar el video correcto
       videoEl.hidden = false;
-      videoEl.play().catch(() => {});
+
+      // Verificar si el video tiene dimensiones adecuadas antes de reproducirlo
+      const videoWidth = videoEl.videoWidth || 0;
+      const videoHeight = videoEl.videoHeight || 0;
+
+      // Solo reproducir si el video tiene dimensiones válidas
+      if (videoWidth > 0 && videoHeight > 0) {
+        videoEl.play().catch(() => {
+          console.log("No se pudo reproducir el video automáticamente");
+        });
+      } else {
+        // Si el video no tiene dimensiones válidas, esperar a que se carguen
+        videoEl.addEventListener(
+          "loadedmetadata",
+          () => {
+            // Verificar nuevamente las dimensiones
+            if (videoEl.videoWidth > 0 && videoEl.videoHeight > 0) {
+              videoEl.play().catch(() => {
+                console.log("No se pudo reproducir el video automáticamente después de cargar");
+              });
+            }
+          },
+          { once: true }
+        );
+      }
     }
 
     // Asegurar que el contenedor de video cubra toda la pantalla sin deformarse
@@ -205,9 +240,26 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
+  // Gestión de eventos para videos
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") {
+      // Cuando la página vuelve a ser visible, actualizar los videos
+      window.handleVideoDisplay();
+    }
+  });
+
+  // Detección de cambios de orientación
+  window.addEventListener("orientationchange", () => {
+    // Esperar a que termine la transición de orientación
+    setTimeout(() => {
+      window.handleVideoDisplay();
+      setFixedViewport();
+    }, 300);
+  });
+
   // Inicialización de videos al cargar la página
-  handleVideoDisplay();
-  window.addEventListener("resize", handleVideoDisplay);
+  window.handleVideoDisplay();
+  window.addEventListener("resize", window.handleVideoDisplay);
 
   // Manejo de resize para evitar deformaciones
   let resizeTimeout;
@@ -215,7 +267,7 @@ document.addEventListener("DOMContentLoaded", () => {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(() => {
       setFixedViewport();
-      handleVideoDisplay();
+      window.handleVideoDisplay();
     }, 100);
   });
 
@@ -803,6 +855,12 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   cart.updateCartCount();
+});
+  // =============================================
+  // 11. REPRODUCCIÓN DE VIDEO EN FUNCIÓN DEL VIEWPORT
+  // =============================================
+window.matchMedia("(min-width: 540px)").addEventListener("change", (e) => {
+  window.handleVideoDisplay();
 });
 
 var anime = anime || {};
