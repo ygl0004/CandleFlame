@@ -208,12 +208,14 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!sourceEl || sourceEl.getAttribute("src") !== currentSrc) {
         // Eliminar source anterior
         while (videoEl.firstChild) videoEl.removeChild(videoEl.firstChild);
-        // Añadir nuevo source
+        // Añadir source con preload
         sourceEl = document.createElement("source");
         sourceEl.src = currentSrc;
         sourceEl.type = "video/webm";
+        // Precarga automática
+        videoEl.setAttribute("preload", "auto");
         videoEl.appendChild(sourceEl);
-        videoEl.load();
+        videoEl.load(); // Inicia la precarga del video
       }
       videoEl.hidden = false;
       videoEl.play().catch(() => {});
