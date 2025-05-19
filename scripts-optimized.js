@@ -146,18 +146,33 @@ window.addEventListener("load", () => {
 
 // Optimizaciones adicionales después de la carga completa
 function optimizeAfterLoad() {
-  // Precargar páginas cuando el usuario hace hover en enlaces
-  const links = document.querySelectorAll('a[href^="http"], a[href^="/"], a[href^="./"], a[href^="../"]');
-
+  // Precargar páginas cuando el usuario hace hover en enlaces internos
+  const links = document.querySelectorAll('a[href]');
   links.forEach((link) => {
-    link.addEventListener("mouseenter", () => {
-      const url = link.getAttribute("href");
-      if (url && !url.startsWith("#") && !url.startsWith("mailto:") && !url.startsWith("tel:")) {
-        const preloadLink = document.createElement("link");
-        preloadLink.rel = "prefetch";
-        preloadLink.href = url;
-        document.head.appendChild(preloadLink);
-      }
-    });
+    const url = link.getAttribute("href");
+    // Filtra enlaces internos que no sean anclas, mailto, tel, javascript ni externos
+    if (
+      url &&
+      !url.startsWith("#") &&
+      !url.startsWith("mailto:") &&
+      !url.startsWith("tel:") &&
+      !url.startsWith("javascript:") &&
+      !link.hasAttribute("target") &&
+      (
+        url.startsWith("/") ||
+        url.startsWith("./") ||
+        url.startsWith("../") ||
+        (!url.match(/^([a-zA-Z][a-zA-Z\d+\-.]*:)?\/\//)) // no tiene protocolo, es relativo
+      )
+    ) {
+      link.addEventListener("mouseenter", () => {
+        if (!document.querySelector(`link[rel="prefetch"][href="${url}"]`)) {
+          const preloadLink = document.createElement("link");
+          preloadLink.rel = "prefetch";
+          preloadLink.href = url;
+          document.head.appendChild(preloadLink);
+        }
+      });
+    }
   });
 }
