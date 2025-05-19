@@ -11,6 +11,11 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+// Variables para evitar recargas innecesarias de video
+let lastIsDesktop = null;
+let lastDesktopSrc = "";
+let lastMobileSrc = "";
+
 // Función para inicializar videos de forma optimizada
 function initializeVideos() {
   const desktopVideo = document.getElementById("background-video-desktop");
@@ -36,40 +41,44 @@ function initializeVideos() {
     mobileSrc = "assets/media/video/portada/Candleflame Movil.webm";
   }
 
-  // Configurar el video de escritorio
+  // Solo cambiar si cambia el modo o la fuente
   if (isDesktop) {
-    desktopVideo.hidden = false;
-    mobileVideo.hidden = true;
+    if (lastIsDesktop !== true || lastDesktopSrc !== desktopSrc) {
+      desktopVideo.hidden = false;
+      mobileVideo.hidden = true;
 
-    let source = desktopVideo.querySelector("source");
-    if (!source) {
-      source = document.createElement("source");
-      source.type = "video/webm";
-      desktopVideo.appendChild(source);
+      let source = desktopVideo.querySelector("source");
+      if (!source) {
+        source = document.createElement("source");
+        source.type = "video/webm";
+        desktopVideo.appendChild(source);
+      }
+      if (source.src !== location.origin + "/" + desktopSrc && source.src !== desktopSrc) {
+        source.src = desktopSrc;
+        desktopVideo.load();
+        desktopVideo.play().catch((err) => console.log("Error al reproducir video de escritorio:", err));
+      }
+      lastIsDesktop = true;
+      lastDesktopSrc = desktopSrc;
     }
-    // Solo recargar si la fuente es diferente
-    if (source.src !== location.origin + "/" + desktopSrc && source.src !== desktopSrc) {
-      source.src = desktopSrc;
-      desktopVideo.load();
-      desktopVideo.play().catch((err) => console.log("Error al reproducir video de escritorio:", err));
-    }
-  }
-  // Configurar el video móvil
-  else {
-    desktopVideo.hidden = true;
-    mobileVideo.hidden = false;
+  } else {
+    if (lastIsDesktop !== false || lastMobileSrc !== mobileSrc) {
+      desktopVideo.hidden = true;
+      mobileVideo.hidden = false;
 
-    let source = mobileVideo.querySelector("source");
-    if (!source) {
-      source = document.createElement("source");
-      source.type = "video/webm";
-      mobileVideo.appendChild(source);
-    }
-    // Solo recargar si la fuente es diferente
-    if (source.src !== location.origin + "/" + mobileSrc && source.src !== mobileSrc) {
-      source.src = mobileSrc;
-      mobileVideo.load();
-      mobileVideo.play().catch((err) => console.log("Error al reproducir video móvil:", err));
+      let source = mobileVideo.querySelector("source");
+      if (!source) {
+        source = document.createElement("source");
+        source.type = "video/webm";
+        mobileVideo.appendChild(source);
+      }
+      if (source.src !== location.origin + "/" + mobileSrc && source.src !== mobileSrc) {
+        source.src = mobileSrc;
+        mobileVideo.load();
+        mobileVideo.play().catch((err) => console.log("Error al reproducir video móvil:", err));
+      }
+      lastIsDesktop = false;
+      lastMobileSrc = mobileSrc;
     }
   }
 }
