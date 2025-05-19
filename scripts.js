@@ -196,27 +196,28 @@ document.addEventListener("DOMContentLoaded", () => {
     lastVideoType = currentType;
     lastVideoSrc = currentSrc;
 
-    // Ocultar ambos videos primero
-    if (desktopVideo) desktopVideo.hidden = true;
-    if (mobileVideo) mobileVideo.hidden = true;
+    // Pausar ambos videos y limpiar sources
+    if (desktopVideo) {
+      desktopVideo.pause();
+      desktopVideo.hidden = true;
+      while (desktopVideo.firstChild) desktopVideo.removeChild(desktopVideo.firstChild);
+    }
+    if (mobileVideo) {
+      mobileVideo.pause();
+      mobileVideo.hidden = true;
+      while (mobileVideo.firstChild) mobileVideo.removeChild(mobileVideo.firstChild);
+    }
 
     // Seleccionar el video y la ruta a usar
     const videoEl = isDesktop ? desktopVideo : mobileVideo;
     if (videoEl) {
-      // Solo cambiar el source si es diferente
-      let sourceEl = videoEl.querySelector("source");
-      if (!sourceEl || sourceEl.getAttribute("src") !== currentSrc) {
-        // Eliminar source anterior
-        while (videoEl.firstChild) videoEl.removeChild(videoEl.firstChild);
-        // Añadir source con preload
-        sourceEl = document.createElement("source");
-        sourceEl.src = currentSrc;
-        sourceEl.type = "video/webm";
-        // Precarga automática
-        videoEl.setAttribute("preload", "auto");
-        videoEl.appendChild(sourceEl);
-        videoEl.load(); // Inicia la precarga del video
-      }
+      // Añadir nuevo source con preload
+      const sourceEl = document.createElement("source");
+      sourceEl.src = currentSrc;
+      sourceEl.type = "video/webm";
+      videoEl.setAttribute("preload", "auto");
+      videoEl.appendChild(sourceEl);
+      videoEl.load(); // Inicia la precarga del video
       videoEl.hidden = false;
       videoEl.play().catch(() => {});
     }
