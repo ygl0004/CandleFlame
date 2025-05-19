@@ -145,6 +145,30 @@ document.addEventListener("DOMContentLoaded", () => {
     const mobileVideo = document.getElementById("background-video-mobile");
     const videoContainer = document.querySelector(".video-container");
 
+    // Forzar estilos para evitar que el video afecte el layout
+    if (videoContainer) {
+      videoContainer.style.position = "fixed";
+      videoContainer.style.top = "0";
+      videoContainer.style.left = "0";
+      videoContainer.style.width = "100%";
+      videoContainer.style.height = `${window.innerHeight}px`;
+      videoContainer.style.zIndex = "-2";
+      videoContainer.style.overflow = "hidden";
+      videoContainer.style.pointerEvents = "none";
+    }
+    // Asegurar que los videos no sean accesibles ni seleccionables
+    [desktopVideo, mobileVideo].forEach((video) => {
+      if (video) {
+        video.setAttribute("aria-hidden", "true");
+        video.setAttribute("tabindex", "-1");
+        video.style.pointerEvents = "none";
+        video.style.objectFit = "cover";
+        video.style.width = "100%";
+        video.style.height = "100%";
+        video.style.display = "block";
+      }
+    });
+
     // Detectar página y asignar rutas de video
     let desktopSrc = "";
     let mobileSrc = "";

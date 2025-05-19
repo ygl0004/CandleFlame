@@ -1115,6 +1115,7 @@ html, body {
   .candle-preview {
     height: auto;
     order: -1;
+    pointer-events: none;
   }
 
   .customization-options {
