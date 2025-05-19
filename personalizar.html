@@ -5,10 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="author" content="Yeray Garrido Linares" />
     <meta name="description" content="Candle Flame - Personaliza tu vela artesanal" />
-    <link rel="stylesheet" href="assets/css/FontAwesome/css/all.min.css" />
-    <link rel="stylesheet" href="styles.css" />
+    <!-- RECURSOS CRÍTICOS (PRECARGA) -->
+    <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="styles.css"></noscript>
+
+    <link rel="preload" href="assets/css/FontAwesome/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="assets/css/FontAwesome/css/all.min.css"></noscript>
+
+    <link rel="preload" href="assets/fonts/TAN_Meringue/TAN MERINGUE.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="assets/fonts/Stinger_Fit/Stinger Fit Regular.otf" as="font" type="font/otf" crossorigin>
+
+    <link rel="preload" href="assets/media/video/personalizacion/Intro_Personalizar_Vela.webm" as="video" type="video/webm" media="(max-width: 539px)">
+    <link rel="preload" href="assets/media/video/personalizacion/Intro_Personalizar_Vela.webm" as="video" type="video/webm" media="(min-width: 540px)">
+
+    <!-- RECURSOS NORMALES -->
     <link rel="stylesheet" href="assets/css/pages/personalizar/personalizar.css" />
     <script defer src="scripts.js"></script>
+    <script defer src="scripts-optimized.js"></script>
     <script defer src="assets/js/pages/personalizar/personalizar.js"></script>
     <script defer src="assets/js/AnimeJS/anime.min.js"></script>
     <script defer src="assets/js/html2canvas/html2canvas.min.js"></script>

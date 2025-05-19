@@ -5,10 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="author" content="Yeray Garrido Linares" />
     <meta name="description" content="Claves para transformar tu espacio en un santuario de bienestar - Blog Candle Flame" />
-    <link rel="stylesheet" href="assets/css/FontAwesome/css/all.min.css" />
-    <link rel="stylesheet" href="styles.css" />
+    <!-- RECURSOS CRÍTICOS (PRECARGA) -->
+    <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="styles.css"></noscript>
+
+    <link rel="preload" href="assets/css/FontAwesome/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="assets/css/FontAwesome/css/all.min.css"></noscript>
+
+    <link rel="preload" href="assets/fonts/TAN_Meringue/TAN MERINGUE.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="assets/fonts/Stinger_Fit/Stinger Fit Regular.otf" as="font" type="font/otf" crossorigin>
+    
+    <!-- RECURSOS NORMALES -->
     <link rel="stylesheet" href="assets/css/pages/blog/blog.css" />
     <script defer src="scripts.js"></script>
+    <script defer src="scripts-optimized.js"></script>
     <script defer src="assets/js/pages/carrito/carrito.js"></script>
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
 

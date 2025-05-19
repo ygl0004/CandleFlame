@@ -5,17 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="author" content="Yeray Garrido Linares" />
     <meta name="description" content="Producto premium del mes - Farolillo de cerámica artesanal" />
-    <link rel="stylesheet" href="assets/css/FontAwesome/css/all.min.css" />
-    <link rel="stylesheet" href="styles.css" />
+    <!-- RECURSOS CRÍTICOS (PRECARGA) -->
+    <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="styles.css"></noscript>
+
+    <link rel="preload" href="assets/css/FontAwesome/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="assets/css/FontAwesome/css/all.min.css"></noscript>
+
+    <link rel="preload" href="assets/fonts/TAN_Meringue/TAN MERINGUE.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="assets/fonts/Stinger_Fit/Stinger Fit Regular.otf" as="font" type="font/otf" crossorigin>
+    
+    <!-- RECURSOS NORMALES -->
     <link rel="stylesheet" href="assets/css/pages/productos/productos.css" />
     <script defer src="scripts.js"></script>
+    <script defer src="scripts-optimized.js"></script>
     <script defer src="assets/js/pages/carrito/carrito.js"></script>
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
-
-    <!-- Precarga de recursos importantes -->
-    <link rel="preload" href="assets/css/FontAwesome/css/all.min.css" as="style" />
-    <link rel="preload" href="styles.css" as="style" />
-    <link rel="preload" href="scripts.js" as="script" />
     <title>Candle Flame - Farolillo de Cerámica Premium</title>
   </head>
   <body>
