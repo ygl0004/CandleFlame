@@ -24,18 +24,16 @@
 
 - [Acerca de](#acerca)
 - [Comenzando](#comenzando)
-- [Despliegue](#despliegue)
 - [Uso](#uso)
-- [Tecnologías Utilizadas](#tecnologias)
-- [Autores](#autores)
-- [Agradecimientos](#agradecimientos)
+- [Despliegue](#despliegue)
 - [Estructura del Proyecto](#estructura)
 - [Scripts y Estilos](#scripts)
 - [Accesibilidad](#accesibilidad)
 - [Pruebas y Buenas Prácticas](#pruebas)
 - [Notas adicionales](#notas)
-  <!-- - [Contribuir](#contribuir) -->
-  <!-- - [Enlaces útiles](#enlaces) -->
+- [Tecnologías Utilizadas](#tecnologias)
+- [Autores](#autores)
+- [Agradecimientos](#agradecimientos)
 
 ## 🧐 Acerca de <a name="acerca"></a>
 
