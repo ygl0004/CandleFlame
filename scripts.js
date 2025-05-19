@@ -9,10 +9,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty("--vh", `${vh}px`);
 
-    // Ajustar el contenedor de video para asegurar que cubra toda la pantalla
+    // Ajustar el contenedor de video para asegurar que cubra toda la pantalla sin deformarse
     const videoContainer = document.querySelector(".video-container");
     if (videoContainer) {
       videoContainer.style.height = `${window.innerHeight}px`;
+      videoContainer.style.maxHeight = "100vh";
+      videoContainer.style.overflow = "hidden";
     }
 
     // Ajustar menú móvil si está abierto
@@ -161,7 +163,7 @@ document.addEventListener("DOMContentLoaded", () => {
       mobileSrc = "assets/media/video/portada/Candleflame Movil.webm";
     }
 
-    const isDesktop = window.innerWidth >= 540;
+    const isDesktop = window.innerWidth >= 460;
     const currentType = isDesktop ? "desktop" : "mobile";
     const currentSrc = isDesktop ? desktopSrc : mobileSrc;
 
@@ -195,15 +197,27 @@ document.addEventListener("DOMContentLoaded", () => {
       videoEl.play().catch(() => {});
     }
 
-    // Asegurar que el contenedor de video cubra toda la pantalla
+    // Asegurar que el contenedor de video cubra toda la pantalla sin deformarse
     if (videoContainer) {
       videoContainer.style.height = `${window.innerHeight}px`;
+      videoContainer.style.maxHeight = "100vh";
+      videoContainer.style.overflow = "hidden";
     }
   };
 
   // Inicialización de videos al cargar la página
   handleVideoDisplay();
   window.addEventListener("resize", handleVideoDisplay);
+
+  // Manejo de resize para evitar deformaciones
+  let resizeTimeout;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      setFixedViewport();
+      handleVideoDisplay();
+    }, 100);
+  });
 
   // =============================================
   // 4. FUNCIONALIDADES ESPECÍFICAS DE PERSONALIZAR.HTML
@@ -789,19 +803,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   cart.updateCartCount();
-
-  // =============================================
-  // RECARGA AUTOMÁTICA AL CAMBIAR ENTRE MÓVIL Y ESCRITORIO
-  // =============================================
-  let lastDeviceMode = window.innerWidth >= 540 ? "desktop" : "mobile";
-  window.addEventListener("resize", () => {
-    const currentMode = window.innerWidth >= 540 ? "desktop" : "mobile";
-    if (currentMode !== lastDeviceMode) {
-      // Recarga la página solo si se cruza el umbral
-      window.location.reload();
-    }
-    lastDeviceMode = currentMode;
-  });
 });
 
 var anime = anime || {};
