@@ -87,6 +87,8 @@ CandleFlame/
 │
 ├── scripts.js                # Scripts globales
 ├── scripts-optimized.js      # Optimizaciones de carga y rendimiento
+│                             # (carga diferida de recursos, videos, FontAwesome,
+│                               imágenes, prefetch de páginas)
 ├── styles.css                # Estilos globales
 │
 ├── assets/
@@ -110,6 +112,7 @@ CandleFlame/
 
 - **Estilos globales:** `styles.css`
 - **Scripts globales:** `scripts.js`
+- **Script de optimización:** `scripts-optimized.js` (carga diferida de recursos, optimización de videos, imágenes y FontAwesome)
 - **Estilos y scripts por página:** en `assets/css/pages/` y `assets/js/pages/`
 - **Dependencias externas:**
   - [FontAwesome](https://fontawesome.com/) para iconos
