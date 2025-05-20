@@ -9,13 +9,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty("--vh", `${vh}px`);
 
-    // Ajustar el contenedor de video para asegurar que cubra toda la pantalla sin deformarse
-    const videoContainer = document.querySelector(".video-container");
-    if (videoContainer) {
-      videoContainer.style.height = `${window.innerHeight}px`;
-      videoContainer.style.maxHeight = "100vh";
-      videoContainer.style.overflow = "hidden";
-    }
+    // Eliminar el ajuste dinámico del contenedor de video
+    // const videoContainer = document.querySelector(".video-container");
+    // if (videoContainer) {
+    //   videoContainer.style.height = `${window.innerHeight}px`;
+    //   videoContainer.style.maxHeight = "100vh";
+    //   videoContainer.style.overflow = "hidden";
+    // }
 
     // Ajustar menú móvil si está abierto
     const headerNav = document.querySelector(".header_nav");
@@ -234,7 +234,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Asegurar que el contenedor de video cubra toda la pantalla sin deformarse
     if (videoContainer) {
-      videoContainer.style.height = `${window.innerHeight}px`;
+      // Eliminar el ajuste dinámico de altura
+      // videoContainer.style.height = `${window.innerHeight}px`;
       videoContainer.style.maxHeight = "100vh";
       videoContainer.style.overflow = "hidden";
     }
@@ -266,7 +267,11 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("resize", () => {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(() => {
-      setFixedViewport();
+      // Solo actualizar la variable CSS --vh, no redimensionar elementos
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty("--vh", `${vh}px`);
+
+      // Llamar a handleVideoDisplay sin ajustar alturas
       window.handleVideoDisplay();
     }, 100);
   });
@@ -856,9 +861,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   cart.updateCartCount();
 });
-  // =============================================
-  // 11. REPRODUCCIÓN DE VIDEO EN FUNCIÓN DEL VIEWPORT
-  // =============================================
+// =============================================
+// 11. REPRODUCCIÓN DE VIDEO EN FUNCIÓN DEL VIEWPORT
+// =============================================
 window.matchMedia("(min-width: 540px)").addEventListener("change", (e) => {
   window.handleVideoDisplay();
 });

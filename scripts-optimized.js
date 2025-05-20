@@ -1,4 +1,3 @@
-// Archivo de optimización de rendimiento para Candle Flame
 document.addEventListener("DOMContentLoaded", () => {
   // Inicializar videos inmediatamente para mejorar LCP
   initializeVideos();
