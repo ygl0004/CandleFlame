@@ -238,6 +238,7 @@ a {
 
 .icon-cart {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FB8D51'%3E%3Cpath d='M7 4h10l1 2h4v2h-1l-3 9H6L3 8H2V6h4l1-2zm0 2l-1 2h12l1-2H7zm1 4h8v2H8v-2zm0 4h8v2H8v-2z'/%3E%3C/svg%3E");
+  margin-top: 1.5px;
 }
 
 .icon-search {
@@ -409,7 +410,8 @@ header.scrolled {
   z-index: -2;
   overflow: hidden;
   -webkit-overflow-scrolling: touch;
-  transition: height 0.6s cubic-bezier(0.33, 1, 0.68, 1) !important;
+  /* Transición más suave y simétrica para ambos sentidos */
+  transition: height 0.7s cubic-bezier(0.33, 1, 0.68, 1), max-height 0.7s cubic-bezier(0.33, 1, 0.68, 1);
   background: rgba(0, 0, 0, 0.1);
 }
 

@@ -3,24 +3,32 @@ document.addEventListener("DOMContentLoaded", () => {
   // 1. SISTEMA DE VIEWPORT INTELIGENTE
   // =============================================
   let allowResize = false;
+  let lastViewportHeight = window.innerHeight; // Nuevo: guarda el último alto real
   const heroSection = document.querySelector(".hero, .customization-hero"); // Compatible con ambas páginas
 
-  const setFixedViewport = () => {
-    const vh = window.innerHeight * 0.01;
+  const setFixedViewport = (force = false) => {
+    // Solo actualizar si el cambio de altura es significativo o si es forzado
+    const currentHeight = window.innerHeight;
+    if (!force && Math.abs(currentHeight - lastViewportHeight) < 100) {
+      return;
+    }
+    lastViewportHeight = currentHeight;
+
+    const vh = currentHeight * 0.01;
     document.documentElement.style.setProperty("--vh", `${vh}px`);
 
-    // Eliminar el ajuste dinámico del contenedor de video
-    // const videoContainer = document.querySelector(".video-container");
-    // if (videoContainer) {
-    //   videoContainer.style.height = `${window.innerHeight}px`;
-    //   videoContainer.style.maxHeight = "100vh";
-    //   videoContainer.style.overflow = "hidden";
-    // }
+    // Ajustar el contenedor de video para asegurar que cubra toda la pantalla sin deformarse
+    const videoContainer = document.querySelector(".video-container");
+    if (videoContainer) {
+      videoContainer.style.height = `${currentHeight}px`;
+      videoContainer.style.maxHeight = "100vh";
+      videoContainer.style.overflow = "hidden";
+    }
 
     // Ajustar menú móvil si está abierto
     const headerNav = document.querySelector(".header_nav");
     if (headerNav && headerNav.classList.contains("show")) {
-      headerNav.style.height = `${window.innerHeight}px`;
+      headerNav.style.height = `${currentHeight}px`;
     }
   };
 
@@ -34,15 +42,36 @@ document.addEventListener("DOMContentLoaded", () => {
   const optimizedResizeHandler = () => {
     checkHeroVisibility();
     if (allowResize) {
-      requestAnimationFrame(setFixedViewport);
+      setFixedViewport();
     }
   };
 
   // Configuración inicial
-  setFixedViewport();
-  window.addEventListener("orientationchange", setFixedViewport);
+  setFixedViewport(true); // Forzar en la carga inicial
+  window.addEventListener("orientationchange", () => setFixedViewport(true));
   window.addEventListener("scroll", checkHeroVisibility);
-  window.addEventListener("resize", optimizedResizeHandler);
+
+  // Debounce para resize
+  let resizeDebounceTimeout;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeDebounceTimeout);
+    resizeDebounceTimeout = setTimeout(() => {
+      optimizedResizeHandler();
+      // Si el usuario está arriba del todo, forzar ajuste
+      if (window.scrollY < 10) {
+        setFixedViewport(true);
+        window.handleVideoDisplay();
+      }
+    }, 150);
+  });
+
+  // Forzar ajuste cuando el usuario vuelve arriba del todo
+  window.addEventListener("scroll", () => {
+    if (window.scrollY < 10) {
+      setFixedViewport(true);
+      window.handleVideoDisplay();
+    }
+  });
 
   // =============================================
   // 2. HEADER Y MENÚ MÓVIL
@@ -234,8 +263,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Asegurar que el contenedor de video cubra toda la pantalla sin deformarse
     if (videoContainer) {
-      // Eliminar el ajuste dinámico de altura
-      // videoContainer.style.height = `${window.innerHeight}px`;
+      videoContainer.style.height = `${window.innerHeight}px`;
       videoContainer.style.maxHeight = "100vh";
       videoContainer.style.overflow = "hidden";
     }
@@ -254,27 +282,13 @@ document.addEventListener("DOMContentLoaded", () => {
     // Esperar a que termine la transición de orientación
     setTimeout(() => {
       window.handleVideoDisplay();
-      setFixedViewport();
+      setFixedViewport(true);
     }, 300);
   });
 
   // Inicialización de videos al cargar la página
   window.handleVideoDisplay();
   window.addEventListener("resize", window.handleVideoDisplay);
-
-  // Manejo de resize para evitar deformaciones
-  let resizeTimeout;
-  window.addEventListener("resize", () => {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(() => {
-      // Solo actualizar la variable CSS --vh, no redimensionar elementos
-      const vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty("--vh", `${vh}px`);
-
-      // Llamar a handleVideoDisplay sin ajustar alturas
-      window.handleVideoDisplay();
-    }, 100);
-  });
 
   // =============================================
   // 4. FUNCIONALIDADES ESPECÍFICAS DE PERSONALIZAR.HTML
@@ -861,9 +875,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   cart.updateCartCount();
 });
-// =============================================
-// 11. REPRODUCCIÓN DE VIDEO EN FUNCIÓN DEL VIEWPORT
-// =============================================
+  // =============================================
+  // 11. REPRODUCCIÓN DE VIDEO EN FUNCIÓN DEL VIEWPORT
+  // =============================================
 window.matchMedia("(min-width: 540px)").addEventListener("change", (e) => {
   window.handleVideoDisplay();
 });
